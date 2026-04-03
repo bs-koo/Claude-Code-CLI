@@ -1153,8 +1153,11 @@ code:not(pre code) {
     <a class="nav-item" href="#alias">
       <span class="nav-num">09</span> Alias 및 실행 모드
     </a>
+    <a class="nav-item" href="#buddy">
+      <span class="nav-num">10</span> Buddy (펫 동반자)
+    </a>
     <a class="nav-item" href="#warp-tips">
-      <span class="nav-num">10</span> 터미널 꿀팁 (Warp)
+      <span class="nav-num">11</span> 터미널 꿀팁 (Warp)
     </a>
   </nav>
 
@@ -2131,11 +2134,107 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
     </section>
 
     <!-- ========================
-         SECTION 10: 터미널 꿀팁 (Warp)
+         SECTION 10: Buddy (펫 동반자)
+         ======================== -->
+    <section class="doc-section" id="buddy">
+      <div class="section-header">
+        <div class="section-num">10</div>
+        <h2>Buddy (펫 동반자)</h2>
+      </div>
+
+      <p>Claude Code 최신 버전에 추가된 재미 요소! <code>/buddy</code> 명령으로 나만의 펫 동반자를 소환할 수 있다. 펫은 입력창 옆에 상주하며, 명령 완료 시 가끔 조언이나 코멘트를 말풍선으로 보여준다.</p>
+
+      <div class="callout callout-orange">
+        <span class="callout-icon">🐾</span>
+        <div class="callout-body">
+          <span class="callout-title">작동 방식</span>
+          <ul style="margin: 8px 0 0; padding-left: 1.2em; line-height: 2;">
+            <li><code>/buddy</code> 입력 시 랜덤으로 펫이 배정됨</li>
+            <li>펫마다 종류, 등급(Common ~ Legendary), 스탯이 다름</li>
+            <li>가끔씩 작업에 대한 조언을 말풍선으로 표시해줌</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 28px;">표시 예시</h3>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">buddy display</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code data-copy="    -+-
+  .-0-oo-0-.     mushroom
+ (__________)    legendary ✦shiny
+ -  |·  ·|       ★★★★★
+    |____|
+
+  &quot;음~ fill 두 개인데 둘이 같은 크기 나올까?&quot;">    -+-
+  .-0-oo-0-.     mushroom
+ (__________)    legendary ✦shiny
+ -  |·  ·|       ★★★★★
+    |____|
+
+  "음~ fill 두 개인데 둘이 같은 크기 나올까?"</code></pre>
+      </div>
+
+      <h3 style="margin-top: 28px;">스탯 설명</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>스탯</th>
+              <th>설명</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>DEBUGGING</td><td>디버깅 관련 조언 빈도</td></tr>
+            <tr><td>PATIENCE</td><td>인내심 관련 코멘트</td></tr>
+            <tr><td>CHAOS</td><td>예상치 못한 제안 빈도</td></tr>
+            <tr><td>WISDOM</td><td>유용한 조언의 질 (높을수록 좋음)</td></tr>
+            <tr><td>SNARK</td><td>위트/유머 수준</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top: 32px;">마음에 드는 펫이 아니라면? — Legendary로 변경하기</h3>
+      <p>펫은 랜덤 배정이라 원하는 펫이 나오지 않을 수 있다. buddy-reroll을 설치하면 원하는 펫을 Legendary 등급으로 변경할 수 있다.</p>
+
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">Step 1</p>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">bash</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code data-copy="npm install -g buddy-reroll">npm install -g buddy-reroll</code></pre>
+      </div>
+
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 16px 0 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">Step 2</p>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">bash</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code data-copy="buddy-reroll">buddy-reroll</code></pre>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 24px;">
+        <span class="callout-icon">★</span>
+        <div class="callout-body">
+          <span class="callout-title">추천: Mushroom Legendary</span>
+          <p>개인적으로 mushroom 캐릭터의 Legendary 등급을 추천한다. WISDOM 스탯이 100으로 가장 유용한 조언을 제공한다.</p>
+        </div>
+      </div>
+
+      <p style="margin-top: 16px;">자세한 설치 방법: <a href="https://github.com/grayashh/buddy-reroll" target="_blank">https://github.com/grayashh/buddy-reroll</a></p>
+    </section>
+
+    <!-- ========================
+         SECTION 11: 터미널 꿀팁 (Warp)
          ======================== -->
     <section class="doc-section" id="warp-tips">
       <div class="section-header">
-        <div class="section-num">10</div>
+        <div class="section-num">11</div>
         <h2>터미널 꿀팁 (Warp)</h2>
       </div>
 
