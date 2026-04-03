@@ -1153,11 +1153,11 @@ code:not(pre code) {
     <a class="nav-item" href="#alias">
       <span class="nav-num">09</span> Alias 및 실행 모드
     </a>
-    <a class="nav-item" href="#buddy">
-      <span class="nav-num">10</span> Buddy (펫 동반자)
-    </a>
     <a class="nav-item" href="#warp-tips">
-      <span class="nav-num">11</span> 터미널 꿀팁 (WezTerm)
+      <span class="nav-num">10</span> 터미널 꿀팁 (WezTerm)
+    </a>
+    <a class="nav-item" href="#biz-plugins">
+      <span class="nav-num">11</span> 사업부 플러그인
     </a>
   </nav>
 
@@ -2277,111 +2277,11 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
     </section>
 
     <!-- ========================
-         SECTION 10: Buddy (펫 동반자)
-         ======================== -->
-    <section class="doc-section" id="buddy">
-      <div class="section-header">
-        <div class="section-num">10</div>
-        <div style="display: flex; flex-direction: column; gap: 4px;">
-          <h2 style="margin: 0;">Buddy (펫 동반자)</h2>
-          <div style="display: flex; gap: 12px; font-size: 0.8rem;">
-            <a href="https://github.com/grayashh/buddy-reroll" target="_blank" style="color: var(--text-muted); text-decoration: none;">GitHub ↗</a>
-          </div>
-        </div>
-      </div>
-
-      <p>Claude Code 최신 버전에 추가된 재미 요소! <code>/buddy</code> 명령으로 나만의 펫 동반자를 소환할 수 있습니다. 펫은 입력창 옆에 상주하며, 명령 완료 시 가끔 조언이나 코멘트를 말풍선으로 보여줍니다.</p>
-
-      <div class="callout callout-orange">
-        <span class="callout-icon">🐾</span>
-        <div class="callout-body">
-          <span class="callout-title">작동 방식</span>
-          <ul style="margin: 8px 0 0; padding-left: 1.2em; line-height: 2;">
-            <li><code>/buddy</code> 입력 시 랜덤으로 펫이 배정됨</li>
-            <li>펫마다 종류, 등급(Common ~ Legendary), 스탯이 다름</li>
-            <li>가끔씩 작업에 대한 조언을 말풍선으로 표시해줌</li>
-          </ul>
-        </div>
-      </div>
-
-      <h3 style="margin-top: 28px;">표시 예시</h3>
-
-      <div class="code-block">
-        <div class="code-header">
-          <span class="code-lang">buddy display</span>
-          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-        </div>
-        <pre><code data-copy="    -+-
-  .-0-oo-0-.     mushroom
- (__________)    legendary ✦shiny
- -  |·  ·|       ★★★★★
-    |____|
-
-  &quot;음~ fill 두 개인데 둘이 같은 크기 나올까?&quot;">    -+-
-  .-0-oo-0-.     mushroom
- (__________)    legendary ✦shiny
- -  |·  ·|       ★★★★★
-    |____|
-
-  "음~ fill 두 개인데 둘이 같은 크기 나올까?"</code></pre>
-      </div>
-
-      <h3 style="margin-top: 28px;">스탯 설명</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>스탯</th>
-              <th>설명</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>DEBUGGING</td><td>디버깅 관련 조언 빈도</td></tr>
-            <tr><td>PATIENCE</td><td>인내심 관련 코멘트</td></tr>
-            <tr><td>CHAOS</td><td>예상치 못한 제안 빈도</td></tr>
-            <tr><td>WISDOM</td><td>유용한 조언의 질 (높을수록 좋음)</td></tr>
-            <tr><td>SNARK</td><td>위트/유머 수준</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h3 style="margin-top: 32px;">마음에 드는 펫이 아니라면? — Legendary로 변경하기</h3>
-      <p>펫은 랜덤 배정이라 원하는 펫이 나오지 않을 수 있습니다. buddy-reroll을 설치하면 원하는 펫을 Legendary 등급으로 변경할 수 있습니다.</p>
-
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">Step 1</p>
-      <div class="code-block">
-        <div class="code-header">
-          <span class="code-lang">bash</span>
-          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-        </div>
-        <pre><code data-copy="npm install -g buddy-reroll">npm install -g buddy-reroll</code></pre>
-      </div>
-
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 16px 0 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">Step 2</p>
-      <div class="code-block">
-        <div class="code-header">
-          <span class="code-lang">bash</span>
-          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-        </div>
-        <pre><code data-copy="buddy-reroll">buddy-reroll</code></pre>
-      </div>
-
-      <div class="callout callout-green" style="margin-top: 24px;">
-        <span class="callout-icon">★</span>
-        <div class="callout-body">
-          <span class="callout-title">추천: Mushroom Legendary</span>
-          <p>개인적으로 mushroom 캐릭터의 Legendary 등급을 추천합니다. WISDOM 스탯이 100으로 가장 유용한 조언을 제공합니다.</p>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ========================
-         SECTION 11: 터미널 꿀팁 (WezTerm)
+         SECTION 10: 터미널 꿀팁 (WezTerm)
          ======================== -->
     <section class="doc-section" id="warp-tips">
       <div class="section-header">
-        <div class="section-num">11</div>
+        <div class="section-num">10</div>
         <div style="display: flex; flex-direction: column; gap: 4px;">
           <h2 style="margin: 0;">터미널 꿀팁 (WezTerm)</h2>
           <div style="display: flex; gap: 12px; font-size: 0.8rem;">
@@ -2430,6 +2330,269 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
           <span class="callout-title">개발 환경 전체를 Claude로 커스터마이징</span>
           <p>터미널 설정뿐 아니라, VS Code 테마, Git 설정, Shell 프로필 등 개발 환경 전반을 Claude에게 자연어로 요청하여 커스터마이징할 수 있습니다. 설정 파일 위치를 몰라도 Claude가 알아서 찾아서 수정해줍니다.</p>
         </div>
+      </div>
+
+    </section>
+
+    <!-- ========================
+         SECTION 11: 사업부 플러그인 (선택 사항)
+         ======================== -->
+    <section class="doc-section" id="biz-plugins">
+      <div class="section-header">
+        <div class="section-num">11</div>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h2 style="margin: 0;">사업부 플러그인 <span style="font-size: 1rem; font-weight: 500; color: var(--text-muted);">(선택 사항)</span></h2>
+        </div>
+      </div>
+
+      <div class="callout callout-blue" style="margin-bottom: 36px;">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <p>아래 플러그인은 GX사업부 내부에서 개발한 플러그인입니다. 사업부 프로젝트에 참여하는 경우 설치를 권장하지만, Claude Code 기본 사용에는 필수가 아닙니다.</p>
+        </div>
+      </div>
+
+      <!-- ── Card 1: oh-my-gx ── -->
+      <div class="card" style="border-left: 4px solid #f59e0b; margin-bottom: 40px;">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+          <div>
+            <h3 style="margin: 0 0 4px; font-size: 1.2rem;">oh-my-gx <span style="font-weight: 500; font-size: 0.9rem; color: var(--text-muted);">— 개발 자동화</span></h3>
+            <a href="https://github.com/bs-koo/oh-my-gx" target="_blank" style="font-size: 0.8rem; color: var(--text-muted); text-decoration: none; font-family: 'JetBrains Mono', monospace;">GitHub ↗</a>
+          </div>
+        </div>
+        <p style="margin-bottom: 20px; color: var(--text-secondary);">PRD 작성부터 설계, 구현, 리뷰, PR 생성까지 전체 개발 사이클을 에이전트 팀이 자동으로 처리하는 개발 자동화 플러그인입니다.</p>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">설치</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">slash command</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/plugin marketplace add bs-koo/oh-my-gx
+/plugin install oh-my-gx@oh-my-gx">/plugin marketplace add bs-koo/oh-my-gx
+/plugin install oh-my-gx@oh-my-gx</code></pre>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin: 16px 0 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">재시작 후 초기 설정</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">slash command</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/oh-my-gx:setup">/oh-my-gx:setup</code></pre>
+        </div>
+
+        <h4 style="margin: 24px 0 10px;">주요 스킬</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>스킬</th><th>설명</th></tr></thead>
+            <tbody>
+              <tr><td>gx-dev</td><td>PRD → 설계 → 구현 → 리뷰 → PR 전체 사이클</td></tr>
+              <tr><td>gx-context</td><td>기획서/코드에서 도메인 컨텍스트 생성</td></tr>
+              <tr><td>gx-lens</td><td>코드에서 비즈니스 정책 탐지 및 영향도 분석</td></tr>
+              <tr><td>gx-research</td><td>웹 검색 + 문서 분석 리서치</td></tr>
+              <tr><td>gx-commit</td><td>브랜치 타입 기반 한국어 커밋</td></tr>
+              <tr><td>gx-pull-request</td><td>커밋 히스토리 분석 PR 자동 생성</td></tr>
+              <tr><td>gx-humanizer</td><td>AI 글쓰기 패턴 감지 및 교정</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="margin: 24px 0 10px;">프롬프트 예시</h4>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">프롬프트</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/gx-dev 대시보드 기능 개발해줘">/gx-dev 대시보드 기능 개발해줘</code></pre>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 16px; padding-left: 4px;">→ 전체 개발 사이클이 자동으로 진행됩니다.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">프롬프트</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="기획서 보고 context 만들어줘">기획서 보고 context 만들어줘</code></pre>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 0; padding-left: 4px;">→ 기획 문서에서 도메인 컨텍스트를 자동 추출합니다.</p>
+      </div>
+
+      <!-- ── Card 2: gx-pm ── -->
+      <div class="card" style="border-left: 4px solid var(--blue); margin-bottom: 40px;">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+          <div>
+            <h3 style="margin: 0 0 4px; font-size: 1.2rem;">gx-pm <span style="font-weight: 500; font-size: 0.9rem; color: var(--text-muted);">— 프로젝트 산출물 관리</span></h3>
+            <a href="https://github.com/bs-koo/gx-pm" target="_blank" style="font-size: 0.8rem; color: var(--text-muted); text-decoration: none; font-family: 'JetBrains Mono', monospace;">GitHub ↗</a>
+          </div>
+        </div>
+        <p style="margin-bottom: 20px; color: var(--text-secondary);">공공/SI 프로젝트의 산출물을 자동으로 생성하고 관리하는 PM 전용 플러그인입니다. 요구사항정의서부터 테스트계획서, 감리대응까지 산출물명만 말하면 자동 생성됩니다.</p>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">설치</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">slash command</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/plugin marketplace add bs-koo/gx-pm
+/plugin install gx-pm@gx-pm">/plugin marketplace add bs-koo/gx-pm
+/plugin install gx-pm@gx-pm</code></pre>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin: 16px 0 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">초기 설정</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">slash command</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/프로젝트설정">/프로젝트설정</code></pre>
+        </div>
+
+        <h4 style="margin: 24px 0 10px;">주요 스킬</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>스킬</th><th>설명</th></tr></thead>
+            <tbody>
+              <tr><td>/요구사항정의서</td><td>RFP/과업지시서에서 요구사항 추출 및 분류</td></tr>
+              <tr><td>/화면목록표</td><td>요구사항 기반 화면 식별 및 ID 부여</td></tr>
+              <tr><td>/프로그램정의서</td><td>화면목록 기반 프로그램 목록 및 소스파일 매핑</td></tr>
+              <tr><td>/테이블정의서</td><td>DDL → 테이블정의서 변환 또는 ERD 설계</td></tr>
+              <tr><td>/단위테스트계획서</td><td>화면 유형별 검사기준 자동 매핑</td></tr>
+              <tr><td>/통합테스트시나리오</td><td>E2E 업무 흐름 시나리오 자동 작성</td></tr>
+              <tr><td>/추적매트릭스</td><td>요구사항↔화면↔프로그램↔테스트 양방향 추적</td></tr>
+              <tr><td>/감리대응</td><td>감리 지적사항 분석 및 대응 문서 생성</td></tr>
+              <tr><td>/테스트결과서</td><td>단위/통합/인수 테스트 결과서 생성</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="margin: 24px 0 10px;">프롬프트 예시</h4>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">프롬프트</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/요구사항정의서">/요구사항정의서</code></pre>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 16px; padding-left: 4px;">→ RFP에서 요구사항을 자동으로 추출하여 정의서를 생성합니다.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">프롬프트</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/추적매트릭스">/추적매트릭스</code></pre>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 0; padding-left: 4px;">→ 요구사항부터 테스트까지 전체 ID 체인을 추적하고 누락을 탐지합니다.</p>
+      </div>
+
+      <!-- ── Card 3: sqisoft-sef-2026 ── -->
+      <div class="card" style="border-left: 4px solid var(--green); margin-bottom: 40px;">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+          <div>
+            <h3 style="margin: 0 0 4px; font-size: 1.2rem;">sqisoft-sef-2026 <span style="font-weight: 500; font-size: 0.9rem; color: var(--text-muted);">— 공통프레임워크</span></h3>
+            <a href="https://github.com/sqi-energy/sqisoft-sef-2026-plugin" target="_blank" style="font-size: 0.8rem; color: var(--text-muted); text-decoration: none; font-family: 'JetBrains Mono', monospace;">GitHub ↗</a>
+          </div>
+        </div>
+        <p style="margin-bottom: 20px; color: var(--text-secondary);">공공/민간 서비스 개발을 위한 공통프레임워크 플러그인입니다. 자연어 한 마디로 PRD부터 PR까지 에이전트 팀이 자동 처리하며, 공공(eGovFrame+MyBatis)과 민간(JPA+Redis) 환경을 자동 감지하여 적절한 boilerplate를 생성합니다.</p>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">설치</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">slash command</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/plugin marketplace add sqi-energy/sqisoft-sef-2026-plugin
+/plugin install sef-2026@sqisoft-sef-2026">/plugin marketplace add sqi-energy/sqisoft-sef-2026-plugin
+/plugin install sef-2026@sqisoft-sef-2026</code></pre>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin: 16px 0 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">초기 설정</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">slash command</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/sef-setup">/sef-setup</code></pre>
+        </div>
+
+        <h4 style="margin: 24px 0 10px;">개발 사이클</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>스킬</th><th>설명</th></tr></thead>
+            <tbody>
+              <tr><td>sef-dev</td><td>PRD → 설계 → 구현 → 리뷰 → PR 전체 6 Phase 오케스트레이터</td></tr>
+              <tr><td>sef-commit</td><td>브랜치 타입 기반 한국어 커밋 + 민감파일 감지</td></tr>
+              <tr><td>sef-pull-request</td><td>커밋 히스토리 분석 PR 자동 생성</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="margin: 24px 0 10px;">코드 생성 및 분석</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>스킬</th><th>설명</th></tr></thead>
+            <tbody>
+              <tr><td>sef-backend-builder</td><td>공공(MyBatis)/민간(JPA) 백엔드 boilerplate 즉시 생성</td></tr>
+              <tr><td>sef-frontend-builder</td><td>Nuxt 4 + shadcn-vue 컴포넌트 생성</td></tr>
+              <tr><td>sef-context</td><td>도메인 컨텍스트 관리 (스캔/Q&A/문서 기반)</td></tr>
+              <tr><td>sef-lens</td><td>코드에서 비즈니스 정책 탐지 → 영향도 보고서</td></tr>
+              <tr><td>sef-verify</td><td>SEF-2026 패턴 검증 + reference 문서 동기화</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="margin: 24px 0 10px;">인프라 및 기타</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>스킬</th><th>설명</th></tr></thead>
+            <tbody>
+              <tr><td>sef-db-schema-query</td><td>PostgreSQL/MySQL/Oracle 스키마 단계적 탐색</td></tr>
+              <tr><td>sef-research</td><td>웹 검색 + 문서 분석 리서치</td></tr>
+              <tr><td>sef-humanizer</td><td>AI 글쓰기 40+ 패턴 감지 및 교정</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="margin: 24px 0 10px;">3가지 개발 모드</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>모드</th><th>트리거</th><th>설명</th></tr></thead>
+            <tbody>
+              <tr><td>NORMAL</td><td><code>/sef-dev 대시보드 기능 개발해줘</code></td><td>전체 6 Phase (PRD→설계→구현→리뷰→PR)</td></tr>
+              <tr><td>HOTFIX</td><td><code>/sef-dev 로그인 버그 긴급 수정해줘</code></td><td>경량 PRD → 구현 → PR</td></tr>
+              <tr><td>IMPLEMENT</td><td><code>/sef-dev 구현만 해줘</code></td><td>구현 → PR</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="margin: 24px 0 10px;">프롬프트 예시</h4>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">프롬프트</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/sef-dev 대시보드 기능 개발해줘">/sef-dev 대시보드 기능 개발해줘</code></pre>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 16px; padding-left: 4px;">→ 6 Phase가 자동 진행되며, 각 단계마다 사용자 승인을 받습니다.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">프롬프트</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/sef-backend-builder 공지사항 API">/sef-backend-builder 공지사항 API</code></pre>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 16px; padding-left: 4px;">→ sector 설정에 따라 공공/민간 boilerplate를 자동 생성합니다.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">프롬프트</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/sef-dev 로그인 버그 긴급 수정해줘">/sef-dev 로그인 버그 긴급 수정해줘</code></pre>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 0; padding-left: 4px;">→ HOTFIX 모드로 경량 PRD 후 바로 구현 → PR을 생성합니다.</p>
       </div>
 
     </section>
