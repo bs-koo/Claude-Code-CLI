@@ -1150,14 +1150,17 @@ code:not(pre code) {
       <span class="nav-num">08</span> RTK — 토큰 절약
     </a>
     <div class="nav-section-label">고급 설정</div>
+    <a class="nav-item" href="#screen-design">
+      <span class="nav-num">09</span> 화면 설계 팁
+    </a>
     <a class="nav-item" href="#alias">
-      <span class="nav-num">09</span> Alias 및 실행 모드
+      <span class="nav-num">10</span> Alias 및 실행 모드
     </a>
     <a class="nav-item" href="#warp-tips">
-      <span class="nav-num">10</span> 터미널 꿀팁 (WezTerm)
+      <span class="nav-num">11</span> 터미널 꿀팁 (WezTerm)
     </a>
     <a class="nav-item" href="#biz-plugins">
-      <span class="nav-num">11</span> 사업부 플러그인
+      <span class="nav-num">12</span> 사업부 플러그인
     </a>
   </nav>
 
@@ -1975,11 +1978,104 @@ rtk discover</code></pre>
     </section>
 
     <!-- ========================
-         SECTION 9: Alias & 실행 모드
+         SECTION 9: 화면 설계 팁
+         ======================== -->
+    <section class="doc-section" id="screen-design">
+      <div class="section-header">
+        <div class="section-num">09</div>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h2 style="margin: 0;">화면 설계 팁</h2>
+          <div style="display: flex; gap: 12px; font-size: 0.8rem;">
+            <a href="https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Figma-MCP-server" target="_blank" style="color: var(--text-muted); text-decoration: none;">Figma MCP 가이드 ↗</a>
+            <a href="https://pencil.dev" target="_blank" style="color: var(--text-muted); text-decoration: none;">Pencil 공식 사이트 ↗</a>
+            <a href="https://docs.pencil.dev" target="_blank" style="color: var(--text-muted); text-decoration: none;">문서 ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <p>Claude Code를 활용하면 Figma 디자인을 코드로 변환하거나, Pencil 앱에서 직접 AI 기반 UI 설계를 할 수 있습니다.</p>
+
+      <!-- Figma + MCP -->
+      <h3 style="margin: 32px 0 12px;">Figma + MCP 연동</h3>
+      <p>Figma MCP를 연동하면 Figma에서 설계한 화면을 Claude Code가 직접 읽어서 코드로 변환할 수 있습니다.</p>
+
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">Step 1: MCP 서버 추가</p>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">bash</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code data-copy="claude mcp add --transport http figma-remote-mcp https://mcp.figma.com/mcp">claude mcp add --transport http figma-remote-mcp https://mcp.figma.com/mcp</code></pre>
+      </div>
+
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 20px 0 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">Step 2: 인증</p>
+      <p>명령 실행 후 브라우저가 열리면 Figma 계정으로 로그인하여 접근 권한을 승인합니다. 올바른 Figma 계정으로 로그인되어 있는지 확인하세요.</p>
+
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 20px 0 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">Step 3: 사용법</p>
+      <p>Figma에서 원하는 프레임/페이지의 URL을 복사한 뒤, Claude Code 프롬프트에 붙여넣으면 됩니다.</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">프롬프트</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code data-copy="이 Figma 디자인을 React 컴포넌트로 만들어줘 [Figma URL 붙여넣기]">이 Figma 디자인을 React 컴포넌트로 만들어줘 [Figma URL 붙여넣기]</code></pre>
+      </div>
+
+      <div class="code-block" style="margin-top: 12px;">
+        <div class="code-header">
+          <span class="code-lang">프롬프트</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code data-copy="이 화면 설계를 참고해서 Vue 페이지를 구현해줘 [Figma URL 붙여넣기]">이 화면 설계를 참고해서 Vue 페이지를 구현해줘 [Figma URL 붙여넣기]</code></pre>
+      </div>
+
+      <div class="callout callout-orange" style="margin-top: 20px;">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <p>Figma URL은 프레임 단위로 공유하면 더 정확한 결과를 얻을 수 있습니다. 전체 파일 URL보다 특정 프레임을 선택한 뒤 'Copy link to selection'으로 복사하세요.</p>
+        </div>
+      </div>
+
+      <!-- Pencil -->
+      <h3 style="margin: 40px 0 12px;">Pencil — AI 네이티브 디자인 도구</h3>
+      <p>Pencil은 AI 네이티브 디자인 도구로, 데스크톱 앱 안에 Claude Code가 내장되어 있습니다. 자연어로 UI를 설계하고 바로 코드로 변환할 수 있습니다.</p>
+
+      <ul style="margin: 16px 0 20px; padding-left: 24px; display: flex; flex-direction: column; gap: 8px; color: var(--text-secondary);">
+        <li>데스크톱 앱 안에 Claude Code가 내장되어 있어 별도 설정 없이 바로 사용 가능합니다.</li>
+        <li>캔버스에서 자연어로 UI를 설계하면 .pen 파일로 저장됩니다.</li>
+        <li>MCP를 통해 외부 Claude Code CLI에서도 .pen 파일을 읽고 수정할 수 있습니다.</li>
+        <li>최대 6개 AI 에이전트가 동시에 디자인 방향을 제안합니다.</li>
+        <li>무료로 사용 가능합니다.</li>
+      </ul>
+
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">설치</p>
+      <p>Pencil 공식 사이트에서 데스크톱 앱을 다운로드하여 설치합니다. 설치 후 Claude Code 계정으로 로그인하면 바로 사용할 수 있습니다.</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">프롬프트</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code data-copy="대시보드 메인 화면을 설계해줘. 차트 3개와 통계 카드 4개를 배치해줘">대시보드 메인 화면을 설계해줘. 차트 3개와 통계 카드 4개를 배치해줘</code></pre>
+      </div>
+
+      <div class="code-block" style="margin-top: 12px;">
+        <div class="code-header">
+          <span class="code-lang">프롬프트</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code data-copy="로그인 페이지를 모던한 스타일로 디자인해줘">로그인 페이지를 모던한 스타일로 디자인해줘</code></pre>
+      </div>
+
+    </section>
+
+    <!-- ========================
+         SECTION 10: Alias & 실행 모드
          ======================== -->
     <section class="doc-section" id="alias">
       <div class="section-header">
-        <div class="section-num">09</div>
+        <div class="section-num">10</div>
         <h2>터미널 Alias 및 실행 모드</h2>
       </div>
 
@@ -2277,11 +2373,11 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
     </section>
 
     <!-- ========================
-         SECTION 10: 터미널 꿀팁 (WezTerm)
+         SECTION 11: 터미널 꿀팁 (WezTerm)
          ======================== -->
     <section class="doc-section" id="warp-tips">
       <div class="section-header">
-        <div class="section-num">10</div>
+        <div class="section-num">11</div>
         <div style="display: flex; flex-direction: column; gap: 4px;">
           <h2 style="margin: 0;">터미널 꿀팁 (WezTerm)</h2>
           <div style="display: flex; gap: 12px; font-size: 0.8rem;">
@@ -2335,11 +2431,11 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
     </section>
 
     <!-- ========================
-         SECTION 11: 사업부 플러그인 (선택 사항)
+         SECTION 12: 사업부 플러그인 (선택 사항)
          ======================== -->
     <section class="doc-section" id="biz-plugins">
       <div class="section-header">
-        <div class="section-num">11</div>
+        <div class="section-num">12</div>
         <div style="display: flex; flex-direction: column; gap: 4px;">
           <h2 style="margin: 0;">사업부 플러그인 <span style="font-size: 1rem; font-weight: 500; color: var(--text-muted);">(선택 사항)</span></h2>
         </div>
@@ -2593,6 +2689,17 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
           <pre><code data-copy="/sef-dev 로그인 버그 긴급 수정해줘">/sef-dev 로그인 버그 긴급 수정해줘</code></pre>
         </div>
         <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 0; padding-left: 4px;">→ HOTFIX 모드로 경량 PRD 후 바로 구현 → PR을 생성합니다.</p>
+
+        <div style="margin-top: 20px; padding: 16px 20px; background: var(--green-bg); border: 1px solid #86efac; border-radius: var(--radius-md);">
+          <strong style="color: #15803d;">참고 문서 다운로드</strong>
+          <p style="margin-top: 8px; font-size: 0.9rem; color: var(--text-secondary);">
+            공통프레임워크 플러그인의 상세 사용 가이드와 프롬프트 예시집입니다.
+          </p>
+          <div style="display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap;">
+            <a href="https://bs-koo.github.io/Claude-Code-CLI/GUIDE.md" target="_blank" download style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: white; border: 1px solid #86efac; border-radius: var(--radius-md); font-size: 0.85rem; font-weight: 600; color: #15803d; text-decoration: none;">📄 상세 가이드 (GUIDE.md)</a>
+            <a href="https://bs-koo.github.io/Claude-Code-CLI/PROMPT-EXAMPLES.md" target="_blank" download style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: white; border: 1px solid #86efac; border-radius: var(--radius-md); font-size: 0.85rem; font-weight: 600; color: #15803d; text-decoration: none;">📝 프롬프트 예시집 (PROMPT-EXAMPLES.md)</a>
+          </div>
+        </div>
       </div>
 
     </section>
