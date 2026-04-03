@@ -1337,10 +1337,7 @@ claude</code></pre>
             <tr><td>/clear</td><td>대화 초기화 (컨텍스트 리셋)</td></tr>
             <tr><td>/model</td><td>모델 및 성능 설정 변경</td></tr>
             <tr><td>/usage</td><td>현재 세션 토큰 사용량 확인</td></tr>
-            <tr><td>/plugin list</td><td>설치된 플러그인 목록 확인</td></tr>
-            <tr><td>/plugin update</td><td>설치된 플러그인 업데이트</td></tr>
-            <tr><td>/plugin install</td><td>플러그인 설치</td></tr>
-            <tr><td>/plugin uninstall</td><td>플러그인 제거</td></tr>
+            <tr><td>/plugin</td><td>플러그인 관리 화면 (설치, 업데이트, 제거)</td></tr>
           </tbody>
         </table>
       </div>
@@ -1348,18 +1345,57 @@ claude</code></pre>
       <!-- 플러그인 관리 card -->
       <div class="card" style="margin: 20px 0;">
         <h4>플러그인 관리</h4>
-        <p>Claude Code의 플러그인은 <code>/plugin</code> 명령어로 관리합니다.</p>
+        <p>Claude Code에서 <code>/plugin</code>을 입력하면 플러그인 관리 화면이 열립니다. 상단 탭으로 이동하며 모든 작업을 UI에서 처리할 수 있습니다.</p>
+
+        <div class="table-wrap" style="margin: 16px 0;">
+          <table>
+            <thead>
+              <tr>
+                <th>탭</th>
+                <th>기능</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Plugins</td>
+                <td>설치된 플러그인 목록 확인</td>
+              </tr>
+              <tr>
+                <td>Discover</td>
+                <td>새로운 플러그인 탐색</td>
+              </tr>
+              <tr>
+                <td>Installed</td>
+                <td>설치된 플러그인 관리 (제거 등)</td>
+              </tr>
+              <tr>
+                <td>Marketplaces</td>
+                <td>마켓플레이스 관리 (추가/업데이트/제거)</td>
+              </tr>
+              <tr>
+                <td>Errors</td>
+                <td>플러그인 오류 확인</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>플러그인 업데이트 방법:</strong></p>
+        <ol style="margin: 8px 0 16px 20px; line-height: 2;">
+          <li><code>/plugin</code> 입력하여 관리 화면 열기</li>
+          <li>상단에서 <strong>Marketplaces</strong> 탭 선택</li>
+          <li>업데이트할 플러그인의 마켓플레이스 선택</li>
+          <li><strong>Update marketplace</strong> 선택</li>
+          <li>Claude Code 재시작</li>
+        </ol>
 
         <p><strong>플러그인 설치 흐름:</strong></p>
-        <ol style="margin: 8px 0 16px 20px; line-height: 2;">
-          <li>마켓플레이스에 저장소 추가: <code>/plugin marketplace add [저장소]</code></li>
-          <li>플러그인 설치: <code>/plugin install [플러그인명]</code></li>
+        <ol style="margin: 8px 0 0 20px; line-height: 2;">
+          <li>마켓플레이스 추가: <code>/plugin marketplace add [저장소]</code></li>
+          <li><code>/plugin</code> → <strong>Marketplaces</strong> 탭 → 플러그인 선택 → 설치</li>
           <li>Claude Code 재시작</li>
           <li>초기 설정 실행 (플러그인에 따라 다름)</li>
         </ol>
-
-        <p><strong>플러그인 업데이트:</strong></p>
-        <p>설치된 플러그인을 최신 버전으로 업데이트하려면 <code>/plugin update</code>를 실행합니다. 업데이트 후에는 Claude Code를 재시작해야 변경사항이 적용됩니다.</p>
       </div>
 
       <!-- Context Window 개념 설명 card -->
