@@ -1337,8 +1337,29 @@ claude</code></pre>
             <tr><td>/clear</td><td>대화 초기화 (컨텍스트 리셋)</td></tr>
             <tr><td>/model</td><td>모델 및 성능 설정 변경</td></tr>
             <tr><td>/usage</td><td>현재 세션 토큰 사용량 확인</td></tr>
+            <tr><td>/plugin list</td><td>설치된 플러그인 목록 확인</td></tr>
+            <tr><td>/plugin update</td><td>설치된 플러그인 업데이트</td></tr>
+            <tr><td>/plugin install</td><td>플러그인 설치</td></tr>
+            <tr><td>/plugin uninstall</td><td>플러그인 제거</td></tr>
           </tbody>
         </table>
+      </div>
+
+      <!-- 플러그인 관리 card -->
+      <div class="card" style="margin: 20px 0;">
+        <h4>플러그인 관리</h4>
+        <p>Claude Code의 플러그인은 <code>/plugin</code> 명령어로 관리합니다.</p>
+
+        <p><strong>플러그인 설치 흐름:</strong></p>
+        <ol style="margin: 8px 0 16px 20px; line-height: 2;">
+          <li>마켓플레이스에 저장소 추가: <code>/plugin marketplace add [저장소]</code></li>
+          <li>플러그인 설치: <code>/plugin install [플러그인명]</code></li>
+          <li>Claude Code 재시작</li>
+          <li>초기 설정 실행 (플러그인에 따라 다름)</li>
+        </ol>
+
+        <p><strong>플러그인 업데이트:</strong></p>
+        <p>설치된 플러그인을 최신 버전으로 업데이트하려면 <code>/plugin update</code>를 실행합니다. 업데이트 후에는 Claude Code를 재시작해야 변경사항이 적용됩니다.</p>
       </div>
 
       <!-- Context Window 개념 설명 card -->
