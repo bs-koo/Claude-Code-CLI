@@ -295,6 +295,7 @@ strong { font-weight: 700; color: var(--text-primary); }
   min-width: 0;
   padding: 56px 56px 120px;
   max-width: calc(var(--content-max) + 112px);
+  margin: 0 auto;
 }
 
 /* ============================================================
@@ -1123,7 +1124,7 @@ code:not(pre code) {
   <nav class="sidebar" id="sidebar">
     <div class="nav-section-label">시작하기</div>
     <a class="nav-item active" href="#requirements">
-      <span class="nav-num">01</span> 시스템 요구사항
+      <span class="nav-num">01</span> 설치 전 확인
     </a>
     <a class="nav-item" href="#install">
       <span class="nav-num">02</span> 설치
@@ -1152,6 +1153,9 @@ code:not(pre code) {
     <a class="nav-item" href="#alias">
       <span class="nav-num">09</span> Alias 및 실행 모드
     </a>
+    <a class="nav-item" href="#warp-tips">
+      <span class="nav-num">10</span> 터미널 꿀팁 (Warp)
+    </a>
   </nav>
 
   <!-- MAIN -->
@@ -1174,32 +1178,31 @@ code:not(pre code) {
     </section>
 
     <!-- ========================
-         SECTION 1: 시스템 요구사항
+         SECTION 1: 설치 전 확인
          ======================== -->
     <section class="doc-section" id="requirements">
       <div class="section-header">
         <div class="section-num">01</div>
-        <h2>시스템 요구사항</h2>
+        <h2>설치 전 확인</h2>
       </div>
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>항목</th>
-              <th>요구사항</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>OS</td><td>Windows 10 (1809+) 또는 Windows Server 2019+</td></tr>
-            <tr><td>RAM</td><td>4GB 이상</td></tr>
-            <tr><td>Shell</td><td>PowerShell, CMD, 또는 Git Bash</td></tr>
-            <tr><td>필수 소프트웨어</td><td>Git for Windows</td></tr>
-            <tr><td>네트워크</td><td>인터넷 연결 필요</td></tr>
-            <tr><td>계정</td><td>Claude Pro / Max / Team / Enterprise 또는 Anthropic Console</td></tr>
-          </tbody>
-        </table>
+      <div style="background: linear-gradient(135deg, var(--orange-50) 0%, #fff3e0 100%); border: 2px solid var(--border-orange); border-radius: var(--radius-lg); padding: 28px 32px; margin-bottom: 20px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 0; right: 0; width: 120px; height: 120px; background: radial-gradient(circle, rgba(224,122,47,0.12) 0%, transparent 70%); pointer-events: none;"></div>
+        <div style="display: flex; align-items: flex-start; gap: 16px;">
+          <div style="font-size: 2rem; line-height: 1; flex-shrink: 0; margin-top: 2px;">🔑</div>
+          <div>
+            <div style="font-size: 1.15rem; font-weight: 800; color: var(--accent); margin-bottom: 8px; letter-spacing: -0.02em;">Claude Pro 이상 구독이 필요합니다</div>
+            <p style="margin-bottom: 12px; color: var(--text-primary); font-size: 0.97rem;">Claude Code는 무료 플랜에서는 사용할 수 없습니다.<br>Claude Pro, Max, Team, Enterprise 또는 Anthropic Console 계정이 필요합니다.</p>
+            <a href="https://claude.com/pricing" target="_blank" style="display: inline-flex; align-items: center; gap: 7px; background: var(--accent); color: #fff; padding: 9px 20px; border-radius: var(--radius-md); font-size: 0.88rem; font-weight: 700; text-decoration: none; transition: background var(--duration-fast), transform var(--duration-fast); box-shadow: var(--shadow-orange);" onmouseover="this.style.background='var(--orange-700)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--accent)';this.style.transform='translateY(0)'">
+              구독 확인하기 &rarr; claude.com/pricing
+            </a>
+          </div>
+        </div>
       </div>
+
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 14px; padding: 12px 16px; background: var(--bg-section); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+        📋 &nbsp;<strong>추가 요구사항</strong> — Windows 10 이상, Git for Windows 설치 필요
+      </p>
     </section>
 
     <!-- ========================
@@ -1319,7 +1322,8 @@ claude</code></pre>
           </thead>
           <tbody>
             <tr><td>/help</td><td>사용 가능한 모든 명령어 표시</td></tr>
-            <tr><td>/config</td><td>설정 변경 (인터랙티브)</td></tr>
+            <tr><td>/config</td><td>설정 변경 (인터랙티브). Auto-compact 등 자동화 설정도 여기서 관리</td></tr>
+            <tr><td>/compact</td><td>대화 내용을 압축하여 컨텍스트 확보. 압축 시 이전 맥락이 요약되므로 세부 내용이 일부 손실될 수 있음에 주의</td></tr>
             <tr><td>/allowed-tools</td><td>도구 권한 관리</td></tr>
             <tr><td>/hooks</td><td>Hook 설정 관리</td></tr>
             <tr><td>/mcp</td><td>MCP 서버 관리</td></tr>
@@ -1329,6 +1333,25 @@ claude</code></pre>
             <tr><td>/usage</td><td>현재 세션 토큰 사용량 확인</td></tr>
           </tbody>
         </table>
+      </div>
+
+      <!-- Context Window 개념 설명 card -->
+      <div class="card card-orange mt-20">
+        <h3 style="margin-bottom: 12px;">Context Window란?</h3>
+        <p>Claude가 한 번의 대화에서 기억할 수 있는 텍스트의 최대 용량. 대화가 길어지면 컨텍스트가 가득 차서 이전 내용을 잊게 된다.</p>
+        <ul style="margin: 14px 0 14px 20px; display: flex; flex-direction: column; gap: 8px; color: var(--text-primary);">
+          <li><code>/compact</code> 명령으로 현재까지의 대화를 압축하여 공간을 확보할 수 있다</li>
+          <li>단, 압축 시 세부적인 맥락이나 코드 디테일이 일부 손실될 수 있으므로, 중요한 작업 중에는 주의가 필요하다</li>
+          <li><code>/config</code>에서 <strong>Auto-compact</strong>를 활성화하면, 컨텍스트가 일정 수준 이상 차면 자동으로 압축된다</li>
+          <li>Auto-compact가 동작하면 Claude가 자동으로 대화를 요약하여 공간을 확보하지만, 이전에 논의한 세부사항을 참고해야 할 경우 다시 알려줘야 할 수 있다</li>
+        </ul>
+        <div class="callout callout-orange" style="margin-top: 4px; margin-bottom: 0;">
+          <span class="callout-icon">💡</span>
+          <div class="callout-body">
+            <span class="callout-title">팁</span>
+            <p>복잡한 작업 중 컨텍스트가 부족해지면 <code>/compact</code> 후 핵심 맥락을 다시 알려주는 것이 가장 안전하다</p>
+          </div>
+        </div>
       </div>
 
       <!-- /model 상세 -->
@@ -1430,57 +1453,32 @@ claude</code></pre>
         <h2>Thinking 모드 설정</h2>
       </div>
 
-      <div class="feature-card">
-        <span class="feature-card-label">Thinking 모드란?</span>
-        <p>Claude가 응답하기 전에 '생각하는 과정'을 거치는 기능이다. 복잡한 문제에서 더 정확한 답변을 제공하며, 일반 응답보다 더 깊은 추론과 자기 검증을 수행한다.</p>
-      </div>
-
-      <h3 class="mt-20">설정 방법 — Claude에게 직접 요청</h3>
-      <p>프롬프트로 Thinking 모드를 활성화할 수 있다.</p>
-
-      <div class="code-block">
-        <div class="code-header">
-          <span class="code-lang">프롬프트 예시</span>
-          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+      <div class="callout callout-orange">
+        <span class="callout-icon">⌨️</span>
+        <div class="callout-body">
+          <span class="callout-title">Alt+T — 토글 단축키</span>
+          <p><code>Alt+T</code>로 Thinking 모드를 켜고 끌 수 있다</p>
         </div>
-        <pre><code>thinking 모드를 활성화해줘</code></pre>
       </div>
 
-      <div class="code-block">
-        <div class="code-header">
-          <span class="code-lang">프롬프트 예시</span>
-          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-        </div>
-        <pre><code>extended thinking을 켜줘</code></pre>
-      </div>
-
-      <h3 class="mt-20">Thinking 레벨</h3>
+      <h3 class="mt-20">On/Off 차이점</h3>
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>레벨</th><th>설명</th></tr>
+            <tr><th>모드</th><th>설명</th></tr>
           </thead>
           <tbody>
-            <tr><td>기본 (off)</td><td>빠른 응답, 간단한 작업에 적합</td></tr>
-            <tr><td>Thinking</td><td>중간 수준 추론, 일반적인 코딩 작업</td></tr>
-            <tr><td>Ultra Thinking</td><td>최대 추론 깊이, 복잡한 아키텍처/디버깅에 적합</td></tr>
+            <tr><td>Thinking Off</td><td>빠른 응답, 간단한 작업에 적합. 토큰 소비 적음</td></tr>
+            <tr><td>Thinking On</td><td>응답 전 '생각하는 과정'을 거침. 복잡한 문제에 더 정확하지만 토큰을 2–3배 더 소비</td></tr>
+            <tr><td>Ultra Thinking</td><td>최대 추론 깊이. 아키텍처 설계/복잡한 디버깅에 적합하나 토큰 소비가 큼</td></tr>
           </tbody>
         </table>
       </div>
 
-      <div class="callout callout-orange mt-20" style="margin-top: 20px;">
-        <span class="callout-icon">⌨️</span>
-        <div class="callout-body">
-          <span class="callout-title">키보드 단축키</span>
-          <p><code>Alt+T</code>로 Thinking 토글 가능</p>
-        </div>
-      </div>
-
-      <div class="callout callout-green">
+      <div class="callout callout-green" style="margin-top: 16px;">
         <span class="callout-icon">💡</span>
         <div class="callout-body">
-          <span class="callout-title">사용 팁</span>
-          <p>간단한 파일 수정에는 Thinking off, 복잡한 버그 추적이나 설계에는 Ultra Thinking을 권장한다. Thinking 모드는 토큰 사용량이 늘어나므로 필요한 경우에만 활성화하는 것이 좋다.</p>
+          <p>간단한 수정은 Off, 복잡한 버그 추적이나 설계는 Ultra Thinking 권장</p>
         </div>
       </div>
     </section>
@@ -1896,19 +1894,192 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
         <span class="callout-icon">🛡️</span>
         <div class="callout-body">
           <span class="callout-title">바이패스 모드 안전 설정</span>
-          <p>바이패스 모드에서도 권한 설정을 통해 위험한 작업을 차단할 수 있다. Claude Code에게 다음과 같이 요청하면 자동으로 설정된다.</p>
+          <p>바이패스 모드에서도 권한 설정을 통해 위험한 작업을 차단할 수 있다. 아래 JSON을 복사한 뒤 Claude Code에게 다음과 같이 요청하면 자동으로 설정된다:</p>
         </div>
       </div>
 
-      <div class="code-block">
+      <div class="code-block" style="margin-top: 16px;">
         <div class="code-header">
           <span class="code-lang">프롬프트</span>
           <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
         </div>
-        <pre><code>settings.json에 permissions를 설정해줘:
-- allow: 파일 읽기/쓰기, git 명령, npm/node/python 명령, 기본 셸 명령
-- deny: rm -rf /, git push --force, git reset --hard, DROP DATABASE, shutdown, format
-- ask: rm, sudo, chmod, .env 파일 읽기</code></pre>
+        <pre><code>settings.json에 다음 permissions 설정을 적용해줘:
+(위 JSON 붙여넣기)</code></pre>
+      </div>
+
+      <div class="code-block" style="margin-top: 8px;">
+        <div class="code-header">
+          <span class="code-lang">json</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>{
+  "permissions": {
+    "allow": [
+      "AskUserQuestion",
+      "BashOutput",
+      "Edit",
+      "Glob",
+      "Grep",
+      "KillShell",
+      "MultiEdit",
+      "NotebookEdit",
+      "Read",
+      "Skill",
+      "Task",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskUpdate",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "Write",
+      "mcp__context7__get-library-docs",
+      "mcp__context7__resolve-library-id",
+      "mcp__sequential-thinking__*",
+      "mcp__stitch__*",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git show:*)",
+      "Bash(git blame:*)",
+      "Bash(git branch:*)",
+      "Bash(git remote:*)",
+      "Bash(git config:*)",
+      "Bash(git tag:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git fetch:*)",
+      "Bash(git checkout:*)",
+      "Bash(git switch:*)",
+      "Bash(git stash:*)",
+      "Bash(git merge:*)",
+      "Bash(git revert:*)",
+      "Bash(gh issue:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh repo view:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(less:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(tree:*)",
+      "Bash(pwd:*)",
+      "Bash(wc:*)",
+      "Bash(diff:*)",
+      "Bash(comm:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(cut:*)",
+      "Bash(awk:*)",
+      "Bash(sed:*)",
+      "Bash(basename:*)",
+      "Bash(dirname:*)",
+      "Bash(realpath:*)",
+      "Bash(readlink:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(mkdir:*)",
+      "Bash(touch:*)",
+      "Bash(rsync:*)",
+      "Bash(curl:*)",
+      "Bash(jq:*)",
+      "Bash(yq:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(node*)",
+      "Bash(npm*)",
+      "Bash(npx*)",
+      "Bash(bun*)",
+      "Bash(pnpm*)",
+      "Bash(yarn*)",
+      "Bash(uv*)",
+      "Bash(pip*)",
+      "Bash(pip3*)",
+      "Bash(black:*)",
+      "Bash(ruff:*)",
+      "Bash(pylint:*)",
+      "Bash(flake8:*)",
+      "Bash(mypy:*)",
+      "Bash(eslint:*)",
+      "Bash(prettier:*)",
+      "Bash(pytest:*)",
+      "Bash(coverage:*)",
+      "Bash(make:*)",
+      "Bash(ast-grep:*)",
+      "Bash(sg:*)",
+      "Bash(rg:*)",
+      "Bash(echo:*)",
+      "Bash(printf:*)",
+      "Bash(test:*)",
+      "Bash(true:*)",
+      "Bash(false:*)",
+      "Bash(which:*)",
+      "Bash(type:*)",
+      "Bash(man:*)",
+      "Bash(pydoc:*)",
+      "Bash(lsof:*)",
+      "Bash(time:*)",
+      "Bash(xargs:*)",
+      "Bash(dir:*)",
+      "Bash(cd:*)",
+      "Bash(cd /d:*)",
+      "Bash(findstr:*)",
+      "Bash(git:*)",
+      "Bash(cmd /c:*)",
+      "Bash(powershell:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf /:*)",
+      "Bash(rm -rf /:)",
+      "Bash(rm -rf ~:*)",
+      "Bash(rm -rf ~/:)",
+      "Bash(rm -rf C\\:/:*)",
+      "Bash(rm -rf C\\:/:)",
+      "Bash(del /S /Q C\\:/:*)",
+      "Bash(rmdir /S /Q C\\:/:*)",
+      "Bash(Remove-Item -Recurse -Force C\\:/:*)",
+      "Bash(Clear-Disk:*)",
+      "Bash(Format-Volume:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git push --force-with-lease:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean -fd:*)",
+      "Bash(git clean -fdx:*)",
+      "Bash(git rebase -i:*)",
+      "Bash(format:*)",
+      "Bash(chmod -R 777:*)",
+      "Bash(chmod 777:*)",
+      "Bash(dd:*)",
+      "Bash(mkfs:*)",
+      "Bash(fdisk:*)",
+      "Bash(reboot:*)",
+      "Bash(shutdown:*)",
+      "Bash(init:*)",
+      "Bash(systemctl:*)",
+      "Bash(kill -9:*)",
+      "Bash(killall:*)",
+      "Bash(DROP DATABASE:*)",
+      "Bash(DROP TABLE:*)",
+      "Bash(TRUNCATE:*)",
+      "Bash(DELETE FROM:*)"
+    ],
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(sudo:*)",
+      "Bash(chmod:*)",
+      "Bash(chown:*)",
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ],
+    "defaultMode": "default"
+  }
+}</code></pre>
       </div>
 
       <h3 class="mt-20">권한 3단계</h3>
@@ -1955,6 +2126,58 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
           <strong>DB 보호</strong> — DROP DATABASE, TRUNCATE 차단<br>
           <strong>삭제 확인</strong> — rm은 항상 사용자에게 물어봄<br>
           <strong>환경변수 보호</strong> — .env 읽기 시 확인</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         SECTION 10: 터미널 꿀팁 (Warp)
+         ======================== -->
+    <section class="doc-section" id="warp-tips">
+      <div class="section-header">
+        <div class="section-num">10</div>
+        <h2>터미널 꿀팁 (Warp)</h2>
+      </div>
+
+      <p>Warp 같은 모던 터미널 앱을 사용하면 Claude Code 작업 환경을 더 쾌적하게 만들 수 있다. 터미널 커스터마이징도 Claude에게 자연어로 요청하면 된다.</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">프롬프트</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code data-copy="Warp 터미널 배경색을 어두운 네이비로 바꿔줘">Warp 터미널 배경색을 어두운 네이비로 바꿔줘</code></pre>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">프롬프트</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code data-copy="Warp 터미널 폰트를 JetBrains Mono로 변경하고 크기를 14px로 설정해줘">Warp 터미널 폰트를 JetBrains Mono로 변경하고 크기를 14px로 설정해줘</code></pre>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">프롬프트</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code data-copy="Warp 터미널에서 현재 탭 이름을 프로젝트명으로 바꿔줘">Warp 터미널에서 현재 탭 이름을 프로젝트명으로 바꿔줘</code></pre>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">프롬프트</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code data-copy="Warp 터미널 테마를 커스텀으로 만들어줘. 배경은 #1a1b26, 텍스트는 #c0caf5 으로">Warp 터미널 테마를 커스텀으로 만들어줘. 배경은 #1a1b26, 텍스트는 #c0caf5 으로</code></pre>
+      </div>
+
+      <div class="callout callout-orange" style="margin-top: 24px;">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <span class="callout-title">개발 환경 전체를 Claude로 커스터마이징</span>
+          <p>터미널 설정뿐 아니라, VS Code 테마, Git 설정, Shell 프로필 등 개발 환경 전반을 Claude에게 자연어로 요청하여 커스터마이징할 수 있다. 설정 파일 위치를 몰라도 Claude가 알아서 찾아서 수정해준다.</p>
         </div>
       </div>
     </section>
