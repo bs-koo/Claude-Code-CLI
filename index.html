@@ -2448,149 +2448,53 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
         </div>
       </div>
 
-      <!-- ── Card 1: oh-my-gx ── -->
-      <div class="card" style="border-left: 4px solid #f59e0b; margin-bottom: 40px;">
-        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
-          <div>
-            <h3 style="margin: 0 0 4px; font-size: 1.2rem;">oh-my-gx <span style="font-weight: 500; font-size: 0.9rem; color: var(--text-muted);">— 개발 자동화</span></h3>
-            <a href="https://github.com/bs-koo/oh-my-gx" target="_blank" style="font-size: 0.8rem; color: var(--text-muted); text-decoration: none; font-family: 'JetBrains Mono', monospace;">GitHub ↗</a>
-          </div>
-        </div>
-        <p style="margin-bottom: 20px; color: var(--text-secondary);">PRD 작성부터 설계, 구현, 리뷰, PR 생성까지 전체 개발 사이클을 에이전트 팀이 자동으로 처리하는 개발 자동화 플러그인입니다.</p>
+      <div class="card card-orange" style="margin: 24px 0 32px;">
+        <h4>SEF-2026 vs oh-my-gx — 어떤 걸 설치해야 하나요?</h4>
+        <p>두 플러그인은 동일한 개발 자동화 목적을 가지지만, 적용 범위와 토큰 소모 방식이 다릅니다.</p>
 
-        <div class="callout callout-orange" style="margin: 12px 0;">
-          <span class="callout-icon">⭐</span>
-          <div class="callout-body">
-            <span class="callout-title">Max 구독자 추천</span>
-            <p>oh-my-gx는 특정 언어나 프레임워크에 종속되지 않는 범용 개발 자동화 플러그인입니다. 모든 언어와 프레임워크에 적용 가능하므로, Claude Max 구독자라면 기본으로 설치하는 것을 권장합니다.</p>
-          </div>
-        </div>
-
-        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">설치</p>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">slash command</span>
-            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-          </div>
-          <pre><code data-copy="/plugin marketplace add bs-koo/oh-my-gx
-/plugin install oh-my-gx@oh-my-gx">/plugin marketplace add bs-koo/oh-my-gx
-/plugin install oh-my-gx@oh-my-gx</code></pre>
-        </div>
-
-        <p style="font-size: 0.88rem; color: var(--text-muted); margin: 16px 0 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">재시작 후 초기 설정</p>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">slash command</span>
-            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-          </div>
-          <pre><code data-copy="/oh-my-gx:setup">/oh-my-gx:setup</code></pre>
-        </div>
-
-        <h4 style="margin: 24px 0 10px;">주요 스킬</h4>
-        <div class="table-wrap">
+        <div class="table-wrap" style="margin: 16px 0;">
           <table>
-            <thead><tr><th>스킬</th><th>설명</th></tr></thead>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>SEF-2026 (공통프레임워크)</th>
+                <th>oh-my-gx</th>
+              </tr>
+            </thead>
             <tbody>
-              <tr><td>gx-dev</td><td>PRD → 설계 → 구현 → 리뷰 → PR 전체 사이클</td></tr>
-              <tr><td>gx-context</td><td>기획서/코드에서 도메인 컨텍스트 생성</td></tr>
-              <tr><td>gx-lens</td><td>코드에서 비즈니스 정책 탐지 및 영향도 분석</td></tr>
-              <tr><td>gx-research</td><td>웹 검색 + 문서 분석 리서치</td></tr>
-              <tr><td>gx-commit</td><td>브랜치 타입 기반 한국어 커밋</td></tr>
-              <tr><td>gx-pull-request</td><td>커밋 히스토리 분석 PR 자동 생성</td></tr>
-              <tr><td>gx-humanizer</td><td>AI 글쓰기 패턴 감지 및 교정</td></tr>
+              <tr>
+                <td>적용 범위</td>
+                <td>공공 Java/Spring + Nuxt 프로젝트 전용</td>
+                <td>모든 언어, 모든 프레임워크</td>
+              </tr>
+              <tr>
+                <td>dev 파이프라인</td>
+                <td>에이전트별 reference 파일을 §번호 기반으로 최소한만 읽어 토큰 절약</td>
+                <td>각 에이전트가 독립적으로 파일을 읽어 더 정교한 결과 도출</td>
+              </tr>
+              <tr>
+                <td>토큰 소모</td>
+                <td>적음 (3계층 reference 로딩으로 87% 절약)</td>
+                <td>많음 (정밀 분석을 위해 더 많은 컨텍스트 사용)</td>
+              </tr>
+              <tr>
+                <td>추천 구독</td>
+                <td>Pro / Max 모두 사용 가능</td>
+                <td><strong>Max 구독자 추천</strong> (토큰 소모가 크므로)</td>
+              </tr>
+              <tr>
+                <td>주요 대상</td>
+                <td>공공/SI 프로젝트 개발자</td>
+                <td>모든 프로젝트 개발자</td>
+              </tr>
             </tbody>
           </table>
         </div>
 
-        <h4 style="margin: 24px 0 10px;">프롬프트 예시</h4>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">프롬프트</span>
-            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-          </div>
-          <pre><code data-copy="/gx-dev 대시보드 기능 개발해줘">/gx-dev 대시보드 기능 개발해줘</code></pre>
-        </div>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 16px; padding-left: 4px;">→ 전체 개발 사이클이 자동으로 진행됩니다.</p>
-
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">프롬프트</span>
-            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-          </div>
-          <pre><code data-copy="기획서 보고 context 만들어줘">기획서 보고 context 만들어줘</code></pre>
-        </div>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 0; padding-left: 4px;">→ 기획 문서에서 도메인 컨텍스트를 자동 추출합니다.</p>
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">oh-my-gx는 SEF-2026의 범용 버전으로, 특정 언어나 프레임워크에 종속되지 않습니다. 토큰 소모는 더 크지만 그만큼 각 에이전트가 더 정교하게 분석하여 높은 품질의 결과를 도출합니다.</p>
       </div>
 
-      <!-- ── Card 2: gx-pm ── -->
-      <div class="card" style="border-left: 4px solid var(--blue); margin-bottom: 40px;">
-        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
-          <div>
-            <h3 style="margin: 0 0 4px; font-size: 1.2rem;">gx-pm <span style="font-weight: 500; font-size: 0.9rem; color: var(--text-muted);">— 프로젝트 산출물 관리</span></h3>
-            <a href="https://github.com/bs-koo/gx-pm" target="_blank" style="font-size: 0.8rem; color: var(--text-muted); text-decoration: none; font-family: 'JetBrains Mono', monospace;">GitHub ↗</a>
-          </div>
-        </div>
-        <p style="margin-bottom: 20px; color: var(--text-secondary);">공공/SI 프로젝트의 산출물을 자동으로 생성하고 관리하는 PM 전용 플러그인입니다. 요구사항정의서부터 테스트계획서, 감리대응까지 산출물명만 말하면 자동 생성됩니다.</p>
-
-        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">설치</p>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">slash command</span>
-            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-          </div>
-          <pre><code data-copy="/plugin marketplace add bs-koo/gx-pm
-/plugin install gx-pm@gx-pm">/plugin marketplace add bs-koo/gx-pm
-/plugin install gx-pm@gx-pm</code></pre>
-        </div>
-
-        <p style="font-size: 0.88rem; color: var(--text-muted); margin: 16px 0 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">초기 설정</p>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">slash command</span>
-            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-          </div>
-          <pre><code data-copy="/프로젝트설정">/프로젝트설정</code></pre>
-        </div>
-
-        <h4 style="margin: 24px 0 10px;">주요 스킬</h4>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>스킬</th><th>설명</th></tr></thead>
-            <tbody>
-              <tr><td>/요구사항정의서</td><td>RFP/과업지시서에서 요구사항 추출 및 분류</td></tr>
-              <tr><td>/화면목록표</td><td>요구사항 기반 화면 식별 및 ID 부여</td></tr>
-              <tr><td>/프로그램정의서</td><td>화면목록 기반 프로그램 목록 및 소스파일 매핑</td></tr>
-              <tr><td>/테이블정의서</td><td>DDL → 테이블정의서 변환 또는 ERD 설계</td></tr>
-              <tr><td>/단위테스트계획서</td><td>화면 유형별 검사기준 자동 매핑</td></tr>
-              <tr><td>/통합테스트시나리오</td><td>E2E 업무 흐름 시나리오 자동 작성</td></tr>
-              <tr><td>/추적매트릭스</td><td>요구사항↔화면↔프로그램↔테스트 양방향 추적</td></tr>
-              <tr><td>/감리대응</td><td>감리 지적사항 분석 및 대응 문서 생성</td></tr>
-              <tr><td>/테스트결과서</td><td>단위/통합/인수 테스트 결과서 생성</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h4 style="margin: 24px 0 10px;">프롬프트 예시</h4>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">프롬프트</span>
-            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-          </div>
-          <pre><code data-copy="/요구사항정의서">/요구사항정의서</code></pre>
-        </div>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 16px; padding-left: 4px;">→ RFP에서 요구사항을 자동으로 추출하여 정의서를 생성합니다.</p>
-
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">프롬프트</span>
-            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-          </div>
-          <pre><code data-copy="/추적매트릭스">/추적매트릭스</code></pre>
-        </div>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 0; padding-left: 4px;">→ 요구사항부터 테스트까지 전체 ID 체인을 추적하고 누락을 탐지합니다.</p>
-      </div>
-
-      <!-- ── Card 3: sqisoft-sef-2026 ── -->
+      <!-- ── Card 1: sqisoft-sef-2026 ── -->
       <div class="card" style="border-left: 4px solid var(--green); margin-bottom: 40px;">
         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
           <div>
@@ -2716,6 +2620,148 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
             <a href="https://bs-koo.github.io/Claude-Code-CLI/PROMPT-EXAMPLES.md" target="_blank" download style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: white; border: 1px solid #86efac; border-radius: var(--radius-md); font-size: 0.85rem; font-weight: 600; color: #15803d; text-decoration: none;">📝 프롬프트 예시집 (PROMPT-EXAMPLES.md)</a>
           </div>
         </div>
+      </div>
+
+      <!-- ── Card 2: oh-my-gx ── -->
+      <div class="card" style="border-left: 4px solid #f59e0b; margin-bottom: 40px;">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+          <div>
+            <h3 style="margin: 0 0 4px; font-size: 1.2rem;">oh-my-gx <span style="font-weight: 500; font-size: 0.9rem; color: var(--text-muted);">— 개발 자동화</span></h3>
+            <a href="https://github.com/bs-koo/oh-my-gx" target="_blank" style="font-size: 0.8rem; color: var(--text-muted); text-decoration: none; font-family: 'JetBrains Mono', monospace;">GitHub ↗</a>
+          </div>
+        </div>
+        <p style="margin-bottom: 20px; color: var(--text-secondary);">PRD 작성부터 설계, 구현, 리뷰, PR 생성까지 전체 개발 사이클을 에이전트 팀이 자동으로 처리하는 개발 자동화 플러그인입니다.</p>
+
+        <div class="callout callout-orange" style="margin: 12px 0;">
+          <span class="callout-icon">⭐</span>
+          <div class="callout-body">
+            <span class="callout-title">Max 구독자 추천</span>
+            <p>oh-my-gx는 SEF-2026(공통프레임워크)의 범용 버전입니다. 특정 언어나 프레임워크에 종속되지 않아 어떤 프로젝트에서든 사용할 수 있습니다. dev 파이프라인에서 각 에이전트가 독립적으로 파일을 분석하므로 토큰 소모가 크지만, 그만큼 더 정교한 결과를 도출합니다. <strong>Claude Max 구독자에게 추천합니다.</strong></p>
+          </div>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">설치</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">slash command</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/plugin marketplace add bs-koo/oh-my-gx
+/plugin install oh-my-gx@oh-my-gx">/plugin marketplace add bs-koo/oh-my-gx
+/plugin install oh-my-gx@oh-my-gx</code></pre>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin: 16px 0 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">재시작 후 초기 설정</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">slash command</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/oh-my-gx:setup">/oh-my-gx:setup</code></pre>
+        </div>
+
+        <h4 style="margin: 24px 0 10px;">주요 스킬</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>스킬</th><th>설명</th></tr></thead>
+            <tbody>
+              <tr><td>gx-dev</td><td>PRD → 설계 → 구현 → 리뷰 → PR 전체 사이클</td></tr>
+              <tr><td>gx-context</td><td>기획서/코드에서 도메인 컨텍스트 생성</td></tr>
+              <tr><td>gx-lens</td><td>코드에서 비즈니스 정책 탐지 및 영향도 분석</td></tr>
+              <tr><td>gx-research</td><td>웹 검색 + 문서 분석 리서치</td></tr>
+              <tr><td>gx-commit</td><td>브랜치 타입 기반 한국어 커밋</td></tr>
+              <tr><td>gx-pull-request</td><td>커밋 히스토리 분석 PR 자동 생성</td></tr>
+              <tr><td>gx-humanizer</td><td>AI 글쓰기 패턴 감지 및 교정</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="margin: 24px 0 10px;">프롬프트 예시</h4>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">프롬프트</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/gx-dev 대시보드 기능 개발해줘">/gx-dev 대시보드 기능 개발해줘</code></pre>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 16px; padding-left: 4px;">→ 전체 개발 사이클이 자동으로 진행됩니다.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">프롬프트</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="기획서 보고 context 만들어줘">기획서 보고 context 만들어줘</code></pre>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 0; padding-left: 4px;">→ 기획 문서에서 도메인 컨텍스트를 자동 추출합니다.</p>
+      </div>
+
+      <!-- ── Card 3: gx-pm ── -->
+      <div class="card" style="border-left: 4px solid var(--blue); margin-bottom: 40px;">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+          <div>
+            <h3 style="margin: 0 0 4px; font-size: 1.2rem;">gx-pm <span style="font-weight: 500; font-size: 0.9rem; color: var(--text-muted);">— 프로젝트 산출물 관리</span></h3>
+            <a href="https://github.com/bs-koo/gx-pm" target="_blank" style="font-size: 0.8rem; color: var(--text-muted); text-decoration: none; font-family: 'JetBrains Mono', monospace;">GitHub ↗</a>
+          </div>
+        </div>
+        <p style="margin-bottom: 20px; color: var(--text-secondary);">공공/SI 프로젝트의 산출물을 자동으로 생성하고 관리하는 PM 전용 플러그인입니다. 요구사항정의서부터 테스트계획서, 감리대응까지 산출물명만 말하면 자동 생성됩니다.</p>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">설치</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">slash command</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/plugin marketplace add bs-koo/gx-pm
+/plugin install gx-pm@gx-pm">/plugin marketplace add bs-koo/gx-pm
+/plugin install gx-pm@gx-pm</code></pre>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin: 16px 0 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">초기 설정</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">slash command</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/프로젝트설정">/프로젝트설정</code></pre>
+        </div>
+
+        <h4 style="margin: 24px 0 10px;">주요 스킬</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>스킬</th><th>설명</th></tr></thead>
+            <tbody>
+              <tr><td>/요구사항정의서</td><td>RFP/과업지시서에서 요구사항 추출 및 분류</td></tr>
+              <tr><td>/화면목록표</td><td>요구사항 기반 화면 식별 및 ID 부여</td></tr>
+              <tr><td>/프로그램정의서</td><td>화면목록 기반 프로그램 목록 및 소스파일 매핑</td></tr>
+              <tr><td>/테이블정의서</td><td>DDL → 테이블정의서 변환 또는 ERD 설계</td></tr>
+              <tr><td>/단위테스트계획서</td><td>화면 유형별 검사기준 자동 매핑</td></tr>
+              <tr><td>/통합테스트시나리오</td><td>E2E 업무 흐름 시나리오 자동 작성</td></tr>
+              <tr><td>/추적매트릭스</td><td>요구사항↔화면↔프로그램↔테스트 양방향 추적</td></tr>
+              <tr><td>/감리대응</td><td>감리 지적사항 분석 및 대응 문서 생성</td></tr>
+              <tr><td>/테스트결과서</td><td>단위/통합/인수 테스트 결과서 생성</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4 style="margin: 24px 0 10px;">프롬프트 예시</h4>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">프롬프트</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/요구사항정의서">/요구사항정의서</code></pre>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 16px; padding-left: 4px;">→ RFP에서 요구사항을 자동으로 추출하여 정의서를 생성합니다.</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">프롬프트</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code data-copy="/추적매트릭스">/추적매트릭스</code></pre>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 6px 0 0; padding-left: 4px;">→ 요구사항부터 테스트까지 전체 ID 체인을 추적하고 누락을 탐지합니다.</p>
       </div>
 
     </section>
