@@ -3,69 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Claude Code CLI 설치 가이드</title>
+<title>Claude Code CLI 가이드</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   CSS CUSTOM PROPERTIES
+   CSS CUSTOM PROPERTIES — WHITE + ORANGE THEME
    ============================================================ */
 :root {
-  --bg-base:        #090c10;
-  --bg-surface:     #0d1117;
-  --bg-elevated:    #13181f;
-  --bg-card:        #161c24;
-  --bg-code:        #0a0e14;
-  --bg-hover:       #1a2232;
+  --bg-base:        #ffffff;
+  --bg-section:     #f8f9fa;
+  --bg-warm:        #fff7ed;
+  --bg-card:        #ffffff;
+  --bg-code:        #1e1e2e;
+  --bg-hover:       #fff3e0;
 
-  --border-subtle:  #1e2738;
-  --border-default: #253047;
-  --border-strong:  #3a4d6a;
+  --border-subtle:  #f0e8d8;
+  --border-default: #e5d5b5;
+  --border-orange:  #f59e0b;
 
-  --text-primary:   #e6edf3;
-  --text-secondary: #8b949e;
-  --text-muted:     #484f5a;
-  --text-inverse:   #090c10;
+  --text-primary:   #1a1a1a;
+  --text-secondary: #6b7280;
+  --text-muted:     #9ca3af;
+  --text-inverse:   #ffffff;
 
-  --accent-primary: #6366f1;
-  --accent-light:   #818cf8;
-  --accent-dim:     #1e1f4a;
-  --accent-glow:    rgba(99, 102, 241, 0.15);
+  --orange-50:      #fff7ed;
+  --orange-100:     #ffedd5;
+  --orange-200:     #fed7aa;
+  --orange-400:     #fb923c;
+  --orange-500:     #f59e0b;
+  --orange-600:     #E07A2F;
+  --orange-700:     #D97706;
+  --orange-900:     #7c2d12;
 
-  --green:          #3fb950;
-  --green-dim:      #0e2418;
-  --yellow:         #d29922;
-  --yellow-dim:     #2a1f04;
-  --red:            #f85149;
-  --red-dim:        #2d0f0e;
-  --orange:         #f0883e;
-  --orange-dim:     #2d1600;
-  --teal:           #39c5cf;
-  --teal-dim:       #062328;
+  --accent:         #E07A2F;
+  --accent-light:   #F59E0B;
+  --accent-dim:     #fff7ed;
+  --accent-glow:    rgba(224, 122, 47, 0.12);
 
-  --syntax-keyword: #ff7b72;
-  --syntax-string:  #a5d6ff;
-  --syntax-comment: #484f5a;
-  --syntax-number:  #79c0ff;
-  --syntax-func:    #d2a8ff;
-  --syntax-var:     #ffa657;
-  --syntax-tag:     #7ee787;
-  --syntax-prop:    #79c0ff;
+  --green:          #16a34a;
+  --green-bg:       #f0fdf4;
+  --red:            #dc2626;
+  --red-bg:         #fef2f2;
+  --blue:           #2563eb;
+  --blue-bg:        #eff6ff;
+
+  --code-keyword:   #f8c555;
+  --code-string:    #a8ff78;
+  --code-comment:   #6272a4;
+  --code-func:      #8be9fd;
+  --code-var:       #ffb86c;
+  --code-num:       #bd93f9;
+  --code-text:      #e2e8f0;
 
   --radius-sm:      4px;
   --radius-md:      8px;
-  --radius-lg:      12px;
-  --radius-xl:      16px;
+  --radius-lg:      14px;
+  --radius-xl:      20px;
 
-  --shadow-sm:      0 1px 3px rgba(0,0,0,0.4);
-  --shadow-md:      0 4px 16px rgba(0,0,0,0.5);
-  --shadow-lg:      0 8px 32px rgba(0,0,0,0.6);
-  --shadow-accent:  0 0 24px rgba(99,102,241,0.2);
+  --shadow-sm:      0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:      0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-lg:      0 12px 40px rgba(0,0,0,0.1), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-orange:  0 4px 20px rgba(224, 122, 47, 0.2);
 
-  --nav-width:      260px;
+  --nav-width:      272px;
   --content-max:    860px;
-  --header-h:       60px;
+  --header-h:       64px;
 
   --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out:    cubic-bezier(0.4, 0, 0.2, 1);
@@ -81,53 +85,61 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-h) + 24px);
+  scroll-padding-top: calc(var(--header-h) + 32px);
   font-size: 16px;
 }
 
 body {
-  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Pretendard', -apple-system, sans-serif;
   background: var(--bg-base);
   color: var(--text-primary);
   line-height: 1.7;
+  font-size: 17px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Grain overlay */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  opacity: 0.02;
-  pointer-events: none;
-  z-index: 9999;
-}
+::selection { background: rgba(224, 122, 47, 0.2); color: var(--text-primary); }
 
-::selection { background: rgba(99,102,241,0.35); color: var(--text-primary); }
-
-a { color: var(--accent-light); text-decoration: none; }
-a:hover { text-decoration: underline; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; color: var(--orange-700); }
 
 h1, h2, h3, h4 {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
 }
 
-p { margin-bottom: 1em; }
+h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+p { margin-bottom: 1em; color: var(--text-primary); }
 p:last-child { margin-bottom: 0; }
+
+strong { font-weight: 700; color: var(--text-primary); }
 
 /* ============================================================
    SCROLLBAR
    ============================================================ */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-track { background: var(--bg-section); }
 ::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 /* ============================================================
    TOP HEADER BAR
@@ -136,14 +148,14 @@ p:last-child { margin-bottom: 0; }
   position: fixed;
   top: 0; left: 0; right: 0;
   height: var(--header-h);
-  background: rgba(9, 12, 16, 0.85);
-  backdrop-filter: blur(16px) saturate(1.5);
-  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px) saturate(1.8);
+  -webkit-backdrop-filter: blur(16px) saturate(1.8);
   border-bottom: 1px solid var(--border-subtle);
   z-index: 100;
   display: flex;
   align-items: center;
-  padding: 0 24px;
+  padding: 0 28px;
   gap: 16px;
 }
 
@@ -151,33 +163,34 @@ p:last-child { margin-bottom: 0; }
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-weight: 700;
+  font-size: 0.95rem;
   color: var(--text-primary);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   white-space: nowrap;
 }
 
 .logo-icon {
-  width: 28px; height: 28px;
-  background: linear-gradient(135deg, var(--accent-primary), #a855f7);
-  border-radius: 7px;
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  border-radius: 9px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
+  font-size: 16px;
   flex-shrink: 0;
-  box-shadow: 0 0 12px rgba(99,102,241,0.4);
+  box-shadow: var(--shadow-orange);
 }
 
 .header-spacer { flex: 1; }
 
 .header-badge {
-  font-size: 0.7rem;
-  font-family: 'DM Mono', monospace;
-  padding: 3px 8px;
+  font-size: 0.72rem;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 4px 10px;
   border-radius: 20px;
-  background: var(--bg-card);
+  background: var(--orange-50);
   border: 1px solid var(--border-default);
-  color: var(--text-secondary);
+  color: var(--accent);
+  font-weight: 500;
 }
 
 .mobile-menu-btn {
@@ -185,12 +198,12 @@ p:last-child { margin-bottom: 0; }
   background: none;
   border: 1px solid var(--border-default);
   color: var(--text-primary);
-  width: 36px; height: 36px;
+  width: 38px; height: 38px;
   border-radius: var(--radius-md);
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 18px;
   transition: background var(--duration-fast) var(--ease-in-out);
 }
 .mobile-menu-btn:hover { background: var(--bg-hover); }
@@ -214,8 +227,9 @@ p:last-child { margin-bottom: 0; }
   top: var(--header-h);
   height: calc(100vh - var(--header-h));
   overflow-y: auto;
-  padding: 24px 0 48px;
+  padding: 28px 0 56px;
   border-right: 1px solid var(--border-subtle);
+  background: var(--bg-base);
   scrollbar-width: thin;
 }
 
@@ -223,51 +237,55 @@ p:last-child { margin-bottom: 0; }
 .sidebar::-webkit-scrollbar-thumb { background: var(--border-subtle); }
 
 .nav-section-label {
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   color: var(--text-muted);
-  padding: 16px 20px 6px;
+  padding: 18px 22px 7px;
 }
 
-.nav-section-label:first-child { padding-top: 8px; }
+.nav-section-label:first-child { padding-top: 6px; }
 
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 20px;
-  font-size: 0.82rem;
+  gap: 10px;
+  padding: 8px 22px;
+  font-size: 15px;
+  font-weight: 500;
   color: var(--text-secondary);
   cursor: pointer;
   transition: color var(--duration-fast), background var(--duration-fast);
-  border-left: 2px solid transparent;
+  border-left: 3px solid transparent;
   text-decoration: none;
   line-height: 1.4;
+  margin: 1px 0;
 }
 
 .nav-item:hover {
   color: var(--text-primary);
-  background: var(--bg-hover);
+  background: var(--orange-50);
   text-decoration: none;
+  border-left-color: var(--border-default);
 }
 
 .nav-item.active {
-  color: var(--accent-light);
-  border-left-color: var(--accent-primary);
+  color: var(--accent);
+  border-left-color: var(--accent);
   background: var(--accent-glow);
-  font-weight: 500;
+  font-weight: 700;
 }
 
-.nav-item .nav-num {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.68rem;
+.nav-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
   color: var(--text-muted);
-  min-width: 16px;
+  min-width: 18px;
+  font-weight: 400;
 }
 
-.nav-item.active .nav-num { color: var(--accent-primary); }
+.nav-item.active .nav-num { color: var(--accent); }
 
 /* ============================================================
    MAIN CONTENT
@@ -275,188 +293,154 @@ p:last-child { margin-bottom: 0; }
 .main-content {
   flex: 1;
   min-width: 0;
-  padding: 48px 48px 96px;
-  max-width: calc(var(--content-max) + 96px);
-}
-
-/* ============================================================
-   HERO SECTION
-   ============================================================ */
-.hero {
-  padding: 72px 0 80px;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -80px; left: -100px;
-  width: 600px; height: 500px;
-  background: radial-gradient(ellipse at center, rgba(99,102,241,0.12) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0; right: -50px;
-  width: 400px; height: 300px;
-  background: radial-gradient(ellipse at center, rgba(168,85,247,0.08) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.72rem;
-  font-family: 'DM Mono', monospace;
-  font-weight: 400;
-  color: var(--accent-light);
-  background: var(--accent-dim);
-  border: 1px solid rgba(99,102,241,0.3);
-  padding: 4px 12px;
-  border-radius: 20px;
-  margin-bottom: 24px;
-  letter-spacing: 0.06em;
-}
-
-.hero-eyebrow::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--accent-light);
-  box-shadow: 0 0 6px var(--accent-light);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-.hero h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  margin-bottom: 16px;
-  color: var(--text-primary);
-}
-
-.hero h1 em {
-  font-style: italic;
-  color: var(--accent-light);
-}
-
-.hero-subtitle {
-  font-size: 1rem;
-  color: var(--text-secondary);
-  max-width: 560px;
-  line-height: 1.7;
-  margin-bottom: 36px;
-  font-weight: 300;
-}
-
-.hero-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
-  font-family: 'DM Mono', monospace;
-  padding: 6px 12px;
-  border-radius: var(--radius-md);
-  border: 1px solid;
-  transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast);
-  cursor: default;
-}
-
-.hero-badge:hover { transform: translateY(-2px); }
-
-.badge-windows  { background: rgba(0,120,212,0.1); border-color: rgba(0,120,212,0.4); color: #60b0ff; }
-.badge-claude   { background: var(--accent-dim); border-color: rgba(99,102,241,0.4); color: var(--accent-light); }
-.badge-omc      { background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.4); color: #c084fc; }
-.badge-rtk      { background: rgba(249,115,22,0.1); border-color: rgba(249,115,22,0.4); color: #fb923c; }
-
-/* ============================================================
-   DIVIDER
-   ============================================================ */
-.hero-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent-primary), transparent);
-  margin-bottom: 0;
-  opacity: 0.4;
+  padding: 56px 56px 120px;
+  max-width: calc(var(--content-max) + 112px);
 }
 
 /* ============================================================
    SECTION WRAPPER
    ============================================================ */
 .doc-section {
-  padding: 64px 0 16px;
+  margin-bottom: 88px;
+  animation: fadeUp 0.5s var(--ease-out) both;
+}
+
+.doc-section:nth-child(1) { animation-delay: 0.05s; }
+.doc-section:nth-child(2) { animation-delay: 0.1s; }
+.doc-section:nth-child(3) { animation-delay: 0.15s; }
+.doc-section:nth-child(4) { animation-delay: 0.2s; }
+.doc-section:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .section-header {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 32px;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid var(--border-subtle);
 }
 
-.section-number {
-  flex-shrink: 0;
-  width: 36px; height: 36px;
-  border-radius: 9px;
-  background: var(--accent-dim);
-  border: 1px solid rgba(99,102,241,0.35);
-  color: var(--accent-light);
-  font-family: 'DM Mono', monospace;
-  font-size: 0.8rem;
-  font-weight: 500;
-  display: flex; align-items: center; justify-content: center;
-  margin-top: 3px;
-  flex-shrink: 0;
-}
-
-.section-title-wrap h2 {
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  color: var(--text-primary);
-}
-
-.section-title-wrap .section-desc {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  margin-top: 4px;
-  font-weight: 300;
-}
-
-.subsection-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 32px 0 16px;
+.section-num {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius-md);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-orange);
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.hero {
+  padding: 64px 0 72px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 72px;
+  animation: fadeUp 0.6s var(--ease-out) both;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -80px;
+  width: 500px; height: 500px;
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--orange-50);
+  border: 1px solid var(--border-default);
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  letter-spacing: 0.04em;
+}
+
+.hero-eyebrow-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 18px;
+  color: var(--text-primary);
+}
+
+.hero h1 span {
+  color: var(--accent);
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 540px;
+  line-height: 1.75;
+  margin-bottom: 36px;
+  font-weight: 400;
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
-.subsection-title::before {
-  content: '';
-  width: 3px; height: 16px;
-  background: var(--accent-primary);
-  border-radius: 2px;
-  flex-shrink: 0;
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid;
+  cursor: default;
+  transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast);
 }
+
+.hero-badge:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+.badge-windows  { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+.badge-claude   { background: var(--orange-50); border-color: var(--border-default); color: var(--accent); }
+.badge-omc      { background: #fdf4ff; border-color: #e9d5ff; color: #7e22ce; }
+.badge-rtk      { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
 
 /* ============================================================
    TABLES
@@ -465,26 +449,29 @@ p:last-child { margin-bottom: 0; }
   overflow-x: auto;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
-  margin-bottom: 24px;
+  margin: 20px 0;
+  box-shadow: var(--shadow-sm);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.875rem;
+  font-size: 15px;
+}
+
+thead {
+  background: var(--orange-50);
+  border-bottom: 2px solid var(--border-default);
 }
 
 thead th {
-  background: var(--bg-card);
-  color: var(--text-secondary);
-  font-weight: 500;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 10px 16px;
+  padding: 14px 20px;
   text-align: left;
-  border-bottom: 1px solid var(--border-subtle);
-  white-space: nowrap;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
 }
 
 tbody tr {
@@ -493,220 +480,155 @@ tbody tr {
 }
 
 tbody tr:last-child { border-bottom: none; }
-tbody tr:hover { background: var(--bg-hover); }
 
-td {
-  padding: 10px 16px;
-  vertical-align: top;
+tbody tr:nth-child(even) { background: #fafafa; }
+
+tbody tr:hover { background: var(--orange-50); }
+
+tbody td {
+  padding: 14px 20px;
+  color: var(--text-primary);
+  vertical-align: middle;
   line-height: 1.6;
 }
 
-td:first-child {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.8rem;
-  color: var(--accent-light);
-  white-space: nowrap;
-  font-weight: 500;
-}
-
-td.plain-first {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.875rem;
-  color: var(--text-primary);
-  white-space: normal;
-  font-weight: 400;
-}
-
-td.td-secondary { color: var(--text-secondary); }
-
-.td-savings {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.8rem;
+tbody td:first-child {
   font-weight: 600;
-  color: var(--green);
-}
-
-.td-num {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  white-space: nowrap;
 }
 
 /* ============================================================
    CODE BLOCKS
    ============================================================ */
-.code-block-wrap {
+.code-block {
   position: relative;
-  margin: 16px 0 24px;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  border: 1px solid var(--border-subtle);
+  margin: 16px 0;
   box-shadow: var(--shadow-md);
 }
 
-.code-block-header {
+.code-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 14px 8px 16px;
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border-subtle);
+  padding: 10px 16px;
+  background: #171724;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
 .code-lang {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.68rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
   font-weight: 500;
+  color: var(--accent-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .copy-btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 5px;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
+  font-family: 'JetBrains Mono', monospace;
   font-weight: 500;
-  color: var(--text-muted);
-  background: transparent;
-  border: 1px solid var(--border-subtle);
-  padding: 3px 10px;
+  color: #9ca3af;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: var(--radius-sm);
+  padding: 4px 10px;
   cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-in-out);
-  letter-spacing: 0.04em;
-  white-space: nowrap;
+  transition: all var(--duration-fast);
+  user-select: none;
 }
 
 .copy-btn:hover {
-  color: var(--text-primary);
-  border-color: var(--border-default);
-  background: var(--bg-hover);
+  background: rgba(255,255,255,0.1);
+  color: #e2e8f0;
+  border-color: rgba(255,255,255,0.2);
 }
 
 .copy-btn.copied {
-  color: var(--green);
-  border-color: rgba(63,185,80,0.4);
-  background: var(--green-dim);
+  color: #4ade80;
+  border-color: rgba(74, 222, 128, 0.3);
+  background: rgba(74, 222, 128, 0.1);
 }
 
-.copy-btn svg {
-  width: 11px; height: 11px;
-  flex-shrink: 0;
-}
-
-pre {
+.code-block pre {
   background: var(--bg-code);
-  padding: 18px 20px;
+  padding: 20px 22px;
   overflow-x: auto;
   margin: 0;
+  line-height: 1.7;
+  scrollbar-width: thin;
 }
 
-code {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.82rem;
-  line-height: 1.8;
+.code-block code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--code-text);
+  display: block;
+  white-space: pre;
+}
+
+/* No header code block */
+.code-block-simple pre {
+  background: var(--bg-code);
+  padding: 18px 22px;
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  position: relative;
+}
+
+.code-block-simple code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--code-text);
+}
+
+.code-block-simple .copy-btn {
+  position: absolute;
+  top: 10px; right: 12px;
 }
 
 /* Inline code */
-:not(pre) > code {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  padding: 1px 6px;
+code:not(pre code) {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88em;
+  background: var(--orange-50);
+  border: 1px solid var(--border-default);
+  color: var(--accent);
+  padding: 2px 7px;
   border-radius: var(--radius-sm);
-  font-size: 0.82em;
-  color: var(--syntax-string);
+  font-weight: 500;
 }
-
-/* Syntax highlighting classes */
-.kw  { color: var(--syntax-keyword); }
-.str { color: var(--syntax-string); }
-.cmt { color: var(--syntax-comment); font-style: italic; }
-.num { color: var(--syntax-number); }
-.fn  { color: var(--syntax-func); }
-.var { color: var(--syntax-var); }
-.tag { color: var(--syntax-tag); }
-.prop { color: var(--syntax-prop); }
-.punc { color: var(--text-secondary); }
-.plain { color: var(--text-primary); }
 
 /* ============================================================
-   METHOD TABS / CARDS
+   CARDS
    ============================================================ */
-.method-tabs {
-  display: flex;
-  gap: 0;
-  margin-bottom: 0;
-  border-bottom: 1px solid var(--border-subtle);
-  overflow-x: auto;
-}
-
-.method-tab {
-  padding: 9px 16px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  transition: all var(--duration-fast);
-  white-space: nowrap;
-  background: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  font-family: 'DM Sans', sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.method-tab:hover { color: var(--text-primary); }
-
-.method-tab.active {
-  color: var(--accent-light);
-  border-bottom-color: var(--accent-primary);
-}
-
-.tab-badge {
-  font-size: 0.62rem;
-  padding: 1px 6px;
-  border-radius: 10px;
-  font-family: 'DM Mono', monospace;
-}
-
-.tab-badge.recommended { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid rgba(63,185,80,0.3); }
-.tab-badge.deprecated  { background: var(--red-dim); color: var(--red); border: 1px solid rgba(248,81,73,0.3); }
-
-.method-tab-content {
-  display: none;
-  padding: 24px 0 8px;
-}
-
-.method-tab-content.active { display: block; }
-
-.tab-container {
+.card {
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  overflow: hidden;
-  margin-bottom: 24px;
+  padding: 24px 28px;
+  margin: 20px 0;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-base), border-color var(--duration-base);
 }
 
-.tab-container .method-tabs {
-  background: var(--bg-card);
-  padding: 0 8px;
-  border-bottom-color: var(--border-subtle);
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-default);
 }
 
-.tab-container .method-tab-content {
-  padding: 24px;
-}
-
-.tab-container .method-tab-content .code-block-wrap {
-  margin-top: 0;
+.card-orange {
+  background: linear-gradient(135deg, var(--orange-50) 0%, #fff8f0 100%);
+  border: 1px solid var(--border-default);
+  border-left: 4px solid var(--accent);
 }
 
 /* ============================================================
@@ -714,1813 +636,1466 @@ code {
    ============================================================ */
 .callout {
   display: flex;
-  gap: 12px;
-  padding: 14px 16px;
+  gap: 14px;
+  padding: 18px 22px;
   border-radius: var(--radius-lg);
+  margin: 20px 0;
   border: 1px solid;
-  margin: 16px 0 24px;
-  font-size: 0.875rem;
-  line-height: 1.6;
 }
 
 .callout-icon {
+  font-size: 1.2rem;
   flex-shrink: 0;
-  font-size: 1rem;
-  margin-top: 1px;
-}
-
-.callout.info    { background: rgba(57,197,207,0.06); border-color: rgba(57,197,207,0.3); color: #9ee6ea; }
-.callout.warning { background: var(--yellow-dim); border-color: rgba(210,153,34,0.35); color: #e3c071; }
-.callout.danger  { background: var(--red-dim); border-color: rgba(248,81,73,0.3); color: #fca5a5; }
-.callout.success { background: var(--green-dim); border-color: rgba(63,185,80,0.3); color: #86efac; }
-.callout.tip     { background: var(--accent-dim); border-color: rgba(99,102,241,0.3); color: var(--accent-light); }
-
-/* ============================================================
-   CARDS GRID
-   ============================================================ */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
-  margin: 16px 0 24px;
-}
-
-.feature-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 16px;
-  transition: border-color var(--duration-base), box-shadow var(--duration-base), transform var(--duration-base) var(--ease-out);
-}
-
-.feature-card:hover {
-  border-color: var(--accent-primary);
-  box-shadow: var(--shadow-accent);
-  transform: translateY(-3px);
-}
-
-.card-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--accent-light);
-  margin-bottom: 6px;
-}
-
-.card-desc {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
   line-height: 1.5;
 }
 
-/* mode cards */
-.mode-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 10px;
-  margin: 16px 0 24px;
+.callout-body { flex: 1; }
+.callout-body p { margin-bottom: 0.5em; }
+.callout-body p:last-child { margin-bottom: 0; }
+
+.callout-title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+  display: block;
+  letter-spacing: -0.01em;
 }
 
-.mode-card {
+.callout-warning {
+  background: #fffbeb;
+  border-color: #fcd34d;
+  border-left: 4px solid #f59e0b;
+}
+.callout-warning .callout-title { color: #b45309; }
+
+.callout-orange {
+  background: var(--orange-50);
+  border-color: var(--border-default);
+  border-left: 4px solid var(--accent);
+}
+.callout-orange .callout-title { color: var(--accent); }
+
+.callout-green {
+  background: var(--green-bg);
+  border-color: #86efac;
+  border-left: 4px solid var(--green);
+}
+.callout-green .callout-title { color: #15803d; }
+
+.callout-blue {
+  background: var(--blue-bg);
+  border-color: #93c5fd;
+  border-left: 4px solid var(--blue);
+}
+.callout-blue .callout-title { color: #1d4ed8; }
+
+/* ============================================================
+   HIGHLIGHT / FEATURED CARD
+   ============================================================ */
+.feature-card {
+  background: linear-gradient(135deg, var(--orange-50) 0%, #fff3e0 60%, #fff9f0 100%);
+  border: 1.5px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: 32px 36px;
+  margin: 24px 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(224, 122, 47, 0.1);
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(ellipse, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.feature-card-label {
+  font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  background: rgba(224, 122, 47, 0.12);
+  padding: 3px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+/* ============================================================
+   TABS
+   ============================================================ */
+.tabs {
+  margin: 20px 0;
+}
+
+.tab-list {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--border-subtle);
+  margin-bottom: 0;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  margin-bottom: -2px;
+  white-space: nowrap;
+}
+
+.tab-btn:hover { color: var(--text-primary); background: var(--orange-50); }
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: var(--orange-50);
+}
+
+.tab-badge {
+  font-size: 0.65rem;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 2px 7px;
+  border-radius: 20px;
+  background: var(--orange-100);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.tab-panel {
+  display: none;
+  padding: 24px;
+  background: var(--bg-section);
+  border: 1px solid var(--border-subtle);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.tab-panel.active { display: block; }
+
+/* ============================================================
+   STEP INDICATORS
+   ============================================================ */
+.steps {
+  margin: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.step {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+
+.step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 46px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-subtle);
+}
+
+.step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+  font-size: 0.88rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+  box-shadow: var(--shadow-orange);
+  z-index: 1;
+  position: relative;
+}
+
+.step-body {
+  flex: 1;
+  padding-bottom: 32px;
+}
+
+.step-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* ============================================================
+   KEYWORD CARDS (MODE CARDS)
+   ============================================================ */
+.keyword-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+
+.keyword-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 14px 16px;
+  padding: 18px 20px;
   transition: all var(--duration-base) var(--ease-out);
+  box-shadow: var(--shadow-sm);
 }
 
-.mode-card:hover {
-  border-color: rgba(99,102,241,0.5);
-  box-shadow: 0 0 16px rgba(99,102,241,0.12);
+.keyword-card:hover {
+  border-color: var(--border-orange);
+  background: var(--orange-50);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-orange);
 }
 
-.mode-keyword {
-  font-family: 'DM Mono', monospace;
+.keyword-card .kw-tag {
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--accent-light);
-  background: var(--accent-dim);
-  display: inline-block;
-  padding: 2px 8px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--orange-50);
+  border: 1px solid var(--border-default);
+  padding: 3px 10px;
   border-radius: var(--radius-sm);
+  display: inline-block;
   margin-bottom: 8px;
-  border: 1px solid rgba(99,102,241,0.25);
 }
 
-.mode-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+.keyword-card .kw-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
 
 /* ============================================================
    AGENT TAGS
    ============================================================ */
-.agents-grid {
+.agent-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 12px 0 24px;
+  gap: 9px;
+  margin: 14px 0;
 }
 
 .agent-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.73rem;
-  padding: 4px 10px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-default);
-  color: var(--text-secondary);
-  background: var(--bg-card);
-  transition: all var(--duration-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
   cursor: default;
+  transition: transform var(--duration-fast);
 }
 
-.agent-tag:hover { border-color: var(--accent-primary); color: var(--accent-light); background: var(--accent-dim); }
+.agent-tag:hover { transform: translateY(-1px); }
+
+.agent-tag.build { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+.agent-tag.review { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
+.agent-tag.domain { background: #fdf4ff; border-color: #e9d5ff; color: #7e22ce; }
+
+/* ============================================================
+   HUD PRESET DISPLAY
+   ============================================================ */
+.hud-display {
+  background: #1a1a2e;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin: 14px 0;
+  box-shadow: var(--shadow-md);
+}
+
+.hud-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.hud-bar:last-child { border-bottom: none; }
+
+.hud-label {
+  color: #6b7280;
+  min-width: 90px;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.hud-content {
+  color: #e2e8f0;
+  flex: 1;
+}
+
+.hud-green { color: #4ade80; }
+.hud-yellow { color: #facc15; }
+.hud-orange { color: #fb923c; }
 
 /* ============================================================
    PROTECTION BADGES
    ============================================================ */
-.protection-badges {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+.protection-grid {
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  margin: 16px 0 24px;
+  margin: 14px 0;
 }
 
 .protection-badge {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px 14px;
-  border-radius: var(--radius-lg);
-  border: 1px solid;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--green-bg);
+  border: 1px solid #bbf7d0;
+  color: #15803d;
 }
-
-.pb-red { background: var(--red-dim); border-color: rgba(248,81,73,0.3); }
-.pb-yellow { background: var(--yellow-dim); border-color: rgba(210,153,34,0.3); }
-.pb-green { background: var(--green-dim); border-color: rgba(63,185,80,0.3); }
-.pb-orange { background: var(--orange-dim); border-color: rgba(240,136,62,0.3); }
-.pb-teal { background: var(--teal-dim); border-color: rgba(57,197,207,0.3); }
-
-.pb-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
-.pb-content {}
-.pb-label { font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
-.pb-detail { color: var(--text-secondary); font-size: 0.77rem; line-height: 1.4; }
 
 /* ============================================================
    PERMISSION TABLE COLORS
    ============================================================ */
-.perm-allow { color: var(--green); }
-.perm-deny  { color: var(--red); }
-.perm-ask   { color: var(--yellow); }
-
-/* ============================================================
-   STAT CARD (RTK big number)
-   ============================================================ */
-.stat-hero {
-  background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-xl);
-  padding: 32px;
-  margin: 16px 0 32px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.stat-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.08) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.stat-big {
-  font-family: 'DM Serif Display', serif;
-  font-size: 4rem;
-  font-style: italic;
-  background: linear-gradient(135deg, #fb923c, #f59e0b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-  margin-bottom: 8px;
-}
-
-.stat-label { font-size: 1rem; color: var(--text-secondary); font-weight: 300; }
-
-/* ============================================================
-   RTK STRATEGY CARDS
-   ============================================================ */
-.strategy-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 12px;
-  margin: 16px 0 32px;
-}
-
-.strategy-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 18px;
-  transition: all var(--duration-base) var(--ease-out);
-}
-
-.strategy-card:hover { border-color: rgba(249,115,22,0.4); transform: translateY(-3px); }
-
-.strategy-icon {
-  width: 36px; height: 36px;
-  border-radius: 9px;
-  background: rgba(249,115,22,0.1);
-  border: 1px solid rgba(249,115,22,0.2);
-  color: #fb923c;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-  margin-bottom: 12px;
-}
-
-.strategy-title { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
-.strategy-desc  { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.5; }
-
-/* ============================================================
-   HUD STATUS DISPLAY
-   ============================================================ */
-.hud-preview {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.78rem;
-  background: var(--bg-code);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 12px 16px;
-  margin: 8px 0;
-  color: var(--text-secondary);
-  line-height: 1.8;
-}
-
-.hud-ok     { color: var(--green); }
-.hud-warn   { color: var(--yellow); }
-.hud-danger { color: var(--red); }
-.hud-accent { color: var(--accent-light); }
-.hud-dim    { color: var(--text-muted); }
-
-/* ============================================================
-   SECTION SEPARATOR
-   ============================================================ */
-.section-sep {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
-  margin: 16px 0;
-}
-
-/* ============================================================
-   INSTALL METHOD BADGE
-   ============================================================ */
-.method-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.7rem;
-  font-family: 'DM Mono', monospace;
-  padding: 2px 8px;
-  border-radius: 20px;
-  margin-left: 8px;
-  vertical-align: middle;
-}
-
-.mb-recommended { background: rgba(63,185,80,0.12); color: var(--green); border: 1px solid rgba(63,185,80,0.3); }
-.mb-deprecated  { background: var(--red-dim); color: var(--red); border: 1px solid rgba(248,81,73,0.3); }
+.perm-allow { color: #15803d; font-weight: 700; background: #f0fdf4; }
+.perm-deny  { color: #dc2626; font-weight: 700; background: #fef2f2; }
+.perm-ask   { color: #b45309; font-weight: 700; background: #fffbeb; }
 
 /* ============================================================
    FOOTER
    ============================================================ */
-footer {
+.site-footer {
+  background: var(--bg-section);
   border-top: 1px solid var(--border-subtle);
-  padding: 48px 0 32px;
-  margin-top: 32px;
+  padding: 48px 56px;
+  margin-top: 40px;
+}
+
+.footer-inner {
+  max-width: var(--content-max);
 }
 
 .footer-title {
   font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text-muted);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
   margin-bottom: 16px;
 }
 
-.sources-list {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 8px;
-  margin-bottom: 32px;
-}
-
-.sources-list li a {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  font-family: 'DM Mono', monospace;
+.footer-links {
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.footer-link {
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  transition: color var(--duration-fast);
+  gap: 5px;
+  font-size: 0.83rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  padding: 6px 13px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--accent);
+  text-decoration: none;
+  transition: all var(--duration-fast);
 }
 
-.sources-list li a::before {
-  content: '↗';
-  color: var(--text-muted);
+.footer-link:hover {
+  background: var(--orange-50);
+  border-color: var(--border-default);
+  transform: translateY(-1px);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
 }
-
-.sources-list li a:hover { color: var(--accent-light); text-decoration: none; }
 
 .footer-meta {
-  font-size: 0.75rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
-  font-family: 'DM Mono', monospace;
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: gap;
-  gap: 12px;
 }
 
 /* ============================================================
-   SCROLL ANIMATIONS
+   RESPONSIVE / MOBILE
    ============================================================ */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity var(--duration-slow) var(--ease-out), transform var(--duration-slow) var(--ease-out);
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-@media (max-width: 1024px) {
-  .main-content { padding: 32px 32px 64px; }
-  :root { --nav-width: 220px; }
-}
-
-@media (max-width: 768px) {
-  :root { --nav-width: 260px; }
-
-  .site-header .header-badge { display: none; }
-  .mobile-menu-btn { display: flex; }
-
-  .page-layout { flex-direction: column; }
-
+@media (max-width: 900px) {
   .sidebar {
     position: fixed;
     top: var(--header-h);
     left: 0;
-    height: calc(100vh - var(--header-h));
     z-index: 90;
-    background: rgba(9,12,16,0.97);
-    backdrop-filter: blur(16px);
     transform: translateX(-100%);
-    transition: transform var(--duration-slow) var(--ease-out);
-    width: var(--nav-width);
-    border-right-color: var(--border-default);
+    transition: transform var(--duration-base) var(--ease-out);
+    height: calc(100vh - var(--header-h));
+    background: var(--bg-base);
+    box-shadow: var(--shadow-lg);
   }
 
   .sidebar.open {
     transform: translateX(0);
-    box-shadow: var(--shadow-lg);
   }
 
-  .sidebar-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 89;
-    top: var(--header-h);
+  .mobile-menu-btn {
+    display: flex;
   }
 
-  .sidebar-overlay.open { display: block; }
+  .main-content {
+    padding: 32px 24px 80px;
+  }
 
-  .main-content { padding: 24px 20px 64px; }
-
-  .hero { padding: 40px 0 48px; }
-  .hero h1 { font-size: 1.8rem; }
-
-  .cards-grid  { grid-template-columns: 1fr 1fr; }
-  .mode-cards  { grid-template-columns: 1fr; }
-  .strategy-cards { grid-template-columns: 1fr 1fr; }
-  .protection-badges { grid-template-columns: 1fr; }
+  .site-footer {
+    padding: 36px 24px;
+  }
 }
 
-@media (max-width: 480px) {
-  .cards-grid  { grid-template-columns: 1fr; }
-  .strategy-cards { grid-template-columns: 1fr; }
-  .stat-big { font-size: 3rem; }
-  .sources-list { grid-template-columns: 1fr; }
-  .footer-meta { flex-direction: column; align-items: flex-start; }
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.9rem; }
+  .keyword-grid { grid-template-columns: 1fr; }
+  .tab-list { flex-wrap: wrap; }
+  .hero-badges { gap: 7px; }
+  .feature-card { padding: 24px 20px; }
 }
 
 /* ============================================================
-   PRINT
+   UTILITY
    ============================================================ */
-@media print {
-  .site-header, .sidebar { display: none; }
-  .main-content { padding: 0; max-width: 100%; }
-  .fade-in { opacity: 1; transform: none; }
-  .copy-btn { display: none; }
-  a { color: inherit; }
-  pre { white-space: pre-wrap; }
-  .code-block-wrap { box-shadow: none; border: 1px solid #ccc; }
-}
+.mt-6  { margin-top: 6px; }
+.mt-12 { margin-top: 12px; }
+.mt-20 { margin-top: 20px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-20 { margin-bottom: 20px; }
+.text-sm { font-size: 0.88rem; }
+.text-muted { color: var(--text-muted); }
+.text-secondary { color: var(--text-secondary); }
+
 </style>
 </head>
 <body>
 
-<!-- ============================================================
-     TOP HEADER
-     ============================================================ -->
+<!-- TOP HEADER -->
 <header class="site-header">
   <div class="logo">
-    <div class="logo-icon">✦</div>
-    <span>Claude Code CLI 가이드</span>
+    <div class="logo-icon">⬡</div>
+    Claude Code 가이드
   </div>
   <div class="header-spacer"></div>
-  <span class="header-badge">Windows</span>
-  <span class="header-badge">v1.0</span>
-  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴 열기">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <rect x="1" y="4" width="14" height="1.5" rx="0.75" fill="currentColor"/>
-      <rect x="1" y="7.25" width="14" height="1.5" rx="0.75" fill="currentColor"/>
-      <rect x="1" y="10.5" width="14" height="1.5" rx="0.75" fill="currentColor"/>
-    </svg>
-  </button>
+  <span class="header-badge">Windows · 2026-04-03</span>
+  <button class="mobile-menu-btn" id="menuBtn" aria-label="메뉴 열기">☰</button>
 </header>
 
-<!-- Sidebar overlay for mobile -->
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-<!-- ============================================================
-     PAGE LAYOUT
-     ============================================================ -->
+<!-- LAYOUT -->
 <div class="page-layout">
 
-  <!-- ====================================================
-       SIDEBAR
-       ==================================================== -->
-  <nav class="sidebar" id="sidebar" aria-label="목차">
+  <!-- SIDEBAR NAV -->
+  <nav class="sidebar" id="sidebar">
     <div class="nav-section-label">시작하기</div>
-    <a href="#hero" class="nav-item active"><span class="nav-num">✦</span>소개</a>
-
-    <div class="nav-section-label">설치 & 설정</div>
-    <a href="#section-1" class="nav-item"><span class="nav-num">01</span>시스템 요구사항</a>
-    <a href="#section-2" class="nav-item"><span class="nav-num">02</span>Claude Code 설치</a>
-    <a href="#section-3" class="nav-item"><span class="nav-num">03</span>기본 CLI 명령어</a>
-    <a href="#section-4" class="nav-item"><span class="nav-num">04</span>내장 슬래시 명령어</a>
-    <a href="#section-5" class="nav-item"><span class="nav-num">05</span>키보드 단축키</a>
-
-    <div class="nav-section-label">플러그인</div>
-    <a href="#section-6" class="nav-item"><span class="nav-num">06</span>oh-my-claudecode</a>
-    <a href="#section-7" class="nav-item"><span class="nav-num">07</span>HUD 상태 표시줄</a>
-
-    <div class="nav-section-label">최적화</div>
-    <a href="#section-8" class="nav-item"><span class="nav-num">08</span>RTK 토큰 절약</a>
-    <a href="#section-9" class="nav-item"><span class="nav-num">09</span>Alias & 권한 설정</a>
-    <a href="#section-10" class="nav-item"><span class="nav-num">10</span>유용한 사용 패턴</a>
+    <a class="nav-item active" href="#requirements">
+      <span class="nav-num">01</span> 시스템 요구사항
+    </a>
+    <a class="nav-item" href="#install">
+      <span class="nav-num">02</span> 설치
+    </a>
+    <div class="nav-section-label">사용법</div>
+    <a class="nav-item" href="#slash-commands">
+      <span class="nav-num">03</span> 슬래시 명령어
+    </a>
+    <a class="nav-item" href="#shortcuts">
+      <span class="nav-num">04</span> 키보드 단축키
+    </a>
+    <a class="nav-item" href="#thinking">
+      <span class="nav-num">05</span> Thinking 모드
+    </a>
+    <div class="nav-section-label">플러그인 & 도구</div>
+    <a class="nav-item" href="#omc">
+      <span class="nav-num">06</span> oh-my-claudecode
+    </a>
+    <a class="nav-item" href="#hud">
+      <span class="nav-num">07</span> HUD 설정
+    </a>
+    <a class="nav-item" href="#rtk">
+      <span class="nav-num">08</span> RTK — 토큰 절약
+    </a>
+    <div class="nav-section-label">고급 설정</div>
+    <a class="nav-item" href="#alias">
+      <span class="nav-num">09</span> Alias 및 실행 모드
+    </a>
   </nav>
 
-  <!-- ====================================================
-       MAIN CONTENT
-       ==================================================== -->
+  <!-- MAIN -->
   <main class="main-content">
 
-    <!-- ========================================
-         HERO
-         ======================================== -->
-    <section id="hero" class="hero">
-      <div class="hero-eyebrow">내부 배포용 가이드 · Windows 기준</div>
-      <h1>Claude Code CLI<br><em>설치 가이드</em></h1>
-      <p class="hero-subtitle">Windows 기준 설치부터 oh-my-claudecode 플러그인, RTK 토큰 최적화까지 — 팀 개발 환경을 위한 완전한 설정 가이드입니다.</p>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        공식 설치 & 사용 가이드
+      </div>
+      <h1>Claude Code CLI<br><span>가이드</span></h1>
+      <p class="hero-subtitle">설치부터 플러그인, 토큰 최적화까지 — Windows 기준</p>
       <div class="hero-badges">
-        <span class="hero-badge badge-windows">
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M0 1.5L5.5 0.7V6H0V1.5ZM6.5 0.5L13 0V6H6.5V0.5ZM0 7H5.5V12.3L0 11.5V7ZM6.5 7H13V13L6.5 12.5V7Z" fill="currentColor"/></svg>
-          Windows
-        </span>
-        <span class="hero-badge badge-claude">✦ Claude Code</span>
-        <span class="hero-badge badge-omc">⚡ oh-my-claudecode</span>
-        <span class="hero-badge badge-rtk">◈ RTK 토큰 절약</span>
+        <span class="hero-badge badge-windows">🪟 Windows</span>
+        <span class="hero-badge badge-claude">⬡ Claude Code</span>
+        <span class="hero-badge badge-omc">✦ oh-my-claudecode</span>
+        <span class="hero-badge badge-rtk">⚡ RTK</span>
       </div>
     </section>
 
-    <div class="hero-divider"></div>
-
-    <!-- ========================================
+    <!-- ========================
          SECTION 1: 시스템 요구사항
-         ======================================== -->
-    <section id="section-1" class="doc-section">
-      <div class="section-header fade-in">
-        <div class="section-number">01</div>
-        <div class="section-title-wrap">
-          <h2>시스템 요구사항</h2>
-          <p class="section-desc">Claude Code 설치 전 환경 확인</p>
-        </div>
+         ======================== -->
+    <section class="doc-section" id="requirements">
+      <div class="section-header">
+        <div class="section-num">01</div>
+        <h2>시스템 요구사항</h2>
       </div>
 
-      <div class="table-wrap fade-in">
+      <div class="table-wrap">
         <table>
-          <thead><tr><th>항목</th><th>요구사항</th></tr></thead>
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>요구사항</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td>OS</td><td class="td-secondary">Windows 10 (1809+) 또는 Windows Server 2019+</td></tr>
-            <tr><td>RAM</td><td class="td-secondary">4GB 이상</td></tr>
-            <tr><td>Shell</td><td class="td-secondary">PowerShell, CMD, 또는 Git Bash</td></tr>
-            <tr><td>필수 소프트웨어</td><td class="td-secondary">Git for Windows</td></tr>
-            <tr><td>네트워크</td><td class="td-secondary">인터넷 연결 필요</td></tr>
-            <tr><td>계정</td><td class="td-secondary">Claude Pro/Max/Team/Enterprise 또는 Anthropic Console</td></tr>
+            <tr><td>OS</td><td>Windows 10 (1809+) 또는 Windows Server 2019+</td></tr>
+            <tr><td>RAM</td><td>4GB 이상</td></tr>
+            <tr><td>Shell</td><td>PowerShell, CMD, 또는 Git Bash</td></tr>
+            <tr><td>필수 소프트웨어</td><td>Git for Windows</td></tr>
+            <tr><td>네트워크</td><td>인터넷 연결 필요</td></tr>
+            <tr><td>계정</td><td>Claude Pro / Max / Team / Enterprise 또는 Anthropic Console</td></tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <div class="section-sep"></div>
-
-    <!-- ========================================
+    <!-- ========================
          SECTION 2: 설치
-         ======================================== -->
-    <section id="section-2" class="doc-section">
-      <div class="section-header fade-in">
-        <div class="section-number">02</div>
-        <div class="section-title-wrap">
-          <h2>Claude Code 설치 (Windows)</h2>
-          <p class="section-desc">세 가지 설치 방법 중 환경에 맞게 선택</p>
-        </div>
+         ======================== -->
+    <section class="doc-section" id="install">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <h2>Claude Code 설치</h2>
       </div>
 
-      <div class="tab-container fade-in">
-        <div class="method-tabs" role="tablist">
-          <button class="method-tab active" role="tab" data-tab="install-1">
-            Method 1: Native Install
-            <span class="tab-badge recommended">권장</span>
+      <div class="tabs">
+        <div class="tab-list">
+          <button class="tab-btn active" onclick="switchTab(event,'install','native')">
+            Native Install <span class="tab-badge">권장</span>
           </button>
-          <button class="method-tab" role="tab" data-tab="install-2">Method 2: WinGet</button>
-          <button class="method-tab" role="tab" data-tab="install-3">
-            Method 3: npm
-            <span class="tab-badge deprecated">Deprecated</span>
-          </button>
+          <button class="tab-btn" onclick="switchTab(event,'install','winget')">WinGet</button>
+          <button class="tab-btn" onclick="switchTab(event,'install','npm')">npm</button>
         </div>
 
-        <div class="method-tab-content active" id="install-1">
-          <p style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:16px;">자동 업데이트 지원. Node.js 설치 불필요.</p>
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:8px; font-family:'DM Mono',monospace;">PowerShell</p>
-          <div class="code-block-wrap">
-            <div class="code-block-header">
+        <!-- Native Install -->
+        <div class="tab-panel active" id="install-native">
+          <p><strong>PowerShell</strong></p>
+          <div class="code-block">
+            <div class="code-header">
               <span class="code-lang">powershell</span>
-              <button class="copy-btn" data-copy="irm https://claude.ai/install.ps1 | iex">
-                <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-                Copy
-              </button>
+              <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
             </div>
-            <pre><code><span class="fn">irm</span> <span class="str">https://claude.ai/install.ps1</span> <span class="punc">|</span> <span class="fn">iex</span></code></pre>
+            <pre><code>irm https://claude.ai/install.ps1 | iex</code></pre>
           </div>
 
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:8px; margin-top:20px; font-family:'DM Mono',monospace;">CMD</p>
-          <div class="code-block-wrap">
-            <div class="code-block-header">
+          <p class="mt-12"><strong>CMD</strong></p>
+          <div class="code-block">
+            <div class="code-header">
               <span class="code-lang">batch</span>
-              <button class="copy-btn" data-copy="curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd">
-                <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-                Copy
-              </button>
+              <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
             </div>
-            <pre><code><span class="fn">curl</span> <span class="var">-fsSL</span> <span class="str">https://claude.ai/install.cmd</span> <span class="var">-o</span> install.cmd <span class="punc">&&</span> install.cmd <span class="punc">&&</span> <span class="fn">del</span> install.cmd</code></pre>
+            <pre><code>curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd</code></pre>
           </div>
         </div>
 
-        <div class="method-tab-content" id="install-2">
-          <p style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:16px;">Windows 패키지 관리자를 통한 설치. 수동 업데이트 필요.</p>
-          <div class="code-block-wrap">
-            <div class="code-block-header">
+        <!-- WinGet -->
+        <div class="tab-panel" id="install-winget">
+          <div class="code-block">
+            <div class="code-header">
               <span class="code-lang">powershell</span>
-              <button class="copy-btn" data-copy="winget install Anthropic.ClaudeCode">
-                <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-                Copy
-              </button>
+              <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
             </div>
-            <pre><code><span class="fn">winget</span> <span class="kw">install</span> <span class="str">Anthropic.ClaudeCode</span></code></pre>
-          </div>
-          <div class="callout warning">
-            <span class="callout-icon">⚠</span>
-            <div>수동 업데이트 필요: <code>winget upgrade Anthropic.ClaudeCode</code></div>
+            <pre><code>winget install Anthropic.ClaudeCode</code></pre>
           </div>
         </div>
 
-        <div class="method-tab-content" id="install-3">
-          <div class="callout danger">
-            <span class="callout-icon">✕</span>
-            <div><strong>Deprecated:</strong> npm 설치 방식은 더 이상 권장되지 않습니다. Node.js 18+ 필요.</div>
+        <!-- npm -->
+        <div class="tab-panel" id="install-npm">
+          <div class="callout callout-warning">
+            <span class="callout-icon">⚠️</span>
+            <div class="callout-body">
+              <span class="callout-title">Deprecated</span>
+              npm을 통한 설치 방식은 더 이상 권장되지 않는다. Native Install 방식을 사용하는 것을 강력히 권장한다.
+            </div>
           </div>
-          <div class="code-block-wrap">
-            <div class="code-block-header">
+          <div class="code-block">
+            <div class="code-header">
               <span class="code-lang">bash</span>
-              <button class="copy-btn" data-copy="npm install -g @anthropic-ai/claude-code">
-                <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-                Copy
-              </button>
+              <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
             </div>
-            <pre><code><span class="fn">npm</span> <span class="kw">install</span> <span class="var">-g</span> <span class="str">@anthropic-ai/claude-code</span></code></pre>
+            <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
           </div>
         </div>
       </div>
 
-      <h3 class="subsection-title">설치 확인</h3>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
+      <h3 class="mt-20">설치 확인</h3>
+      <div class="code-block">
+        <div class="code-header">
           <span class="code-lang">bash</span>
-          <button class="copy-btn" data-copy="claude --version
-claude doctor">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
         </div>
-        <pre><code><span class="fn">claude</span> <span class="var">--version</span>
-<span class="fn">claude</span> <span class="fn">doctor</span></code></pre>
+        <pre><code>claude --version
+claude doctor</code></pre>
       </div>
 
-      <h3 class="subsection-title">첫 실행</h3>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
+      <h3 class="mt-20">첫 실행</h3>
+      <div class="code-block">
+        <div class="code-header">
           <span class="code-lang">bash</span>
-          <button class="copy-btn" data-copy="cd your-project
-claude">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
         </div>
-        <pre><code><span class="fn">cd</span> your-project
-<span class="fn">claude</span></code></pre>
+        <pre><code>cd your-project
+claude</code></pre>
       </div>
-      <div class="callout info fade-in">
-        <span class="callout-icon">ℹ</span>
-        <div>첫 실행 시 브라우저를 통한 로그인 프롬프트가 표시됩니다. Claude Pro/Max/Team/Enterprise 계정 또는 Anthropic Console API 키가 필요합니다.</div>
+      <div class="callout callout-blue">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <p>첫 실행 시 브라우저가 자동으로 열리며 Claude 계정으로 로그인해야 한다. 로그인 후 터미널로 돌아오면 Claude Code가 시작된다.</p>
+        </div>
       </div>
     </section>
 
-    <div class="section-sep"></div>
-
-    <!-- ========================================
-         SECTION 3: 기본 명령어
-         ======================================== -->
-    <section id="section-3" class="doc-section">
-      <div class="section-header fade-in">
-        <div class="section-number">03</div>
-        <div class="section-title-wrap">
-          <h2>기본 CLI 명령어</h2>
-          <p class="section-desc">터미널에서 사용하는 핵심 명령어</p>
-        </div>
+    <!-- ========================
+         SECTION 3: 슬래시 명령어
+         ======================== -->
+    <section class="doc-section" id="slash-commands">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <h2>슬래시 명령어</h2>
       </div>
 
-      <div class="table-wrap fade-in">
+      <p>Claude Code 세션 내에서 <code>/</code>로 시작하는 명령어를 사용하여 설정을 변경하거나 다양한 기능을 활성화할 수 있다.</p>
+
+      <div class="table-wrap">
         <table>
-          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <thead>
+            <tr>
+              <th>명령어</th>
+              <th>설명</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td>claude</td><td class="td-secondary">대화형 REPL 시작</td></tr>
-            <tr><td>claude "query"</td><td class="td-secondary">초기 프롬프트와 함께 REPL 시작</td></tr>
-            <tr><td>claude -p "query"</td><td class="td-secondary">질의 후 결과만 출력하고 종료 (파이프라인 활용 가능)</td></tr>
-            <tr><td>claude -c</td><td class="td-secondary">가장 최근 대화 이어서 시작</td></tr>
-            <tr><td>claude -r "id" "query"</td><td class="td-secondary">특정 세션 재개</td></tr>
-            <tr><td>claude update</td><td class="td-secondary">최신 버전으로 업데이트</td></tr>
-            <tr><td>claude mcp</td><td class="td-secondary">MCP 서버 설정</td></tr>
-            <tr><td>claude doctor</td><td class="td-secondary">설치/설정 진단</td></tr>
+            <tr><td>/help</td><td>사용 가능한 모든 명령어 표시</td></tr>
+            <tr><td>/config</td><td>설정 변경 (인터랙티브)</td></tr>
+            <tr><td>/allowed-tools</td><td>도구 권한 관리</td></tr>
+            <tr><td>/hooks</td><td>Hook 설정 관리</td></tr>
+            <tr><td>/mcp</td><td>MCP 서버 관리</td></tr>
+            <tr><td>/agents</td><td>서브에이전트 관리</td></tr>
+            <tr><td>/clear</td><td>대화 초기화 (컨텍스트 리셋)</td></tr>
+            <tr><td>/model</td><td>모델 및 성능 설정 변경</td></tr>
+            <tr><td>/usage</td><td>현재 세션 토큰 사용량 확인</td></tr>
           </tbody>
         </table>
       </div>
-    </section>
 
-    <div class="section-sep"></div>
+      <!-- /model 상세 -->
+      <div class="feature-card mt-20">
+        <span class="feature-card-label">/model 상세 설명</span>
+        <h3 style="margin-bottom: 12px;">/model — 모델 및 Effort 설정</h3>
+        <p><code>/model</code> 명령으로 사용 중인 모델을 변경하거나, <strong>effort(추론 강도)</strong>를 설정할 수 있다.</p>
 
-    <!-- ========================================
-         SECTION 4: 슬래시 명령어
-         ======================================== -->
-    <section id="section-4" class="doc-section">
-      <div class="section-header fade-in">
-        <div class="section-number">04</div>
-        <div class="section-title-wrap">
-          <h2>내장 슬래시 명령어</h2>
-          <p class="section-desc">Claude Code 세션 내에서 사용하는 명령어</p>
+        <div class="table-wrap mt-12" style="margin-top: 16px;">
+          <table>
+            <thead>
+              <tr><th>설정</th><th>설명</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>모델 선택</td><td>Opus, Sonnet, Haiku 등 원하는 모델로 전환</td></tr>
+              <tr><td>auto (기본)</td><td>Claude가 작업 복잡도에 따라 자동 판단</td></tr>
+              <tr><td>low</td><td>빠른 응답, 간단한 작업에서 토큰 절약</td></tr>
+              <tr><td>high</td><td>깊은 추론, 복잡한 디버깅 및 아키텍처 설계에 적합</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-orange mt-12" style="margin-top: 16px;">
+          <span class="callout-icon">💡</span>
+          <div class="callout-body">
+            <p>Effort를 낮추면 간단한 작업에서 응답 속도가 빨라지고 토큰을 절약할 수 있다. 복잡한 디버깅이나 아키텍처 설계 시에는 <code>high</code>로 설정하면 더 정확한 결과를 얻을 수 있다.</p>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="table-wrap fade-in">
+    <!-- ========================
+         SECTION 4: 키보드 단축키
+         ======================== -->
+    <section class="doc-section" id="shortcuts">
+      <div class="section-header">
+        <div class="section-num">04</div>
+        <h2>키보드 단축키 & 모드 전환</h2>
+      </div>
+
+      <div class="table-wrap">
         <table>
-          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <thead>
+            <tr><th>단축키</th><th>기능</th></tr>
+          </thead>
           <tbody>
-            <tr><td>/help</td><td class="td-secondary">모든 명령어 및 커스텀 명령어 표시</td></tr>
-            <tr><td>/config</td><td class="td-secondary">Claude Code 설정 인터랙티브 구성</td></tr>
-            <tr><td>/allowed-tools</td><td class="td-secondary">도구 권한 설정</td></tr>
-            <tr><td>/hooks</td><td class="td-secondary">훅 설정</td></tr>
-            <tr><td>/mcp</td><td class="td-secondary">MCP 서버 관리</td></tr>
-            <tr><td>/agents</td><td class="td-secondary">서브에이전트 관리 (생성, 편집, 목록)</td></tr>
-            <tr><td>/vim</td><td class="td-secondary">vim 스타일 편집 모드</td></tr>
-            <tr><td>/terminal-setup</td><td class="td-secondary">터미널 단축키 설치 (Alt+Enter → 줄바꿈)</td></tr>
-            <tr><td>/clear</td><td class="td-secondary">채팅 히스토리 및 컨텍스트 초기화</td></tr>
-            <tr><td>/install-github-app</td><td class="td-secondary">GitHub Actions 통합 설정</td></tr>
+            <tr>
+              <td>Shift+Tab</td>
+              <td>모드 전환 — 바이패스 모드 / 플랜 모드 / 기본 모드 순환</td>
+            </tr>
+            <tr>
+              <td>Alt+V</td>
+              <td>이미지(스크린샷) 붙여넣기 — 캡처한 화면을 Claude에게 바로 전달</td>
+            </tr>
           </tbody>
         </table>
       </div>
-    </section>
 
-    <div class="section-sep"></div>
-
-    <!-- ========================================
-         SECTION 5: 키보드 단축키
-         ======================================== -->
-    <section id="section-5" class="doc-section">
-      <div class="section-header fade-in">
-        <div class="section-number">05</div>
-        <div class="section-title-wrap">
-          <h2>키보드 단축키</h2>
-          <p class="section-desc">생산성을 높이는 입력 단축키</p>
+      <!-- 모드 전환 상세 -->
+      <div class="card card-orange mt-20">
+        <h3 style="margin-bottom: 14px;">모드 전환 (Shift+Tab)</h3>
+        <p>Claude Code 세션 중 <code>Shift+Tab</code>을 누르면 실행 모드가 순환된다.</p>
+        <div class="table-wrap mt-12" style="margin-top: 16px;">
+          <table>
+            <thead>
+              <tr><th>모드</th><th>동작</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>기본 모드</td>
+                <td>모든 작업에 사용자 승인 필요</td>
+              </tr>
+              <tr>
+                <td>바이패스 모드 (Auto-accept)</td>
+                <td>파일 수정, 명령 실행을 자동 승인</td>
+              </tr>
+              <tr>
+                <td>플랜 모드</td>
+                <td>코드 수정 없이 계획만 수립 (실행 전 리뷰용)</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <div class="table-wrap fade-in">
-        <table>
-          <thead><tr><th>단축키</th><th>기능</th></tr></thead>
-          <tbody>
-            <tr><td>Alt+T (Windows)</td><td class="td-secondary">Extended Thinking 토글</td></tr>
-            <tr><td>Ctrl+O</td><td class="td-secondary">Verbose 모드 (추론 과정 표시)</td></tr>
-            <tr><td>Shift+Enter</td><td class="td-secondary">줄바꿈 (VS Code / iTerm2)</td></tr>
-            <tr><td>! 접두사</td><td class="td-secondary">셸 명령 직접 실행 — 예: <code>!npm test</code></td></tr>
-            <tr><td>@ 구문</td><td class="td-secondary">파일/디렉토리 참조 — 예: <code>@./src/app.ts</code></td></tr>
-          </tbody>
-        </table>
+      <!-- 이미지 붙여넣기 상세 -->
+      <div class="card card-orange mt-20" style="margin-top: 16px;">
+        <h3 style="margin-bottom: 10px;">이미지 붙여넣기 (Alt+V)</h3>
+        <p>스크린샷이나 이미지를 클립보드에 복사한 후 <code>Alt+V</code>로 Claude에게 바로 전달할 수 있다. 에러 화면, UI 스크린샷, 디자인 시안 등을 보여주며 질문할 때 유용하다.</p>
       </div>
     </section>
 
-    <div class="section-sep"></div>
+    <!-- ========================
+         SECTION 5: Thinking 모드
+         ======================== -->
+    <section class="doc-section" id="thinking">
+      <div class="section-header">
+        <div class="section-num">05</div>
+        <h2>Thinking 모드 설정</h2>
+      </div>
 
-    <!-- ========================================
+      <div class="feature-card">
+        <span class="feature-card-label">Thinking 모드란?</span>
+        <p>Claude가 응답하기 전에 '생각하는 과정'을 거치는 기능이다. 복잡한 문제에서 더 정확한 답변을 제공하며, 일반 응답보다 더 깊은 추론과 자기 검증을 수행한다.</p>
+      </div>
+
+      <h3 class="mt-20">설정 방법 — Claude에게 직접 요청</h3>
+      <p>프롬프트로 Thinking 모드를 활성화할 수 있다.</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">프롬프트 예시</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>thinking 모드를 활성화해줘</code></pre>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">프롬프트 예시</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>extended thinking을 켜줘</code></pre>
+      </div>
+
+      <h3 class="mt-20">Thinking 레벨</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>레벨</th><th>설명</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>기본 (off)</td><td>빠른 응답, 간단한 작업에 적합</td></tr>
+            <tr><td>Thinking</td><td>중간 수준 추론, 일반적인 코딩 작업</td></tr>
+            <tr><td>Ultra Thinking</td><td>최대 추론 깊이, 복잡한 아키텍처/디버깅에 적합</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-orange mt-20" style="margin-top: 20px;">
+        <span class="callout-icon">⌨️</span>
+        <div class="callout-body">
+          <span class="callout-title">키보드 단축키</span>
+          <p><code>Alt+T</code>로 Thinking 토글 가능</p>
+        </div>
+      </div>
+
+      <div class="callout callout-green">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <span class="callout-title">사용 팁</span>
+          <p>간단한 파일 수정에는 Thinking off, 복잡한 버그 추적이나 설계에는 Ultra Thinking을 권장한다. Thinking 모드는 토큰 사용량이 늘어나므로 필요한 경우에만 활성화하는 것이 좋다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
          SECTION 6: oh-my-claudecode
-         ======================================== -->
-    <section id="section-6" class="doc-section">
-      <div class="section-header fade-in">
-        <div class="section-number">06</div>
-        <div class="section-title-wrap">
-          <h2>oh-my-claudecode 플러그인</h2>
-          <p class="section-desc">멀티 에이전트 오케스트레이션 플러그인</p>
-        </div>
+         ======================== -->
+    <section class="doc-section" id="omc">
+      <div class="section-header">
+        <div class="section-num">06</div>
+        <h2>oh-my-claudecode 플러그인</h2>
       </div>
 
-      <div class="callout tip fade-in">
-        <span class="callout-icon">⚡</span>
-        <div><strong>19개 특수 에이전트 · 28개 스킬 · 5개 실행 모드</strong>를 제공하는 멀티 에이전트 오케스트레이션 플러그인입니다. 복잡한 작업을 자율적으로 분담하고 병렬 실행합니다.</div>
+      <div class="feature-card">
+        <span class="feature-card-label">가장 인기 있는 플러그인</span>
+        <h3 style="margin-bottom: 12px;">oh-my-claudecode (OMC)</h3>
+        <p>oh-my-claudecode(OMC)는 전 세계 Claude Code 사용자들이 가장 많이 사용하는 플러그인으로, <strong>19개 전문 에이전트</strong>와 <strong>28개 스킬</strong>을 제공하는 멀티 에이전트 오케스트레이션 시스템이다. Claude Code를 설치했다면 OMC를 기본으로 같이 설치하고 시작하는 것을 <strong>강력히 권장한다.</strong></p>
       </div>
 
-      <h3 class="subsection-title">설치 방법</h3>
+      <h3 class="mt-20">설치 단계</h3>
 
-      <div class="tab-container fade-in">
-        <div class="method-tabs" role="tablist">
-          <button class="method-tab active" role="tab" data-tab="omc-1">
-            Plugin Marketplace
-            <span class="tab-badge recommended">권장</span>
-          </button>
-          <button class="method-tab" role="tab" data-tab="omc-2">npm</button>
-        </div>
-
-        <div class="method-tab-content active" id="omc-1">
-          <div class="code-block-wrap">
-            <div class="code-block-header">
-              <span class="code-lang">bash</span>
-              <button class="copy-btn" data-copy="/plugin marketplace add https://github.com/Yeachan-Heo/oh-my-claudecode
-/plugin install oh-my-claudecode">
-                <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-                Copy
-              </button>
+      <div class="steps">
+        <!-- Step 1 -->
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <span class="step-title">플러그인 마켓플레이스 등록</span>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">claude code</span>
+                <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+              </div>
+              <pre><code>/plugin marketplace add https://github.com/Yeachan-Heo/oh-my-claudecode</code></pre>
             </div>
-            <pre><code><span class="fn">/plugin</span> <span class="kw">marketplace</span> <span class="fn">add</span> <span class="str">https://github.com/Yeachan-Heo/oh-my-claudecode</span>
-<span class="fn">/plugin</span> <span class="kw">install</span> <span class="str">oh-my-claudecode</span></code></pre>
           </div>
         </div>
 
-        <div class="method-tab-content" id="omc-2">
-          <div class="callout info">
-            <span class="callout-icon">ℹ</span>
-            <div>리포지토리명은 <code>oh-my-claudecode</code>이지만 npm 패키지명은 <code>oh-my-claude-sisyphus</code>입니다.</div>
-          </div>
-          <div class="code-block-wrap">
-            <div class="code-block-header">
-              <span class="code-lang">bash</span>
-              <button class="copy-btn" data-copy="npm i -g oh-my-claude-sisyphus@latest">
-                <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-                Copy
-              </button>
+        <!-- Step 2 -->
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <span class="step-title">플러그인 설치</span>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">claude code</span>
+                <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+              </div>
+              <pre><code>/plugin install oh-my-claudecode</code></pre>
             </div>
-            <pre><code><span class="fn">npm</span> <span class="kw">i</span> <span class="var">-g</span> <span class="str">oh-my-claude-sisyphus@latest</span></code></pre>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <span class="step-title">Claude Code 재시작</span>
+            <div class="callout callout-warning">
+              <span class="callout-icon">⚠️</span>
+              <div class="callout-body">
+                <span class="callout-title">반드시 재시작 필요</span>
+                <p>플러그인 설치 후 반드시 Claude Code를 완전히 종료하고 다시 시작해야 한다. 재시작하지 않으면 플러그인이 로드되지 않는다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <span class="step-title">초기 설정</span>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">claude code</span>
+                <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+              </div>
+              <pre><code>/oh-my-claudecode:omc-setup</code></pre>
+            </div>
           </div>
         </div>
       </div>
 
-      <h3 class="subsection-title">설치 후 초기 설정</h3>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">slash command</span>
-          <button class="copy-btn" data-copy="/oh-my-claudecode:omc-setup">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
+      <!-- 팀 기능 -->
+      <div class="card card-orange mt-20">
+        <h3 style="margin-bottom: 12px;">팀 기능 활성화 (선택사항)</h3>
+        <p>OMC의 팀 기능은 여러 AI 에이전트가 동시에 협업하는 기능이다. 이 기능을 사용하려면 Claude Code의 실험적 팀 설정을 활성화해야 한다.</p>
+
+        <p class="mt-12" style="margin-top: 14px;">Claude Code에 아래 프롬프트를 입력하면 자동으로 설정된다.</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-lang">프롬프트</span>
+            <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+          </div>
+          <pre><code>settings.json에 CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS 환경변수를 1로 설정해줘</code></pre>
         </div>
-        <pre><code><span class="fn">/oh-my-claudecode:omc-setup</span></code></pre>
+        <p class="text-secondary text-sm" style="margin-top: 10px; font-size: 0.88rem; color: var(--text-secondary);">설정 후 Claude Code를 재시작하면 팀 기능을 사용할 수 있다.</p>
       </div>
 
-      <h3 class="subsection-title">팀 기능 활성화</h3>
-      <p style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:12px;">경로: <code>~/.claude/settings.json</code></p>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">json</span>
-          <button class="copy-btn" data-copy='{
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  }
-}'>
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
+      <!-- 주요 실행 모드 -->
+      <h3 class="mt-20" style="margin-top: 32px; margin-bottom: 14px;">주요 실행 모드</h3>
+      <div class="keyword-grid">
+        <div class="keyword-card">
+          <span class="kw-tag">autopilot</span>
+          <p class="kw-desc">아이디어에서 동작하는 코드까지 자율 실행</p>
         </div>
-        <pre><code><span class="punc">{</span>
-  <span class="prop">"env"</span><span class="punc">:</span> <span class="punc">{</span>
-    <span class="prop">"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS"</span><span class="punc">:</span> <span class="str">"1"</span>
-  <span class="punc">}</span>
-<span class="punc">}</span></code></pre>
-      </div>
-
-      <h3 class="subsection-title">주요 실행 모드 (매직 키워드)</h3>
-      <div class="mode-cards fade-in">
-        <div class="mode-card">
-          <div class="mode-keyword">autopilot</div>
-          <div class="mode-desc">아이디어에서 동작하는 코드까지 자율 실행</div>
+        <div class="keyword-card">
+          <span class="kw-tag">ralph</span>
+          <p class="kw-desc">아키텍트 검증 포함 지속 루프</p>
         </div>
-        <div class="mode-card">
-          <div class="mode-keyword">ralph</div>
-          <div class="mode-desc">아키텍트 검증 포함 지속 루프</div>
+        <div class="keyword-card">
+          <span class="kw-tag">ulw (ultrawork)</span>
+          <p class="kw-desc">최대 병렬 실행</p>
         </div>
-        <div class="mode-card">
-          <div class="mode-keyword">ulw (ultrawork)</div>
-          <div class="mode-desc">최대 병렬 실행 모드</div>
+        <div class="keyword-card">
+          <span class="kw-tag">plan</span>
+          <p class="kw-desc">인터뷰 기반 전략 계획</p>
         </div>
-        <div class="mode-card">
-          <div class="mode-keyword">plan</div>
-          <div class="mode-desc">인터뷰 기반 전략 계획 수립</div>
+        <div class="keyword-card">
+          <span class="kw-tag">deep-interview</span>
+          <p class="kw-desc">소크라테스식 요구사항 명확화</p>
         </div>
-        <div class="mode-card">
-          <div class="mode-keyword">deep-interview</div>
-          <div class="mode-desc">소크라테스식 요구사항 명확화</div>
-        </div>
-        <div class="mode-card">
-          <div class="mode-keyword">team</div>
-          <div class="mode-desc">조율된 에이전트 팀 동시 실행</div>
+        <div class="keyword-card">
+          <span class="kw-tag">team</span>
+          <p class="kw-desc">조율된 에이전트 팀</p>
         </div>
       </div>
 
-      <h3 class="subsection-title">19개 에이전트</h3>
+      <!-- 19개 에이전트 -->
+      <h3 style="margin-top: 32px; margin-bottom: 14px;">19개 에이전트 (3 도메인)</h3>
 
-      <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-family:'DM Mono',monospace;">빌드 &amp; 분석</p>
-      <div class="agents-grid fade-in">
-        <span class="agent-tag">Explore</span>
-        <span class="agent-tag">Analyst</span>
-        <span class="agent-tag">Planner</span>
-        <span class="agent-tag">Architect</span>
-        <span class="agent-tag">Debugger</span>
-        <span class="agent-tag">Executor</span>
-        <span class="agent-tag">Code-Simplifier</span>
+      <p style="font-size: 0.88rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;">빌드 / 분석</p>
+      <div class="agent-grid">
+        <span class="agent-tag build">Explore</span>
+        <span class="agent-tag build">Analyst</span>
+        <span class="agent-tag build">Planner</span>
+        <span class="agent-tag build">Architect</span>
+        <span class="agent-tag build">Debugger</span>
+        <span class="agent-tag build">Executor</span>
+        <span class="agent-tag build">Code-Simplifier</span>
       </div>
 
-      <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-family:'DM Mono',monospace;">리뷰 &amp; 품질</p>
-      <div class="agents-grid fade-in">
-        <span class="agent-tag">Security-Reviewer</span>
-        <span class="agent-tag">Code-Reviewer</span>
-        <span class="agent-tag">Critic</span>
+      <p style="font-size: 0.88rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; margin-top: 14px; text-transform: uppercase; letter-spacing: 0.05em;">리뷰 / 품질</p>
+      <div class="agent-grid">
+        <span class="agent-tag review">Security-Reviewer</span>
+        <span class="agent-tag review">Code-Reviewer</span>
+        <span class="agent-tag review">Critic</span>
       </div>
 
-      <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px; font-family:'DM Mono',monospace;">도메인 전문가</p>
-      <div class="agents-grid fade-in">
-        <span class="agent-tag">Document-Specialist</span>
-        <span class="agent-tag">Test-Engineer</span>
-        <span class="agent-tag">Designer</span>
-        <span class="agent-tag">Writer</span>
-        <span class="agent-tag">QA-Tester</span>
-        <span class="agent-tag">Scientist</span>
-        <span class="agent-tag">Git-Master</span>
-        <span class="agent-tag">Tracer</span>
+      <p style="font-size: 0.88rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; margin-top: 14px; text-transform: uppercase; letter-spacing: 0.05em;">도메인 전문가</p>
+      <div class="agent-grid">
+        <span class="agent-tag domain">Document-Specialist</span>
+        <span class="agent-tag domain">Test-Engineer</span>
+        <span class="agent-tag domain">Designer</span>
+        <span class="agent-tag domain">Writer</span>
+        <span class="agent-tag domain">QA-Tester</span>
+        <span class="agent-tag domain">Scientist</span>
+        <span class="agent-tag domain">Git-Master</span>
+        <span class="agent-tag domain">Tracer</span>
       </div>
     </section>
 
-    <div class="section-sep"></div>
+    <!-- ========================
+         SECTION 7: HUD 설정
+         ======================== -->
+    <section class="doc-section" id="hud">
+      <div class="section-header">
+        <div class="section-num">07</div>
+        <h2>HUD 설정</h2>
+      </div>
 
-    <!-- ========================================
-         SECTION 7: HUD
-         ======================================== -->
-    <section id="section-7" class="doc-section">
-      <div class="section-header fade-in">
-        <div class="section-number">07</div>
-        <div class="section-title-wrap">
-          <h2>HUD (Status Line) 설정</h2>
-          <p class="section-desc">현재 상태를 실시간으로 표시하는 상태 표시줄</p>
+      <p>OMC HUD는 터미널 하단에 실시간 상태 바를 표시하여 컨텍스트 사용량, 에이전트 상태, 작업 진행도를 한눈에 확인할 수 있다.</p>
+
+      <h3 class="mt-20">설정</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">claude code</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>/oh-my-claudecode:hud setup</code></pre>
+      </div>
+      <div class="callout callout-blue" style="margin-top: 12px;">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <p>설정 후 Claude Code 재시작 필요</p>
         </div>
       </div>
 
-      <!-- 7-1 -->
-      <h3 class="subsection-title">7-1. Claude Code 기본 Status Line</h3>
-
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">slash command</span>
-          <button class="copy-btn" data-copy="/statusline show model name and context percentage with a progress bar">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
+      <h3 class="mt-20">프리셋 변경</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">claude code</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
         </div>
-        <pre><code><span class="fn">/statusline</span> <span class="plain">show model name and context percentage with a progress bar</span></code></pre>
+        <pre><code>/oh-my-claudecode:hud minimal    # 최소 표시
+/oh-my-claudecode:hud focused    # 기본값 (권장)
+/oh-my-claudecode:hud full       # 전체 표시</code></pre>
       </div>
 
-      <h4 style="font-size:0.875rem; font-weight:600; color:var(--text-secondary); margin: 20px 0 12px;">수동 설정 — Linux/macOS</h4>
-      <p style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:8px;">경로: <code>~/.claude/settings.json</code></p>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">json</span>
-          <button class="copy-btn" data-copy='{
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  }
-}'>
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
+      <h3 class="mt-20">프리셋 미리보기</h3>
+      <div class="hud-display">
+        <div class="hud-bar">
+          <span class="hud-label">minimal</span>
+          <span class="hud-content">
+            <span class="hud-orange">[OMC]</span>
+            <span style="color: #9ca3af; margin: 0 8px;">·</span>
+            ralph
+            <span style="color: #9ca3af; margin: 0 8px;">·</span>
+            ultrawork
+            <span style="color: #9ca3af; margin: 0 8px;">·</span>
+            todos:2/5
+          </span>
         </div>
-        <pre><code><span class="punc">{</span>
-  <span class="prop">"statusLine"</span><span class="punc">:</span> <span class="punc">{</span>
-    <span class="prop">"type"</span><span class="punc">:</span> <span class="str">"command"</span><span class="punc">,</span>
-    <span class="prop">"command"</span><span class="punc">:</span> <span class="str">"~/.claude/statusline.sh"</span>
-  <span class="punc">}</span>
-<span class="punc">}</span></code></pre>
+        <div class="hud-bar">
+          <span class="hud-label" style="color: var(--accent-light); font-weight: 600;">focused ★</span>
+          <span class="hud-content">
+            repo:<span class="hud-green">name</span>
+            <span style="color: #6b7280; margin: 0 6px;">·</span>
+            branch:<span class="hud-green">main</span>
+            <span style="color: #6b7280; margin: 0 6px;">·</span>
+            ctx:<span class="hud-yellow">67%</span>
+            <span style="color: #6b7280; margin: 0 6px;">·</span>
+            agents:<span class="hud-green">2</span>
+            <span style="color: #6b7280; margin: 0 6px;">·</span>
+            todos:<span class="hud-green">2/5</span>
+          </span>
+        </div>
+        <div class="hud-bar">
+          <span class="hud-label">full</span>
+          <span class="hud-content" style="color: #6b7280; font-size: 0.78rem;">focused + 에이전트별 상세 트리 표시</span>
+        </div>
       </div>
 
-      <h4 style="font-size:0.875rem; font-weight:600; color:var(--text-secondary); margin: 20px 0 12px;">수동 설정 — Windows PowerShell</h4>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">json</span>
-          <button class="copy-btn" data-copy='{
-  "statusLine": {
-    "type": "command",
-    "command": "powershell -NoProfile -File C:/Users/username/.claude/statusline.ps1"
-  }
-}'>
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
-        </div>
-        <pre><code><span class="punc">{</span>
-  <span class="prop">"statusLine"</span><span class="punc">:</span> <span class="punc">{</span>
-    <span class="prop">"type"</span><span class="punc">:</span> <span class="str">"command"</span><span class="punc">,</span>
-    <span class="prop">"command"</span><span class="punc">:</span> <span class="str">"powershell -NoProfile -File C:/Users/username/.claude/statusline.ps1"</span>
-  <span class="punc">}</span>
-<span class="punc">}</span></code></pre>
-      </div>
-
-      <h4 style="font-size:0.875rem; font-weight:600; color:var(--text-secondary); margin: 20px 0 12px;">사용 가능한 데이터 필드</h4>
-      <div class="table-wrap fade-in">
+      <h3 class="mt-20">HUD 표시 요소</h3>
+      <div class="table-wrap">
         <table>
-          <thead><tr><th>필드</th><th>설명</th></tr></thead>
+          <thead>
+            <tr><th>요소</th><th>설명</th></tr>
+          </thead>
           <tbody>
-            <tr><td>model.display_name</td><td class="td-secondary">현재 사용 중인 모델명</td></tr>
-            <tr><td>context_window.used_percentage</td><td class="td-secondary">컨텍스트 윈도우 사용률 (%)</td></tr>
-            <tr><td>cost.total_cost_usd</td><td class="td-secondary">세션 누적 비용 (USD)</td></tr>
-            <tr><td>cost.total_duration_ms</td><td class="td-secondary">세션 경과 시간</td></tr>
-            <tr><td>rate_limits.five_hour.used_percentage</td><td class="td-secondary">5시간 Rate Limit 사용률</td></tr>
-            <tr><td>rate_limits.seven_day.used_percentage</td><td class="td-secondary">7일 Rate Limit 사용률</td></tr>
-            <tr><td>workspace.current_dir</td><td class="td-secondary">현재 작업 디렉토리</td></tr>
+            <tr><td>[OMC]</td><td>OMC 모드 식별자</td></tr>
+            <tr><td>repo:name</td><td>리포지토리 이름</td></tr>
+            <tr><td>branch:name</td><td>git 브랜치</td></tr>
+            <tr><td>ctx:67%</td><td>컨텍스트 사용률 — 초록(정상) → 노랑(70%+) → 빨강(85%+)</td></tr>
+            <tr><td>agents:2</td><td>활성 서브에이전트 수</td></tr>
+            <tr><td>todos:2/5</td><td>TODO 진행률</td></tr>
           </tbody>
         </table>
       </div>
 
-      <!-- 7-2 -->
-      <h3 class="subsection-title" style="margin-top:40px;">7-2. oh-my-claudecode HUD</h3>
-
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">slash command</span>
-          <button class="copy-btn" data-copy="/oh-my-claudecode:hud setup">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
+      <h3 class="mt-20">문제 해결</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">claude code</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
         </div>
-        <pre><code><span class="fn">/oh-my-claudecode:hud</span> <span class="kw">setup</span></code></pre>
-      </div>
-
-      <h4 style="font-size:0.875rem; font-weight:600; color:var(--text-secondary); margin: 20px 0 12px;">프리셋 전환</h4>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">slash command</span>
-          <button class="copy-btn" data-copy="/oh-my-claudecode:hud minimal
-/oh-my-claudecode:hud focused
-/oh-my-claudecode:hud full">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
-        </div>
-        <pre><code><span class="fn">/oh-my-claudecode:hud</span> <span class="var">minimal</span>    <span class="cmt"># 최소 표시</span>
-<span class="fn">/oh-my-claudecode:hud</span> <span class="var">focused</span>    <span class="cmt"># 기본값</span>
-<span class="fn">/oh-my-claudecode:hud</span> <span class="var">full</span>       <span class="cmt"># 전체 표시</span></code></pre>
-      </div>
-
-      <h4 style="font-size:0.875rem; font-weight:600; color:var(--text-secondary); margin: 20px 0 12px;">프리셋 비교</h4>
-      <div class="fade-in">
-        <div style="margin-bottom:8px;">
-          <div style="font-size:0.72rem; color:var(--text-muted); font-family:'DM Mono',monospace; margin-bottom:4px; padding-left:4px;">minimal</div>
-          <div class="hud-preview"><span class="hud-accent">[OMC]</span> <span class="hud-ok">ralph</span> · <span class="hud-warn">ultrawork</span> · <span class="hud-dim">todos:2/5</span></div>
-        </div>
-        <div style="margin-bottom:8px;">
-          <div style="font-size:0.72rem; color:var(--text-muted); font-family:'DM Mono',monospace; margin-bottom:4px; padding-left:4px;">focused</div>
-          <div class="hud-preview"><span class="hud-accent">[OMC]</span> <span class="hud-dim">repo:</span><span class="hud-ok">name</span> <span class="hud-dim">branch:</span><span class="hud-ok">main</span> <span class="hud-dim">ralph:</span><span class="hud-warn">3/10</span> <span class="hud-dim">ctx:</span><span class="hud-warn">67%</span> <span class="hud-dim">agents:</span><span class="hud-ok">2</span> <span class="hud-dim">bg:</span><span class="hud-ok">3/5</span> <span class="hud-dim">todos:</span><span class="hud-ok">2/5</span></div>
-        </div>
-        <div style="margin-bottom:8px;">
-          <div style="font-size:0.72rem; color:var(--text-muted); font-family:'DM Mono',monospace; margin-bottom:4px; padding-left:4px;">full</div>
-          <div class="hud-preview"><span class="hud-accent">[OMC]</span> <span class="hud-dim">repo:</span><span class="hud-ok">name</span> <span class="hud-dim">branch:</span><span class="hud-ok">main</span> <span class="hud-dim">ralph:</span><span class="hud-warn">3/10</span> <span class="hud-dim">ctx:</span><span class="hud-warn">67%</span> <span class="hud-dim">agents:</span><span class="hud-ok">2</span> <span class="hud-dim">bg:</span><span class="hud-ok">3/5</span> <span class="hud-dim">todos:</span><span class="hud-ok">2/5</span>
-  <span class="hud-dim">├─ Explore:</span> <span class="hud-ok">running</span> <span class="hud-dim">ctx:32%</span>
-  <span class="hud-dim">└─ Executor:</span> <span class="hud-ok">running</span> <span class="hud-dim">ctx:45%</span></div>
-        </div>
-      </div>
-
-      <h4 style="font-size:0.875rem; font-weight:600; color:var(--text-secondary); margin: 24px 0 12px;">수동 설정 (settings.json)</h4>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">json</span>
-          <button class="copy-btn" data-copy='{
-  "omcHud": {
-    "preset": "focused",
-    "elements": {
-      "cwd": true,
-      "gitRepo": true,
-      "gitBranch": true,
-      "omcLabel": true,
-      "contextBar": true,
-      "agents": true,
-      "todos": true,
-      "ralph": true,
-      "autopilot": true,
-      "showTokens": true,
-      "backgroundTasks": true,
-      "thinking": true,
-      "permissionStatus": true
-    }
-  }
-}'>
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
-        </div>
-        <pre><code><span class="punc">{</span>
-  <span class="prop">"omcHud"</span><span class="punc">:</span> <span class="punc">{</span>
-    <span class="prop">"preset"</span><span class="punc">:</span> <span class="str">"focused"</span><span class="punc">,</span>
-    <span class="prop">"elements"</span><span class="punc">:</span> <span class="punc">{</span>
-      <span class="prop">"cwd"</span><span class="punc">:</span> <span class="kw">true</span><span class="punc">,</span>
-      <span class="prop">"gitRepo"</span><span class="punc">:</span> <span class="kw">true</span><span class="punc">,</span>
-      <span class="prop">"gitBranch"</span><span class="punc">:</span> <span class="kw">true</span><span class="punc">,</span>
-      <span class="prop">"omcLabel"</span><span class="punc">:</span> <span class="kw">true</span><span class="punc">,</span>
-      <span class="prop">"contextBar"</span><span class="punc">:</span> <span class="kw">true</span><span class="punc">,</span>
-      <span class="prop">"agents"</span><span class="punc">:</span> <span class="kw">true</span><span class="punc">,</span>
-      <span class="prop">"todos"</span><span class="punc">:</span> <span class="kw">true</span><span class="punc">,</span>
-      <span class="prop">"ralph"</span><span class="punc">:</span> <span class="kw">true</span><span class="punc">,</span>
-      <span class="prop">"autopilot"</span><span class="punc">:</span> <span class="kw">true</span><span class="punc">,</span>
-      <span class="prop">"showTokens"</span><span class="punc">:</span> <span class="kw">true</span><span class="punc">,</span>
-      <span class="prop">"backgroundTasks"</span><span class="punc">:</span> <span class="kw">true</span><span class="punc">,</span>
-      <span class="prop">"thinking"</span><span class="punc">:</span> <span class="kw">true</span><span class="punc">,</span>
-      <span class="prop">"permissionStatus"</span><span class="punc">:</span> <span class="kw">true</span>
-    <span class="punc">}</span>
-  <span class="punc">}</span>
-<span class="punc">}</span></code></pre>
-      </div>
-
-      <h4 style="font-size:0.875rem; font-weight:600; color:var(--text-secondary); margin: 20px 0 12px;">표시 요소 설명</h4>
-      <div class="table-wrap fade-in">
-        <table>
-          <thead><tr><th>요소</th><th>설명</th></tr></thead>
-          <tbody>
-            <tr><td>[OMC]</td><td class="td-secondary">OMC 모드 식별자</td></tr>
-            <tr><td>repo:name</td><td class="td-secondary">리포지토리 이름</td></tr>
-            <tr><td>branch:name</td><td class="td-secondary">현재 git 브랜치</td></tr>
-            <tr><td>ralph:3/10</td><td class="td-secondary">Ralph 루프 진행도</td></tr>
-            <tr><td>ctx:67%</td><td class="td-secondary">컨텍스트 사용률</td></tr>
-            <tr><td>agents:2</td><td class="td-secondary">실행 중인 서브에이전트 수</td></tr>
-            <tr><td>bg:3/5</td><td class="td-secondary">백그라운드 작업 슬롯 (사용/전체)</td></tr>
-            <tr><td>todos:2/5</td><td class="td-secondary">TODO 완료 비율</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="callout success fade-in">
-        <span class="callout-icon">◉</span>
-        <div>색상 임계값: <strong style="color:var(--green)">초록 — 정상</strong> / <strong style="color:var(--yellow)">노랑 — 70% 이상</strong> / <strong style="color:var(--red)">빨강 — 85% 이상</strong></div>
+        <pre><code>/oh-my-claudecode:omc-doctor</code></pre>
       </div>
     </section>
 
-    <div class="section-sep"></div>
-
-    <!-- ========================================
+    <!-- ========================
          SECTION 8: RTK
-         ======================================== -->
-    <section id="section-8" class="doc-section">
-      <div class="section-header fade-in">
-        <div class="section-number">08</div>
-        <div class="section-title-wrap">
-          <h2>RTK (Rust Token Killer)</h2>
-          <p class="section-desc">토큰 사용량을 60–90% 절감하는 CLI 래퍼 도구</p>
+         ======================== -->
+    <section class="doc-section" id="rtk">
+      <div class="section-header">
+        <div class="section-num">08</div>
+        <h2>RTK — 토큰 절약</h2>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-card-label">RTK (Rust Token Killer)</span>
+        <p>RTK는 Claude Code의 CLI 출력을 압축하여 <strong>평균 60~90%의 토큰을 절약</strong>하는 도구이다. git, npm, tsc, vitest 등의 출력을 자동으로 필터링하여 핵심 정보만 전달한다.</p>
+      </div>
+
+      <h3 class="mt-20">압축 전략 (4가지)</h3>
+      <div class="keyword-grid">
+        <div class="keyword-card">
+          <span class="kw-tag">실패 전용</span>
+          <p class="kw-desc">테스트 실패, 에러만 추출. 성공 출력 제거</p>
+        </div>
+        <div class="keyword-card">
+          <span class="kw-tag">중복 제거</span>
+          <p class="kw-desc">반복되는 로그 라인을 카운트로 압축</p>
+        </div>
+        <div class="keyword-card">
+          <span class="kw-tag">파일별 그룹</span>
+          <p class="kw-desc">에러/경고를 파일별로 그룹화해 가독성 향상</p>
+        </div>
+        <div class="keyword-card">
+          <span class="kw-tag">구조 추출</span>
+          <p class="kw-desc">JSON 구조 요약, 핵심 메트릭만 표시</p>
         </div>
       </div>
 
-      <div class="stat-hero fade-in">
-        <div class="stat-big">60–90%</div>
-        <div class="stat-label">평균 토큰 절감율 — 30분 세션 기준 ~118,000 → ~23,900 토큰</div>
-      </div>
-
-      <div class="strategy-cards fade-in">
-        <div class="strategy-card">
-          <div class="strategy-icon">✂</div>
-          <div class="strategy-title">Smart Filtering</div>
-          <div class="strategy-desc">주석, 공백, 보일러플레이트 자동 제거</div>
-        </div>
-        <div class="strategy-card">
-          <div class="strategy-icon">⊞</div>
-          <div class="strategy-title">Grouping</div>
-          <div class="strategy-desc">유사 항목 집계 및 그룹화</div>
-        </div>
-        <div class="strategy-card">
-          <div class="strategy-icon">⋯</div>
-          <div class="strategy-title">Truncation</div>
-          <div class="strategy-desc">관련 컨텍스트만 유지하고 나머지 생략</div>
-        </div>
-        <div class="strategy-card">
-          <div class="strategy-icon">◑</div>
-          <div class="strategy-title">Deduplication</div>
-          <div class="strategy-desc">반복 로그를 카운트로 축약</div>
-        </div>
-      </div>
-
-      <h3 class="subsection-title">30분 세션 토큰 절감 비교</h3>
-      <div class="table-wrap fade-in">
+      <h3 class="mt-20">카테고리별 절감율</h3>
+      <div class="table-wrap">
         <table>
-          <thead><tr><th>명령어</th><th class="td-num" style="text-align:right">원본</th><th class="td-num" style="text-align:right">RTK</th><th>절감</th></tr></thead>
+          <thead>
+            <tr><th>카테고리</th><th>주요 명령어</th><th>절감율</th></tr>
+          </thead>
           <tbody>
-            <tr>
-              <td>ls/tree (10회)</td>
-              <td class="td-num">2,000</td>
-              <td class="td-num">400</td>
-              <td class="td-savings">-80%</td>
-            </tr>
-            <tr>
-              <td>cat/read (20회)</td>
-              <td class="td-num">40,000</td>
-              <td class="td-num">12,000</td>
-              <td class="td-savings">-70%</td>
-            </tr>
-            <tr>
-              <td>git status (10회)</td>
-              <td class="td-num">3,000</td>
-              <td class="td-num">600</td>
-              <td class="td-savings">-80%</td>
-            </tr>
-            <tr>
-              <td>git diff (5회)</td>
-              <td class="td-num">10,000</td>
-              <td class="td-num">2,500</td>
-              <td class="td-savings">-75%</td>
-            </tr>
-            <tr>
-              <td>cargo test / npm test (5회)</td>
-              <td class="td-num">25,000</td>
-              <td class="td-num">2,500</td>
-              <td class="td-savings">-90%</td>
-            </tr>
-            <tr style="border-top: 1px solid var(--border-default);">
-              <td style="font-weight:600; color:var(--text-primary);">합계</td>
-              <td class="td-num" style="font-weight:600; color:var(--text-primary);">~118,000</td>
-              <td class="td-num" style="font-weight:600; color:var(--text-primary);">~23,900</td>
-              <td class="td-savings" style="font-size:0.9rem;">-80%</td>
-            </tr>
+            <tr><td>테스트</td><td>vitest, playwright, cargo test</td><td style="color: var(--green); font-weight: 700;">90–99%</td></tr>
+            <tr><td>빌드</td><td>next build, tsc, lint, prettier</td><td style="color: var(--green); font-weight: 700;">70–87%</td></tr>
+            <tr><td>Git</td><td>status, log, diff, add, commit</td><td style="color: var(--green); font-weight: 700;">59–80%</td></tr>
+            <tr><td>GitHub CLI</td><td>gh pr, gh run, gh issue</td><td style="color: var(--green); font-weight: 700;">26–87%</td></tr>
+            <tr><td>패키지 매니저</td><td>pnpm, npm, npx</td><td style="color: var(--green); font-weight: 700;">70–90%</td></tr>
+            <tr><td>파일 & 검색</td><td>ls, grep, find, read</td><td style="color: var(--green); font-weight: 700;">60–75%</td></tr>
+            <tr><td>인프라</td><td>docker, kubectl</td><td style="color: var(--green); font-weight: 700;">85%</td></tr>
+            <tr><td>네트워크</td><td>curl, wget</td><td style="color: var(--green); font-weight: 700;">65–70%</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h3 class="subsection-title">설치 (Windows)</h3>
-
-      <div class="tab-container fade-in">
-        <div class="method-tabs" role="tablist">
-          <button class="method-tab active" role="tab" data-tab="rtk-1">
-            Pre-built Binary
-            <span class="tab-badge recommended">권장</span>
-          </button>
-          <button class="method-tab" role="tab" data-tab="rtk-2">Cargo</button>
-          <button class="method-tab" role="tab" data-tab="rtk-3">Quick Install (WSL)</button>
-        </div>
-
-        <div class="method-tab-content active" id="rtk-1">
-          <div class="callout info">
-            <span class="callout-icon">ℹ</span>
-            <div>GitHub Releases 페이지에서 <code>rtk-x86_64-pc-windows-msvc.zip</code>을 다운로드한 후 압축 해제하고 PATH에 추가하세요.</div>
-          </div>
-          <a href="https://github.com/rtk-ai/rtk/releases" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; font-family:'DM Mono',monospace; background:var(--bg-card); border:1px solid var(--border-default); padding:8px 14px; border-radius:var(--radius-md); color:var(--accent-light); transition:all var(--duration-fast); text-decoration:none;">
-            ↗ GitHub Releases 열기
-          </a>
-        </div>
-
-        <div class="method-tab-content" id="rtk-2">
-          <div class="callout warning">
-            <span class="callout-icon">⚠</span>
-            <div><strong>주의:</strong> <code>cargo install rtk</code>는 동명의 <em>다른 패키지</em>입니다. 반드시 <code>--git</code> 옵션을 사용하세요.</div>
-          </div>
-          <div class="code-block-wrap">
-            <div class="code-block-header">
-              <span class="code-lang">bash</span>
-              <button class="copy-btn" data-copy="cargo install --git https://github.com/rtk-ai/rtk">
-                <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-                Copy
-              </button>
-            </div>
-            <pre><code><span class="fn">cargo</span> <span class="kw">install</span> <span class="var">--git</span> <span class="str">https://github.com/rtk-ai/rtk</span></code></pre>
-          </div>
-        </div>
-
-        <div class="method-tab-content" id="rtk-3">
-          <div class="code-block-wrap">
-            <div class="code-block-header">
-              <span class="code-lang">bash</span>
-              <button class="copy-btn" data-copy="curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh">
-                <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-                Copy
-              </button>
-            </div>
-            <pre><code><span class="fn">curl</span> <span class="var">-fsSL</span> <span class="str">https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh</span> <span class="punc">|</span> <span class="fn">sh</span></code></pre>
-          </div>
-        </div>
-      </div>
-
-      <h3 class="subsection-title">설치 확인</h3>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
+      <h3 class="mt-20">설치</h3>
+      <div class="code-block">
+        <div class="code-header">
           <span class="code-lang">bash</span>
-          <button class="copy-btn" data-copy="rtk --version
-rtk gain">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
         </div>
-        <pre><code><span class="fn">rtk</span> <span class="var">--version</span>
-<span class="fn">rtk</span> <span class="fn">gain</span></code></pre>
+        <pre><code>curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh</code></pre>
       </div>
 
-      <h3 class="subsection-title">Claude Code 연동</h3>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
+      <h3 class="mt-20">Claude Code 연동</h3>
+      <div class="code-block">
+        <div class="code-header">
           <span class="code-lang">bash</span>
-          <button class="copy-btn" data-copy="rtk init -g">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
         </div>
-        <pre><code><span class="fn">rtk</span> <span class="kw">init</span> <span class="var">-g</span></code></pre>
+        <pre><code>rtk init -g</code></pre>
       </div>
-      <div class="callout success fade-in">
-        <span class="callout-icon">✓</span>
-        <div>자동 생성: Hook 파일 · RTK.md · CLAUDE.md 참조 추가</div>
-      </div>
-
-      <h3 class="subsection-title">주요 명령어 예시</h3>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">bash</span>
-          <button class="copy-btn" data-copy="rtk git status          # 압축된 git 상태
-rtk git diff            # 압축된 diff (-75%)
-rtk git log -n 10       # 한 줄 커밋 로그
-rtk ls .                # 토큰 최적화 디렉토리 트리
-rtk test cargo test     # 실패 테스트만 표시 (-90%)">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
+      <div class="callout callout-blue" style="margin-top: 12px;">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <p>설정 후 Claude Code 재시작 필요. 이후 <code>git status</code>를 입력하면 <code>rtk git status</code>로 자동 변환된다.</p>
         </div>
-        <pre><code><span class="fn">rtk</span> <span class="fn">git</span> <span class="kw">status</span>          <span class="cmt"># 압축된 git 상태</span>
-<span class="fn">rtk</span> <span class="fn">git</span> <span class="kw">diff</span>            <span class="cmt"># 압축된 diff (-75%)</span>
-<span class="fn">rtk</span> <span class="fn">git</span> <span class="kw">log</span> <span class="var">-n 10</span>       <span class="cmt"># 한 줄 커밋 로그</span>
-<span class="fn">rtk</span> <span class="fn">ls</span> <span class="var">.</span>                <span class="cmt"># 토큰 최적화 디렉토리 트리</span>
-<span class="fn">rtk</span> <span class="fn">test</span> <span class="fn">cargo test</span>     <span class="cmt"># 실패 테스트만 표시 (-90%)</span></code></pre>
       </div>
 
-      <h3 class="subsection-title">절감 통계 확인</h3>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
+      <h3 class="mt-20">절감 현황 확인</h3>
+      <div class="code-block">
+        <div class="code-header">
           <span class="code-lang">bash</span>
-          <button class="copy-btn" data-copy="rtk gain                # 절감 통계 요약
-rtk gain --graph        # 최근 30일 ASCII 그래프
-rtk discover            # RTK 미사용 명령 탐지">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
         </div>
-        <pre><code><span class="fn">rtk</span> <span class="fn">gain</span>                <span class="cmt"># 절감 통계 요약</span>
-<span class="fn">rtk</span> <span class="fn">gain</span> <span class="var">--graph</span>        <span class="cmt"># 최근 30일 ASCII 그래프</span>
-<span class="fn">rtk</span> <span class="fn">discover</span>            <span class="cmt"># RTK 미사용 명령 탐지</span></code></pre>
+        <pre><code>rtk gain
+rtk gain --graph
+rtk discover</code></pre>
       </div>
     </section>
 
-    <div class="section-sep"></div>
-
-    <!-- ========================================
-         SECTION 9: Alias & 권한
-         ======================================== -->
-    <section id="section-9" class="doc-section">
-      <div class="section-header fade-in">
-        <div class="section-number">09</div>
-        <div class="section-title-wrap">
-          <h2>터미널 Alias 설정 및 실행 모드</h2>
-          <p class="section-desc">빠른 실행을 위한 단축어와 권한 관리</p>
-        </div>
+    <!-- ========================
+         SECTION 9: Alias & 실행 모드
+         ======================== -->
+    <section class="doc-section" id="alias">
+      <div class="section-header">
+        <div class="section-num">09</div>
+        <h2>터미널 Alias 및 실행 모드</h2>
       </div>
 
-      <h3 class="subsection-title">Alias 설정</h3>
-      <p style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:8px;">경로: <code>~/.bashrc</code> 에 추가</p>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
+      <h3>Alias 설정</h3>
+      <p>터미널에서 짧은 명령으로 Claude Code를 실행할 수 있도록 alias를 설정한다. Claude Code에게 다음과 같이 요청하면 자동으로 설정된다.</p>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">프롬프트</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>터미널에 다음 alias를 만들어줘:
+cc: claude (기본 실행)
+ccd: claude --dangerously-skip-permissions (바이패스 모드)
+ccr: claude --resume --dangerously-skip-permissions (이전 세션 재개 + 바이패스)</code></pre>
+      </div>
+
+      <p class="mt-12" style="margin-top: 16px; color: var(--text-secondary); font-size: 0.9rem;">또는 직접 <code>~/.bashrc</code> / <code>~/.zshrc</code>에 추가할 수 있다.</p>
+      <div class="code-block">
+        <div class="code-header">
           <span class="code-lang">bash</span>
-          <button class="copy-btn" data-copy="# ~/.bashrc에 추가
-alias cc='claude'
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>alias cc='claude'
 alias ccd='claude --dangerously-skip-permissions'
-alias ccr='claude --resume --dangerously-skip-permissions'">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
-        </div>
-        <pre><code><span class="cmt"># ~/.bashrc에 추가</span>
-<span class="kw">alias</span> <span class="var">cc</span><span class="punc">=</span><span class="str">'claude'</span>
-<span class="kw">alias</span> <span class="var">ccd</span><span class="punc">=</span><span class="str">'claude --dangerously-skip-permissions'</span>
-<span class="kw">alias</span> <span class="var">ccr</span><span class="punc">=</span><span class="str">'claude --resume --dangerously-skip-permissions'</span></code></pre>
+alias ccr='claude --resume --dangerously-skip-permissions'</code></pre>
       </div>
 
-      <h3 class="subsection-title">사용법</h3>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
+      <h3 class="mt-20">사용 예시</h3>
+      <div class="code-block">
+        <div class="code-header">
           <span class="code-lang">bash</span>
-          <button class="copy-btn" data-copy="cd your-project       # 작업할 프로젝트 폴더로 이동
-cc                    # 기본 모드
-ccd                   # 바이패스 모드
-ccr                   # 이전 세션 재개 + 바이패스">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
         </div>
-        <pre><code><span class="fn">cd</span> your-project       <span class="cmt"># 작업할 프로젝트 폴더로 이동</span>
-<span class="fn">cc</span>                    <span class="cmt"># 기본 모드</span>
-<span class="fn">ccd</span>                   <span class="cmt"># 바이패스 모드</span>
-<span class="fn">ccr</span>                   <span class="cmt"># 이전 세션 재개 + 바이패스</span></code></pre>
+        <pre><code>cd your-project
+cc    # 기본 모드
+ccd   # 바이패스 모드
+ccr   # 이전 세션 이어서 + 바이패스</code></pre>
       </div>
 
-      <h3 class="subsection-title">기본 모드 vs 바이패스 모드</h3>
-      <div class="table-wrap fade-in">
+      <h3 class="mt-20">모드 비교</h3>
+      <div class="table-wrap">
         <table>
-          <thead><tr><th>항목</th><th>기본 모드 (<code>cc</code>)</th><th>바이패스 모드 (<code>ccd</code>)</th></tr></thead>
+          <thead>
+            <tr><th>항목</th><th>기본 모드 (cc)</th><th>바이패스 모드 (ccd)</th></tr>
+          </thead>
           <tbody>
-            <tr>
-              <td class="plain-first">파일 읽기/쓰기</td>
-              <td class="td-secondary">매번 사용자 확인</td>
-              <td class="td-secondary" style="color:var(--green);">자동 허용</td>
-            </tr>
-            <tr>
-              <td class="plain-first">셸 명령 실행</td>
-              <td class="td-secondary">매번 사용자 확인</td>
-              <td class="td-secondary" style="color:var(--green);">자동 허용</td>
-            </tr>
-            <tr>
-              <td class="plain-first">작업 속도</td>
-              <td class="td-secondary">느림 (매번 승인 필요)</td>
-              <td class="td-secondary" style="color:var(--green);">빠름 (중단 없이 진행)</td>
-            </tr>
-            <tr>
-              <td class="plain-first">안전성</td>
-              <td class="td-secondary" style="color:var(--green);">최대</td>
-              <td class="td-secondary">권한 설정으로 보호</td>
-            </tr>
+            <tr><td>파일 읽기/쓰기</td><td>매번 확인</td><td>자동 허용</td></tr>
+            <tr><td>셸 명령 실행</td><td>매번 확인</td><td>자동 허용</td></tr>
+            <tr><td>작업 속도</td><td>느림</td><td>빠름</td></tr>
+            <tr><td>안전성</td><td>최대</td><td>권한 설정으로 보호</td></tr>
           </tbody>
         </table>
       </div>
 
-      <div class="callout tip fade-in">
-        <span class="callout-icon">🛡</span>
-        <div>
-          <strong>바이패스 모드 안전성:</strong> <code>--dangerously-skip-permissions</code>는 이름과 달리 아래의 세 단계 권한 설정(allow/deny/ask)이 적용된 상태에서 동작합니다. deny 목록의 명령은 바이패스 모드에서도 <strong>완전히 차단</strong>됩니다. 프로덕션 서버나 민감한 환경에서는 기본 모드를 사용하세요.
+      <!-- 바이패스 모드 안전 설정 -->
+      <div class="callout callout-warning mt-20" style="margin-top: 24px;">
+        <span class="callout-icon">🛡️</span>
+        <div class="callout-body">
+          <span class="callout-title">바이패스 모드 안전 설정</span>
+          <p>바이패스 모드에서도 권한 설정을 통해 위험한 작업을 차단할 수 있다. Claude Code에게 다음과 같이 요청하면 자동으로 설정된다.</p>
         </div>
       </div>
 
-      <h3 class="subsection-title">권한 3단계 구조</h3>
-      <div class="table-wrap fade-in">
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">프롬프트</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>settings.json에 permissions를 설정해줘:
+- allow: 파일 읽기/쓰기, git 명령, npm/node/python 명령, 기본 셸 명령
+- deny: rm -rf /, git push --force, git reset --hard, DROP DATABASE, shutdown, format
+- ask: rm, sudo, chmod, .env 파일 읽기</code></pre>
+      </div>
+
+      <h3 class="mt-20">권한 3단계</h3>
+      <div class="table-wrap">
         <table>
-          <thead><tr><th>레벨</th><th>동작</th><th>예시</th></tr></thead>
+          <thead>
+            <tr><th>레벨</th><th>동작</th><th>예시</th></tr>
+          </thead>
           <tbody>
             <tr>
               <td class="perm-allow">allow</td>
-              <td class="td-secondary">자동 허용</td>
-              <td class="td-secondary" style="font-family:'DM Mono',monospace; font-size:0.78rem;">git status, ls, grep, 파일 읽기/쓰기, npm 등</td>
+              <td>자동 허용</td>
+              <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;">git, ls, npm, 파일 읽기/쓰기 등</td>
             </tr>
             <tr>
               <td class="perm-deny">deny</td>
-              <td class="td-secondary">완전 차단</td>
-              <td class="td-secondary" style="font-family:'DM Mono',monospace; font-size:0.78rem;">rm -rf /, git push --force, DROP DATABASE, shutdown</td>
+              <td>완전 차단</td>
+              <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;">rm -rf /, git push --force, DROP DATABASE 등</td>
             </tr>
             <tr>
               <td class="perm-ask">ask</td>
-              <td class="td-secondary">사용자 확인</td>
-              <td class="td-secondary" style="font-family:'DM Mono',monospace; font-size:0.78rem;">rm, sudo, chmod, .env 파일 읽기</td>
+              <td>사용자 확인</td>
+              <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;">rm, sudo, .env 읽기</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h3 class="subsection-title">settings.json 전체 예시</h3>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">json</span>
-          <button class="copy-btn" data-copy='{
-  "permissions": {
-    "allow": [
-      "Edit", "Read", "Write", "Glob", "Grep",
-      "Bash(git status:*)", "Bash(git add:*)", "Bash(git commit:*)",
-      "Bash(git push:*)", "Bash(git pull:*)", "Bash(git diff:*)",
-      "Bash(ls:*)", "Bash(cat:*)", "Bash(find:*)", "Bash(grep:*)",
-      "Bash(npm*)", "Bash(node*)", "Bash(python*)",
-      "Bash(mkdir:*)", "Bash(cp:*)", "Bash(mv:*)"
-    ],
-    "deny": [
-      "Bash(rm -rf /:*)", "Bash(rm -rf ~:*)",
-      "Bash(git push --force:*)", "Bash(git reset --hard:*)",
-      "Bash(DROP DATABASE:*)", "Bash(DROP TABLE:*)",
-      "Bash(shutdown:*)", "Bash(reboot:*)",
-      "Bash(format:*)", "Bash(dd:*)"
-    ],
-    "ask": [
-      "Bash(rm:*)", "Bash(sudo:*)", "Bash(chmod:*)",
-      "Read(./.env)", "Read(./.env.*)"
-    ]
-  }
-}'>
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
-        </div>
-        <pre><code><span class="punc">{</span>
-  <span class="prop">"permissions"</span><span class="punc">:</span> <span class="punc">{</span>
-    <span class="prop">"allow"</span><span class="punc">:</span> <span class="punc">[</span>
-      <span class="str">"Edit"</span><span class="punc">,</span> <span class="str">"Read"</span><span class="punc">,</span> <span class="str">"Write"</span><span class="punc">,</span> <span class="str">"Glob"</span><span class="punc">,</span> <span class="str">"Grep"</span><span class="punc">,</span>
-      <span class="str">"Bash(git status:*)"</span><span class="punc">,</span> <span class="str">"Bash(git add:*)"</span><span class="punc">,</span> <span class="str">"Bash(git commit:*)"</span><span class="punc">,</span>
-      <span class="str">"Bash(git push:*)"</span><span class="punc">,</span> <span class="str">"Bash(git pull:*)"</span><span class="punc">,</span> <span class="str">"Bash(git diff:*)"</span><span class="punc">,</span>
-      <span class="str">"Bash(ls:*)"</span><span class="punc">,</span> <span class="str">"Bash(cat:*)"</span><span class="punc">,</span> <span class="str">"Bash(find:*)"</span><span class="punc">,</span> <span class="str">"Bash(grep:*)"</span><span class="punc">,</span>
-      <span class="str">"Bash(npm*)"</span><span class="punc">,</span> <span class="str">"Bash(node*)"</span><span class="punc">,</span> <span class="str">"Bash(python*)"</span><span class="punc">,</span>
-      <span class="str">"Bash(mkdir:*)"</span><span class="punc">,</span> <span class="str">"Bash(cp:*)"</span><span class="punc">,</span> <span class="str">"Bash(mv:*)"</span>
-    <span class="punc">],</span>
-    <span class="prop">"deny"</span><span class="punc">:</span> <span class="punc">[</span>
-      <span class="str">"Bash(rm -rf /:*)"</span><span class="punc">,</span> <span class="str">"Bash(rm -rf ~:*)"</span><span class="punc">,</span>
-      <span class="str">"Bash(git push --force:*)"</span><span class="punc">,</span> <span class="str">"Bash(git reset --hard:*)"</span><span class="punc">,</span>
-      <span class="str">"Bash(DROP DATABASE:*)"</span><span class="punc">,</span> <span class="str">"Bash(DROP TABLE:*)"</span><span class="punc">,</span>
-      <span class="str">"Bash(shutdown:*)"</span><span class="punc">,</span> <span class="str">"Bash(reboot:*)"</span><span class="punc">,</span>
-      <span class="str">"Bash(format:*)"</span><span class="punc">,</span> <span class="str">"Bash(dd:*)"</span>
-    <span class="punc">],</span>
-    <span class="prop">"ask"</span><span class="punc">:</span> <span class="punc">[</span>
-      <span class="str">"Bash(rm:*)"</span><span class="punc">,</span> <span class="str">"Bash(sudo:*)"</span><span class="punc">,</span> <span class="str">"Bash(chmod:*)"</span><span class="punc">,</span>
-      <span class="str">"Read(./.env)"</span><span class="punc">,</span> <span class="str">"Read(./.env.*)"</span>
-    <span class="punc">]</span>
-  <span class="punc">}</span>
-<span class="punc">}</span></code></pre>
+      <h3 class="mt-20">보호 범위</h3>
+      <div class="protection-grid">
+        <span class="protection-badge">✓ 시스템 파괴 방지</span>
+        <span class="protection-badge">✓ Git 안전</span>
+        <span class="protection-badge">✓ DB 보호</span>
+        <span class="protection-badge">✓ 삭제 확인</span>
+        <span class="protection-badge">✓ 환경변수 보호</span>
       </div>
 
-      <h3 class="subsection-title">핵심 보안 보호</h3>
-      <div class="protection-badges fade-in">
-        <div class="protection-badge pb-red">
-          <span class="pb-icon">⛔</span>
-          <div class="pb-content">
-            <div class="pb-label">시스템 파괴 방지</div>
-            <div class="pb-detail">rm -rf /, format, dd, shutdown 완전 차단</div>
-          </div>
-        </div>
-        <div class="protection-badge pb-orange">
-          <span class="pb-icon">⚠</span>
-          <div class="pb-content">
-            <div class="pb-label">Git 안전</div>
-            <div class="pb-detail">git push --force, git reset --hard 차단</div>
-          </div>
-        </div>
-        <div class="protection-badge pb-red">
-          <span class="pb-icon">🗄</span>
-          <div class="pb-content">
-            <div class="pb-label">DB 보호</div>
-            <div class="pb-detail">DROP DATABASE, DROP TABLE, TRUNCATE 차단</div>
-          </div>
-        </div>
-        <div class="protection-badge pb-yellow">
-          <span class="pb-icon">?</span>
-          <div class="pb-content">
-            <div class="pb-label">삭제 시 확인</div>
-            <div class="pb-detail">rm은 항상 사용자 확인 요청</div>
-          </div>
-        </div>
-        <div class="protection-badge pb-teal">
-          <span class="pb-icon">🔑</span>
-          <div class="pb-content">
-            <div class="pb-label">환경변수 보호</div>
-            <div class="pb-detail">.env 파일 읽기 시 사용자 확인</div>
-          </div>
+      <div class="callout callout-orange" style="margin-top: 20px;">
+        <span class="callout-icon">🔒</span>
+        <div class="callout-body">
+          <span class="callout-title">상세 보호 내용</span>
+          <p><strong>시스템 파괴 방지</strong> — rm -rf /, format, shutdown 차단<br>
+          <strong>Git 안전</strong> — push --force, reset --hard 차단<br>
+          <strong>DB 보호</strong> — DROP DATABASE, TRUNCATE 차단<br>
+          <strong>삭제 확인</strong> — rm은 항상 사용자에게 물어봄<br>
+          <strong>환경변수 보호</strong> — .env 읽기 시 확인</p>
         </div>
       </div>
     </section>
-
-    <div class="section-sep"></div>
-
-    <!-- ========================================
-         SECTION 10: 사용 패턴
-         ======================================== -->
-    <section id="section-10" class="doc-section">
-      <div class="section-header fade-in">
-        <div class="section-number">10</div>
-        <div class="section-title-wrap">
-          <h2>유용한 사용 패턴</h2>
-          <p class="section-desc">실전에서 바로 쓰는 Claude Code 활용 예시</p>
-        </div>
-      </div>
-
-      <h3 class="subsection-title">파일 분석 및 버그 탐지</h3>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">bash</span>
-          <button class="copy-btn" data-copy='claude "이 파일의 버그를 찾아줘 @./src/api.ts"'>
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
-        </div>
-        <pre><code><span class="fn">claude</span> <span class="str">"이 파일의 버그를 찾아줘 @./src/api.ts"</span></code></pre>
-      </div>
-
-      <h3 class="subsection-title">로그 파이프라인 분석</h3>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">bash</span>
-          <button class="copy-btn" data-copy='tail -200 app.log | claude -p "이 로그에서 이상한 점을 찾아줘"'>
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
-        </div>
-        <pre><code><span class="fn">tail</span> <span class="var">-200</span> app.log <span class="punc">|</span> <span class="fn">claude</span> <span class="var">-p</span> <span class="str">"이 로그에서 이상한 점을 찾아줘"</span></code></pre>
-      </div>
-
-      <h3 class="subsection-title">보안 감사 (Git diff 활용)</h3>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">bash</span>
-          <button class="copy-btn" data-copy='git diff main --name-only | claude -p "변경된 파일들의 보안 이슈를 점검해줘"'>
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
-        </div>
-        <pre><code><span class="fn">git</span> <span class="kw">diff</span> main <span class="var">--name-only</span> <span class="punc">|</span> <span class="fn">claude</span> <span class="var">-p</span> <span class="str">"변경된 파일들의 보안 이슈를 점검해줘"</span></code></pre>
-      </div>
-
-      <h3 class="subsection-title">테스트 작성 → 실행 → 수정 자동화</h3>
-      <div class="code-block-wrap fade-in">
-        <div class="code-block-header">
-          <span class="code-lang">bash</span>
-          <button class="copy-btn" data-copy='claude "auth 모듈 테스트를 작성하고 실행한 뒤 실패하면 수정해줘"'>
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
-            Copy
-          </button>
-        </div>
-        <pre><code><span class="fn">claude</span> <span class="str">"auth 모듈 테스트를 작성하고 실행한 뒤 실패하면 수정해줘"</span></code></pre>
-      </div>
-    </section>
-
-    <!-- ========================================
-         FOOTER
-         ======================================== -->
-    <footer>
-      <div class="footer-title">출처 및 참고 문서</div>
-      <ul class="sources-list">
-        <li><a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank" rel="noopener">Claude Code 공식 문서 — Overview</a></li>
-        <li><a href="https://docs.anthropic.com/en/docs/claude-code/cli-reference" target="_blank" rel="noopener">CLI Reference</a></li>
-        <li><a href="https://docs.anthropic.com/en/docs/claude-code/settings" target="_blank" rel="noopener">Settings & Configuration</a></li>
-        <li><a href="https://docs.anthropic.com/en/docs/claude-code/security" target="_blank" rel="noopener">Security & Permissions</a></li>
-        <li><a href="https://docs.anthropic.com/en/docs/claude-code/hooks" target="_blank" rel="noopener">Hooks</a></li>
-        <li><a href="https://docs.anthropic.com/en/docs/claude-code/mcp" target="_blank" rel="noopener">MCP Integration</a></li>
-        <li><a href="https://docs.anthropic.com/en/docs/claude-code/github-actions" target="_blank" rel="noopener">GitHub Actions Integration</a></li>
-        <li><a href="https://github.com/Yeachan-Heo/oh-my-claudecode" target="_blank" rel="noopener">oh-my-claudecode — GitHub</a></li>
-        <li><a href="https://www.npmjs.com/package/oh-my-claude-sisyphus" target="_blank" rel="noopener">oh-my-claude-sisyphus — npm</a></li>
-        <li><a href="https://github.com/rtk-ai/rtk" target="_blank" rel="noopener">RTK (Rust Token Killer) — GitHub</a></li>
-        <li><a href="https://github.com/rtk-ai/rtk/releases" target="_blank" rel="noopener">RTK Releases — GitHub</a></li>
-        <li><a href="https://claude.ai/install.ps1" target="_blank" rel="noopener">Claude Code Native Installer (PS1)</a></li>
-        <li><a href="https://docs.anthropic.com/en/docs/claude-code/status-line" target="_blank" rel="noopener">Status Line (HUD) 공식 문서</a></li>
-        <li><a href="https://winget.run/pkg/Anthropic/ClaudeCode" target="_blank" rel="noopener">WinGet — Anthropic.ClaudeCode</a></li>
-      </ul>
-      <div class="footer-meta">
-        <span>최종 업데이트: 2026년 4월 3일</span>
-        <span>Claude Code CLI 설치 가이드 · 내부 배포용</span>
-      </div>
-    </footer>
 
   </main>
 </div>
 
-<!-- ============================================================
-     JAVASCRIPT
-     ============================================================ -->
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-title">참고 자료</div>
+    <div class="footer-links">
+      <a class="footer-link" href="https://docs.anthropic.com/ko/docs/claude-code/overview" target="_blank">⬡ Claude Code 공식 문서</a>
+      <a class="footer-link" href="https://claude.ai/download" target="_blank">⬡ Claude Code 다운로드</a>
+      <a class="footer-link" href="https://github.com/Yeachan-Heo/oh-my-claudecode" target="_blank">✦ oh-my-claudecode GitHub</a>
+      <a class="footer-link" href="https://github.com/rtk-ai/rtk" target="_blank">⚡ RTK GitHub</a>
+      <a class="footer-link" href="https://docs.anthropic.com/ko/docs/claude-code/cli-reference" target="_blank">⬡ CLI 레퍼런스</a>
+      <a class="footer-link" href="https://docs.anthropic.com/ko/docs/claude-code/settings" target="_blank">⬡ 설정 가이드</a>
+      <a class="footer-link" href="https://docs.anthropic.com/ko/docs/claude-code/hooks" target="_blank">⬡ Hooks 가이드</a>
+      <a class="footer-link" href="https://docs.anthropic.com/ko/docs/claude-code/mcp" target="_blank">⬡ MCP 가이드</a>
+      <a class="footer-link" href="https://docs.anthropic.com/ko/docs/claude-code/sub-agents" target="_blank">⬡ 서브에이전트 가이드</a>
+      <a class="footer-link" href="https://docs.anthropic.com/ko/docs/claude-code/github-actions" target="_blank">⬡ GitHub Actions 연동</a>
+      <a class="footer-link" href="https://docs.anthropic.com/ko/docs/claude-code/troubleshooting" target="_blank">⬡ 문제 해결</a>
+      <a class="footer-link" href="https://console.anthropic.com" target="_blank">⬡ Anthropic Console</a>
+      <a class="footer-link" href="https://www.anthropic.com/claude" target="_blank">⬡ Claude 소개</a>
+      <a class="footer-link" href="https://docs.anthropic.com/ko/docs/claude-code/security" target="_blank">⬡ 보안 가이드</a>
+    </div>
+    <div class="footer-meta">마지막 업데이트: 2026-04-03 &nbsp;·&nbsp; Windows 기준 &nbsp;·&nbsp; Claude Code CLI 가이드</div>
+  </div>
+</footer>
+
 <script>
-(function () {
-  'use strict';
+/* ============================================================
+   TAB SWITCHING
+   ============================================================ */
+function switchTab(event, group, panelId) {
+  const clickedBtn = event.currentTarget;
+  const tabList = clickedBtn.closest('.tab-list');
+  const tabs = clickedBtn.closest('.tabs');
 
-  /* ----------------------------------------------------------
-     MOBILE MENU
-     ---------------------------------------------------------- */
-  const menuBtn       = document.getElementById('mobileMenuBtn');
-  const sidebar       = document.getElementById('sidebar');
-  const overlay       = document.getElementById('sidebarOverlay');
+  // deactivate all buttons in this tab list
+  tabList.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  // deactivate all panels in this tabs container
+  tabs.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
 
-  function openMenu() {
-    sidebar.classList.add('open');
-    overlay.classList.add('open');
-    menuBtn.setAttribute('aria-expanded', 'true');
-  }
+  // activate clicked
+  clickedBtn.classList.add('active');
+  const panel = document.getElementById(group + '-' + panelId);
+  if (panel) panel.classList.add('active');
+}
 
-  function closeMenu() {
+/* ============================================================
+   COPY BUTTON
+   ============================================================ */
+function copyCode(btn) {
+  const codeEl = btn.closest('.code-block, .code-block-simple').querySelector('code');
+  if (!codeEl) return;
+  const text = codeEl.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ 복사됨';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.classList.remove('copied');
+    }, 1800);
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ 복사됨';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.classList.remove('copied');
+    }, 1800);
+  });
+}
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.getElementById('sidebar');
+
+menuBtn.addEventListener('click', () => {
+  sidebar.classList.toggle('open');
+});
+
+// Close on outside click
+document.addEventListener('click', (e) => {
+  if (sidebar.classList.contains('open') &&
+      !sidebar.contains(e.target) &&
+      !menuBtn.contains(e.target)) {
     sidebar.classList.remove('open');
-    overlay.classList.remove('open');
-    menuBtn.setAttribute('aria-expanded', 'false');
   }
+});
 
-  menuBtn.addEventListener('click', function () {
-    sidebar.classList.contains('open') ? closeMenu() : openMenu();
+/* ============================================================
+   SCROLL SPY
+   ============================================================ */
+const sections = document.querySelectorAll('.doc-section[id], .hero[id]');
+const navItems = document.querySelectorAll('.nav-item');
+
+function updateNav() {
+  let currentId = '';
+  const scrollY = window.scrollY + 100;
+
+  sections.forEach(section => {
+    const top = section.offsetTop;
+    if (scrollY >= top) {
+      currentId = section.id;
+    }
   });
 
-  overlay.addEventListener('click', closeMenu);
-
-  /* Close sidebar on nav link click (mobile) */
-  sidebar.querySelectorAll('.nav-item').forEach(function (link) {
-    link.addEventListener('click', function () {
-      if (window.innerWidth <= 768) closeMenu();
-    });
+  navItems.forEach(item => {
+    const href = item.getAttribute('href');
+    if (href === '#' + currentId) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
   });
+}
 
-  /* ----------------------------------------------------------
-     TAB SYSTEM
-     ---------------------------------------------------------- */
-  document.querySelectorAll('.method-tabs').forEach(function (tabGroup) {
-    tabGroup.querySelectorAll('.method-tab').forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        const targetId = tab.getAttribute('data-tab');
-        if (!targetId) return;
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
 
-        /* Deactivate all in this group */
-        tabGroup.querySelectorAll('.method-tab').forEach(function (t) {
-          t.classList.remove('active');
-        });
-
-        /* Find sibling content container */
-        const container = tabGroup.closest('.tab-container') || tabGroup.parentElement;
-        container.querySelectorAll('.method-tab-content').forEach(function (c) {
-          c.classList.remove('active');
-        });
-
-        tab.classList.add('active');
-        const target = document.getElementById(targetId);
-        if (target) target.classList.add('active');
-      });
-    });
+// Close sidebar on nav click (mobile)
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    sidebar.classList.remove('open');
   });
-
-  /* ----------------------------------------------------------
-     COPY BUTTON
-     ---------------------------------------------------------- */
-  const COPY_SVG = '<svg viewBox="0 0 16 16" fill="none"><path d="M4 2h7a1 1 0 0 1 1 1v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><rect x="2" y="4" width="9" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>';
-  const CHECK_SVG = '<svg viewBox="0 0 16 16" fill="none"><path d="M3 8l4 4 6-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-  document.querySelectorAll('.copy-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      const text = btn.getAttribute('data-copy');
-      if (!text) return;
-
-      navigator.clipboard.writeText(text).then(function () {
-        btn.classList.add('copied');
-        btn.innerHTML = CHECK_SVG + 'Copied!';
-
-        setTimeout(function () {
-          btn.classList.remove('copied');
-          btn.innerHTML = COPY_SVG + 'Copy';
-        }, 2000);
-      }).catch(function () {
-        /* Fallback for non-https */
-        var ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.cssText = 'position:fixed;top:-999em;left:-999em;';
-        document.body.appendChild(ta);
-        ta.select();
-        try { document.execCommand('copy'); } catch(e) {}
-        document.body.removeChild(ta);
-
-        btn.classList.add('copied');
-        btn.innerHTML = CHECK_SVG + 'Copied!';
-        setTimeout(function () {
-          btn.classList.remove('copied');
-          btn.innerHTML = COPY_SVG + 'Copy';
-        }, 2000);
-      });
-    });
-  });
-
-  /* ----------------------------------------------------------
-     SCROLL SPY (Intersection Observer)
-     ---------------------------------------------------------- */
-  var sections = document.querySelectorAll('[id^="section-"], #hero');
-  var navItems = document.querySelectorAll('.nav-item');
-
-  var currentActive = null;
-
-  function setActive(id) {
-    if (currentActive === id) return;
-    currentActive = id;
-    navItems.forEach(function (item) {
-      var href = item.getAttribute('href');
-      if (href === '#' + id) {
-        item.classList.add('active');
-      } else {
-        item.classList.remove('active');
-      }
-    });
-  }
-
-  if ('IntersectionObserver' in window) {
-    var observerOptions = {
-      rootMargin: '-' + (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) + 24) + 'px 0px -60% 0px',
-      threshold: 0
-    };
-
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          setActive(entry.target.id);
-        }
-      });
-    }, observerOptions);
-
-    sections.forEach(function (s) { observer.observe(s); });
-  }
-
-  /* ----------------------------------------------------------
-     SCROLL ANIMATIONS (Intersection Observer)
-     ---------------------------------------------------------- */
-  var fadeEls = document.querySelectorAll('.fade-in');
-
-  if ('IntersectionObserver' in window) {
-    var fadeObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          /* Staggered delay based on position among siblings */
-          var siblings = Array.from(entry.target.parentElement.querySelectorAll('.fade-in'));
-          var idx = siblings.indexOf(entry.target);
-          entry.target.style.transitionDelay = Math.min(idx * 60, 300) + 'ms';
-          entry.target.classList.add('visible');
-          fadeObserver.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '-40px 0px', threshold: 0.05 });
-
-    fadeEls.forEach(function (el) { fadeObserver.observe(el); });
-  } else {
-    /* Fallback: show all immediately */
-    fadeEls.forEach(function (el) { el.classList.add('visible'); });
-  }
-
-  /* ----------------------------------------------------------
-     SMOOTH SCROLL for nav items
-     ---------------------------------------------------------- */
-  navItems.forEach(function (item) {
-    item.addEventListener('click', function (e) {
-      var href = item.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        var target = document.querySelector(href);
-        if (target) {
-          var headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 60;
-          var top = target.getBoundingClientRect().top + window.pageYOffset - headerH - 24;
-          window.scrollTo({ top: top, behavior: 'smooth' });
-        }
-      }
-    });
-  });
-
-})();
+});
 </script>
 </body>
 </html>
