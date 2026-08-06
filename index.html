@@ -144,17 +144,18 @@ body {
   --code-head:  var(--surface-dark-elevated);
 }
 
-/* 코럴 면 위 텍스트는 항상 ink (계약 3조 / 이탈 T2) */
+/* 강조 슬래브 — 코럴 면은 채도가 너무 높아 본문을 압도했다.
+   톤 기준이 '강조 섹션 밴드'로 규정한 cream-strong으로 바꾼다(ink 14.07:1). */
 .slab-coral {
-  --bg:         var(--primary);
+  --bg:         var(--surface-cream-strong);
   --fg:         var(--ink);
   --fg-strong:  var(--ink);
   --fg-muted:   var(--ink);
   --rule:       var(--ink);
   --rule-soft:  var(--ink);
   --link:       var(--ink);
-  --link-line:  var(--ink);
-  --focus:      var(--ink);
+  --link-line:  var(--primary-active);
+  --focus:      var(--primary-active);
 }
 
 /* ============================================================
@@ -302,7 +303,7 @@ strong { font-weight: 600; color: var(--fg-strong); }
   display: flex;
   align-items: center;
   gap: var(--s-2);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--ink);
   white-space: nowrap;
@@ -458,7 +459,7 @@ strong { font-weight: 600; color: var(--fg-strong); }
 .table-wrap {
   overflow-x: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--rule) transparent;   /* 잘린 내용이 있음을 스크롤바로 상시 표시 */
+  scrollbar-color: var(--rule) transparent;   /* 잘린 내용이 있음을 스크롤바 색으로 드러낸다(오버레이 환경에서는 유휴 시 숨는다) */
   overscroll-behavior-x: contain;
   border: 1px solid var(--rule);
   border-radius: var(--r-md);
@@ -547,7 +548,7 @@ tbody td:first-child { color: var(--fg-strong); font-weight: 500; }
   padding: var(--s-4) var(--s-5);
   overflow-x: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--muted) transparent;  /* 긴 줄이 잘렸음을 상시 표시 */
+  scrollbar-color: var(--muted) transparent;  /* 긴 줄이 잘렸음을 스크롤바 색으로 드러낸다 */
   line-height: 1.6;
 }
 
@@ -566,7 +567,7 @@ code:not(pre code) {
   font-family: var(--font-mono);
   font-size: 0.9em;
   background: var(--inset-2);
-  border: 1px solid var(--rule-soft);
+  border: 1px solid var(--rule);
   color: var(--fg-strong);
   padding: 1px var(--s-2);
   border-radius: var(--r-xs);
@@ -640,7 +641,7 @@ code:not(pre code) {
 }
 .disclosure > summary::-webkit-details-marker { display: none; }
 /* 접힘 어포던스 — teal은 크림 위 2.09:1로 판독 불가였다.
-   기본 삼각형을 지웠으므로 이 문자열이 유일한 단서다: 상태색(primary-active 4.80)을 쓴다. */
+   기본 삼각형을 지웠으므로 이 문자열이 유일한 단서다: 잉크(16.4:1) + 밑줄로 세운다. */
 .disclosure > summary::after {
   content: '펼치기';
   font-size: 13px;
@@ -662,15 +663,16 @@ code:not(pre code) {
   gap: var(--s-5);
   border-bottom: 1px solid var(--rule);
   overflow-x: auto;
-  scrollbar-width: thin;
+  scrollbar-width: none;          /* 탭은 몇 개 안 되므로 스크롤 단서가 불필요하다 */
 }
+.tab-list::-webkit-scrollbar { display: none; }
 .tab-btn {
   display: flex;
   align-items: baseline;
   gap: var(--s-2);
   padding: var(--s-2) 0;
   font-family: inherit;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
   color: var(--fg-muted);
   background: none;
@@ -690,6 +692,9 @@ code:not(pre code) {
 .tab-badge { font-size: 12px; font-weight: 400; color: var(--fg-muted); }
 .tab-panel { display: none; padding-top: var(--s-5); }
 .tab-panel.active { display: block; }
+/* 패널도 리듬 컨테이너다 — 없으면 라벨과 코드 블록이 붙는다 */
+.tab-panel > * + * { margin-top: var(--s-4); }
+.tab-panel > p + .code-block { margin-top: var(--s-2); }
 
 /* ============================================================
    16. 스텝
@@ -1013,11 +1018,11 @@ li > ul, li > ol { margin-top: var(--s-2); }
 
       <div class="tabs">
         <div class="tab-list" role="tablist">
-          <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="install-native" onclick="switchTab(event,\'install\',\'native\')">
+          <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="install-native" onclick="switchTab(event,'install','native')">
             Native Install <span class="tab-badge">권장</span>
           </button>
-          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="install-winget" onclick="switchTab(event,\'install\',\'winget\')">WinGet</button>
-          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="install-npm" onclick="switchTab(event,\'install\',\'npm\')">npm</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="install-winget" onclick="switchTab(event,'install','winget')">WinGet</button>
+          <button class="tab-btn" role="tab" aria-selected="false" aria-controls="install-npm" onclick="switchTab(event,'install','npm')">npm</button>
         </div>
 
         <!-- Native Install -->
@@ -1596,7 +1601,6 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
         <div class="callout">
           <span class="callout-label">팁</span>
           <div class="callout-body">
-            <span class="callout-title">팁</span>
             <p>복잡한 작업 중 컨텍스트가 부족해지면 <code>/compact</code> 후 핵심 맥락을 다시 알려주는 것이 가장 안전하다</p>
           </div>
         </div>
