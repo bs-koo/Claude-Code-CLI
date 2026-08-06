@@ -1,1 +1,4 @@
 .research/
+.omc/
+outputs/
+.playwright-mcp/
