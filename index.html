@@ -1129,38 +1129,41 @@ code:not(pre code) {
     <a class="nav-item" href="#install">
       <span class="nav-num">02</span> 설치
     </a>
+    <a class="nav-item" href="#fullscreen">
+      <span class="nav-num">03</span> 화면 렌더링
+    </a>
     <div class="nav-section-label">사용법</div>
     <a class="nav-item" href="#slash-commands">
-      <span class="nav-num">03</span> 슬래시 명령어
+      <span class="nav-num">04</span> 슬래시 명령어
     </a>
     <a class="nav-item" href="#shortcuts">
-      <span class="nav-num">04</span> 키보드 단축키
+      <span class="nav-num">05</span> 키보드 단축키
     </a>
-    <a class="nav-item" href="#thinking">
-      <span class="nav-num">05</span> Thinking 모드
+    <a class="nav-item" href="#effort">
+      <span class="nav-num">06</span> Effort 설정
     </a>
     <div class="nav-section-label">플러그인 & 도구</div>
     <a class="nav-item" href="#omc">
-      <span class="nav-num">06</span> oh-my-claudecode
+      <span class="nav-num">07</span> oh-my-claudecode
+    </a>
+    <a class="nav-item" href="#official-plugins">
+      <span class="nav-num">08</span> 공식 플러그인 마켓
     </a>
     <a class="nav-item" href="#hud">
-      <span class="nav-num">07</span> HUD 설정
+      <span class="nav-num">09</span> HUD 설정
     </a>
     <a class="nav-item" href="#rtk">
-      <span class="nav-num">08</span> RTK — 토큰 절약
+      <span class="nav-num">10</span> RTK — 토큰 절약
     </a>
     <div class="nav-section-label">고급 설정</div>
-    <a class="nav-item" href="#screen-design">
-      <span class="nav-num">09</span> 화면 설계 팁
-    </a>
     <a class="nav-item" href="#alias">
-      <span class="nav-num">10</span> Alias 및 실행 모드
+      <span class="nav-num">11</span> Alias 및 실행 모드
     </a>
     <a class="nav-item" href="#warp-tips">
-      <span class="nav-num">11</span> 터미널 프로그램 추천 (WezTerm)
+      <span class="nav-num">12</span> 터미널 프로그램 추천 (WezTerm)
     </a>
     <a class="nav-item" href="#biz-plugins">
-      <span class="nav-num">12</span> 사업부 플러그인
+      <span class="nav-num">13</span> 사업부 플러그인
     </a>
   </nav>
 
@@ -1308,11 +1311,86 @@ claude</code></pre>
     </section>
 
     <!-- ========================
+         SECTION: 화면 렌더링
+         ======================== -->
+    <section class="doc-section" id="fullscreen">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <h2>화면 렌더링 — fullscreen 권장</h2>
+      </div>
+
+      <div class="callout callout-green">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <span class="callout-title">설치 후 가장 먼저 해볼 설정</span>
+          <p>명령 한 줄이면 화면 깜빡임이 사라지고, 대화가 길어져도 메모리가 늘지 않으며, 마우스를 쓸 수 있게 됩니다.</p>
+        </div>
+      </div>
+
+      <h3 class="mt-20">켜기</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">claude code</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>/tui fullscreen</code></pre>
+      </div>
+
+      <p class="mt-20">설정이 저장되고, 대화를 그대로 둔 채 새 렌더러로 다시 뜹니다. 되돌리려면 <code>/tui default</code>, 지금 어느 쪽인지 확인만 하려면 <code>/tui</code>를 인자 없이 입력하면 됩니다.</p>
+
+      <h3 class="mt-20">무엇이 좋아지나</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>항목</th><th>설명</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>깜빡임 제거</td><td>도구 출력이 쏟아질 때 화면이 번쩍이거나 스크롤이 맨 위로 튀는 현상이 사라집니다</td></tr>
+            <tr><td>메모리 평탄 유지</td><td>화면에 보이는 메시지만 그리므로 대화가 아무리 길어져도 메모리가 일정합니다</td></tr>
+            <tr><td>마우스 지원</td><td>클릭으로 커서 이동·메뉴 선택·접힌 결과 펼치기, 드래그 선택, 휠 스크롤</td></tr>
+            <tr><td>입력창 고정</td><td>입력창이 화면 하단에 고정됩니다. 작업 중에도 움직이지 않으면 켜진 것입니다</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mt-20">vim이나 htop처럼 터미널의 별도 화면 버퍼에 그리는 방식입니다. VS Code 통합 터미널, tmux, iTerm2처럼 렌더링이 병목인 환경일수록 차이가 큽니다.</p>
+
+      <h3 class="mt-20">달라지는 점</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>이전</th><th>fullscreen에서는</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Cmd+F · tmux 검색으로 대화 찾기</td><td><code>Ctrl+O</code>로 대화 보기 → <code>/</code>로 검색, <code>[</code>로 터미널 스크롤백에 내보내기</td></tr>
+            <tr><td>터미널 드래그로 선택·복사</td><td>앱 안에서 드래그하면 손을 뗄 때 자동으로 복사됩니다</td></tr>
+            <tr><td>Cmd+클릭으로 링크 열기</td><td>macOS는 <code>Cmd</code>, 그 외에는 <code>Ctrl</code>+클릭</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-orange" style="margin-top: 16px;">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <span class="callout-title">tmux를 쓴다면</span>
+          <p><code>~/.tmux.conf</code>에 <code>set -g mouse on</code>이 있어야 휠 스크롤이 동작합니다. iTerm2의 tmux 통합 모드(<code>tmux -CC</code>)와는 호환되지 않으니 그 환경에서는 켜지 마세요.</p>
+        </div>
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 12px;">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <p>2026년 5월 6일 이후 Claude Code를 처음 설치했다면 이미 기본값으로 켜져 있습니다. <code>/tui</code>로 확인하세요. 아직 research preview 단계라 드문 터미널에서는 표시가 깨질 수 있고, 그럴 때는 <code>/tui default</code>로 되돌리면 됩니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
          SECTION 3: 슬래시 명령어
          ======================== -->
     <section class="doc-section" id="slash-commands">
       <div class="section-header">
-        <div class="section-num">03</div>
+        <div class="section-num">04</div>
         <h2>슬래시 명령어</h2>
       </div>
 
@@ -1451,7 +1529,7 @@ claude</code></pre>
          ======================== -->
     <section class="doc-section" id="shortcuts">
       <div class="section-header">
-        <div class="section-num">04</div>
+        <div class="section-num">05</div>
         <h2>키보드 단축키 & 모드 전환</h2>
       </div>
 
@@ -1508,49 +1586,90 @@ claude</code></pre>
     </section>
 
     <!-- ========================
-         SECTION 5: Thinking 모드
+         SECTION: Effort 설정
          ======================== -->
-    <section class="doc-section" id="thinking">
+    <section class="doc-section" id="effort">
       <div class="section-header">
-        <div class="section-num">05</div>
-        <h2>Thinking 모드 설정</h2>
+        <div class="section-num">06</div>
+        <h2>Effort 설정</h2>
       </div>
 
-      <div class="callout callout-orange">
-        <span class="callout-icon">⌨️</span>
-        <div class="callout-body">
-          <span class="callout-title">Alt+T — 토글 단축키</span>
-          <p><code>Alt+T</code>로 Thinking 모드를 켜고 끌 수 있습니다</p>
-        </div>
-      </div>
+      <p>Effort는 모델이 각 단계에서 얼마나 깊이 생각할지를 정하는 값입니다. 낮으면 빠르고 저렴하며, 높으면 복잡한 문제에 더 깊이 파고듭니다. 예전의 Thinking On/Off 토글을 대체하는 설정입니다.</p>
 
-      <h3 class="mt-20">On/Off 차이점</h3>
+      <h3 class="mt-20">레벨</h3>
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>모드</th><th>설명</th></tr>
+            <tr><th>레벨</th><th>쓰임</th></tr>
           </thead>
           <tbody>
-            <tr><td>Thinking Off</td><td>빠른 응답, 간단한 작업에 적합. 토큰 소비 적음</td></tr>
-            <tr><td>Thinking On</td><td>응답 전 '생각하는 과정'을 거침. 복잡한 문제에 더 정확하지만 토큰을 2–3배 더 소비</td></tr>
+            <tr><td><code>low</code></td><td>파일 조회, 단순 수정처럼 판단이 거의 없는 작업</td></tr>
+            <tr><td><code>medium</code></td><td>일상적인 구현과 수정</td></tr>
+            <tr><td><code>high</code></td><td><strong>기본값.</strong> 대부분의 개발 작업에 적정</td></tr>
+            <tr><td><code>xhigh</code></td><td>설계 판단, 버그 추적처럼 추론 깊이가 필요한 작업</td></tr>
+            <tr><td><code>max</code></td><td>가장 깊은 추론. <strong>현재 세션에만</strong> 적용되고 기본값으로 저장되지 않습니다</td></tr>
           </tbody>
         </table>
       </div>
 
-      <div class="callout callout-green" style="margin-top: 16px;">
+      <div class="callout callout-blue" style="margin-top: 12px;">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <p>모델마다 지원 범위가 다릅니다. Opus 5 · Sonnet 5 · Opus 4.8 · 4.7은 다섯 단계 전부를 지원하고, Opus 4.6 · Sonnet 4.6에는 <code>xhigh</code>가 없습니다. 지원하지 않는 값을 지정하면 그보다 낮은 최고 레벨로 자동 조정됩니다.</p>
+        </div>
+      </div>
+
+      <h3 class="mt-20">바꾸는 방법</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">claude code</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>/effort              # 메뉴에서 선택
+/effort xhigh        # 바로 지정 (다음 세션까지 유지)</code></pre>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">terminal</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>claude --effort xhigh    # 이번 실행에만 적용</code></pre>
+      </div>
+
+      <p class="mt-20">기본값으로 굳히려면 <code>~/.claude/settings.json</code>에 <code>"effortLevel": "xhigh"</code>를 넣습니다. <code>low</code>~<code>xhigh</code>는 세션이 바뀌어도 유지되고, <code>max</code>는 현재 세션에만 적용됩니다.</p>
+
+      <h3 class="mt-20">ultracode</h3>
+      <p><code>/effort</code> 메뉴에는 <strong>ultracode</strong> 항목도 있습니다. 이것은 effort 레벨이 아니라 Claude Code 설정으로, 모델에는 <code>xhigh</code>를 보내면서 규모가 큰 작업을 여러 에이전트로 나눠 처리하도록 지시합니다. 현재 세션에만 적용됩니다.</p>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">claude code</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>/effort ultracode</code></pre>
+      </div>
+
+      <div class="callout callout-orange" style="margin-top: 12px;">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <p>토큰 소모가 큽니다. 대규모 조사나 감사, 마이그레이션처럼 범위가 넓은 작업에만 쓰시기 바랍니다.</p>
+        </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 12px;">
         <span class="callout-icon">💡</span>
         <div class="callout-body">
-          <p>간단한 수정은 Off, 복잡한 버그 추적이나 설계는 Thinking On 권장</p>
+          <p>간단한 수정은 <code>low</code>~<code>medium</code>, 설계나 원인 추적은 <code>xhigh</code>를 권장합니다. 평소에는 기본값 <code>high</code>로 두고 필요할 때만 올리는 편이 토큰 대비 효율이 좋습니다.</p>
         </div>
       </div>
     </section>
 
     <!-- ========================
-         SECTION 6: oh-my-claudecode
+         SECTION 5: oh-my-claudecode
          ======================== -->
     <section class="doc-section" id="omc">
       <div class="section-header">
-        <div class="section-num">06</div>
+        <div class="section-num">07</div>
         <div style="display: flex; flex-direction: column; gap: 4px;">
           <h2 style="margin: 0;">oh-my-claudecode 플러그인</h2>
           <div style="display: flex; gap: 12px; font-size: 0.8rem;">
@@ -1840,110 +1959,209 @@ claude</code></pre>
     </section>
 
     <!-- ========================
-         SECTION 7: HUD 설정
+         SECTION: 공식 플러그인 마켓
          ======================== -->
-    <section class="doc-section" id="hud">
+    <section class="doc-section" id="official-plugins">
       <div class="section-header">
-        <div class="section-num">07</div>
-        <h2>HUD 설정</h2>
+        <div class="section-num">08</div>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h2 style="margin: 0;">공식 플러그인 마켓 — claude-plugins-official</h2>
+          <div style="display: flex; gap: 12px; font-size: 0.8rem;">
+            <a href="https://github.com/anthropics/claude-plugins-official" target="_blank" style="color: var(--text-muted); text-decoration: none;">GitHub ↗</a>
+          </div>
+        </div>
       </div>
 
-      <p>OMC HUD는 터미널 하단에 실시간 상태 바를 표시하여 컨텍스트 사용량, 에이전트 상태, 작업 진행도를 한눈에 확인할 수 있습니다.</p>
+      <div class="feature-card">
+        <span class="feature-card-label">Anthropic 공식 마켓플레이스</span>
+        <h3 style="margin-bottom: 12px;">claude-plugins-official</h3>
+        <p>Anthropic이 직접 정리해 배포하는 플러그인 목록입니다. Anthropic이 만든 플러그인과 검증을 거친 서드파티 플러그인이 함께 등록되어 있어, 출처를 일일이 찾지 않고 골라 쓸 수 있습니다.</p>
+      </div>
 
-      <h3 class="mt-20">설정</h3>
+      <h3 class="mt-20">마켓 등록</h3>
       <div class="code-block">
         <div class="code-header">
           <span class="code-lang">claude code</span>
           <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
         </div>
-        <pre><code>/oh-my-claudecode:hud setup</code></pre>
-      </div>
-      <div class="callout callout-blue" style="margin-top: 12px;">
-        <span class="callout-icon">ℹ️</span>
-        <div class="callout-body">
-          <p>설정 후 Claude Code 재시작 필요</p>
-        </div>
+        <pre><code>/plugin marketplace add anthropics/claude-plugins-official</code></pre>
       </div>
 
-      <h3 class="mt-20">프리셋 변경</h3>
+      <p class="mt-20">등록한 뒤에는 <code>/plugin</code> 메뉴의 <strong>Discover</strong>에서 목록을 훑어보거나, 이름을 알면 바로 설치하면 됩니다.</p>
       <div class="code-block">
         <div class="code-header">
           <span class="code-lang">claude code</span>
           <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
         </div>
-        <pre><code>/oh-my-claudecode:hud minimal    # 최소 표시
-/oh-my-claudecode:hud focused    # 기본값 (권장)
-/oh-my-claudecode:hud full       # 전체 표시</code></pre>
+        <pre><code>/plugin install {플러그인이름}@claude-plugins-official</code></pre>
       </div>
 
-      <h3 class="mt-20">프리셋 미리보기</h3>
-      <div class="hud-display">
-        <div class="hud-bar">
-          <span class="hud-label">minimal</span>
-          <span class="hud-content">
-            <span class="hud-orange">[OMC]</span>
-            <span style="color: #9ca3af; margin: 0 8px;">·</span>
-            ralph
-            <span style="color: #9ca3af; margin: 0 8px;">·</span>
-            ultrawork
-            <span style="color: #9ca3af; margin: 0 8px;">·</span>
-            todos:2/5
-          </span>
-        </div>
-        <div class="hud-bar">
-          <span class="hud-label" style="color: var(--accent-light); font-weight: 600;">focused ★</span>
-          <span class="hud-content">
-            repo:<span class="hud-green">name</span>
-            <span style="color: #6b7280; margin: 0 6px;">·</span>
-            branch:<span class="hud-green">main</span>
-            <span style="color: #6b7280; margin: 0 6px;">·</span>
-            ctx:<span class="hud-yellow">67%</span>
-            <span style="color: #6b7280; margin: 0 6px;">·</span>
-            agents:<span class="hud-green">2</span>
-            <span style="color: #6b7280; margin: 0 6px;">·</span>
-            todos:<span class="hud-green">2/5</span>
-          </span>
-        </div>
-        <div class="hud-bar">
-          <span class="hud-label">full</span>
-          <span class="hud-content" style="color: #6b7280; font-size: 0.78rem;">focused + 에이전트별 상세 트리 표시</span>
-        </div>
-      </div>
-
-      <h3 class="mt-20">HUD 표시 요소</h3>
+      <h3 class="mt-20">눈여겨볼 플러그인</h3>
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>요소</th><th>설명</th></tr>
+            <tr><th>플러그인</th><th>하는 일</th></tr>
           </thead>
           <tbody>
-            <tr><td>[OMC]</td><td>OMC 모드 식별자</td></tr>
-            <tr><td>repo:name</td><td>리포지토리 이름</td></tr>
-            <tr><td>branch:name</td><td>git 브랜치</td></tr>
-            <tr><td>ctx:67%</td><td>컨텍스트 사용률 — 초록(정상) → 노랑(70%+) → 빨강(85%+)</td></tr>
-            <tr><td>agents:2</td><td>활성 서브에이전트 수</td></tr>
-            <tr><td>todos:2/5</td><td>TODO 진행률</td></tr>
+            <tr><td><strong>superpowers</strong></td><td>기획·구현·디버깅·TDD 작업 순서를 Claude에게 가르치는 스킬 모음 (아래 참조)</td></tr>
+            <tr><td>code-review</td><td>PR을 여러 전문 에이전트가 나눠 리뷰하고 오탐을 걸러 보고</td></tr>
+            <tr><td>feature-dev</td><td>코드베이스 탐색 → 아키텍처 설계 → 품질 검토로 이어지는 기능 개발 흐름</td></tr>
+            <tr><td>claude-security</td><td>자체 코드 취약점 정밀 스캔. 보고 전에 각 발견을 반증 검증</td></tr>
+            <tr><td>frontend-design</td><td>템플릿 티가 나지 않는 프런트엔드 UI 제작</td></tr>
+            <tr><td>context7</td><td>라이브러리 최신 공식 문서를 실시간으로 참조 (MCP)</td></tr>
+            <tr><td>playwright</td><td>브라우저 자동화·E2E 테스트 (MCP)</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h3 class="mt-20">문제 해결</h3>
+      <div class="callout callout-orange" style="margin-top: 16px;">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <span class="callout-title">설치 전 확인</span>
+          <p>공식 마켓에 올라와 있어도 서드파티 플러그인의 동작까지 Anthropic이 보증하지는 않습니다. 사내 코드를 다루는 플러그인은 저장소를 한 번 확인한 뒤 설치하시기 바랍니다.</p>
+        </div>
+      </div>
+
+      <h3 class="mt-20" style="border-top: 1px solid var(--border); padding-top: 24px;">superpowers</h3>
+
+      <div class="feature-card">
+        <span class="feature-card-label">작업 순서를 가르치는 스킬 모음</span>
+        <h3 style="margin-bottom: 12px;">superpowers</h3>
+        <p>기능을 더하는 플러그인이 아니라 <strong>일하는 순서를 바꾸는</strong> 플러그인입니다. 만들기 전에 요구사항을 대화로 좁히고, 계획을 세워 서브에이전트에게 하나씩 맡기고, 버그는 추측 대신 절차대로 원인을 찾고, 테스트를 먼저 쓰게 합니다.</p>
+      </div>
+
+      <h3 class="mt-20">설치</h3>
       <div class="code-block">
         <div class="code-header">
           <span class="code-lang">claude code</span>
           <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
         </div>
-        <pre><code>/oh-my-claudecode:omc-doctor</code></pre>
+        <pre><code>/plugin install superpowers@claude-plugins-official</code></pre>
       </div>
 
+      <h3 class="mt-20">주요 스킬</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>스킬</th><th>언제 쓰나</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>brainstorming</td><td>무언가를 만들기 전에. 요구사항과 설계를 질문으로 좁혀 스펙 문서로 정리</td></tr>
+            <tr><td>writing-plans</td><td>스펙이 나온 뒤. 태스크 단위로 쪼갠 구현 계획서 작성</td></tr>
+            <tr><td>subagent-driven-development</td><td>계획 실행. 태스크마다 새 서브에이전트를 붙이고 매번 리뷰를 거침</td></tr>
+            <tr><td>systematic-debugging</td><td>버그·테스트 실패. 고치기 전에 원인을 절차대로 규명</td></tr>
+            <tr><td>test-driven-development</td><td>실패하는 테스트를 먼저 쓰고 통과시키는 순서를 강제</td></tr>
+            <tr><td>requesting-code-review</td><td>작업을 마쳤을 때. 머지 전 요건 충족 여부를 리뷰로 확인</td></tr>
+            <tr><td>verification-before-completion</td><td>"다 됐다"고 말하기 전에 실제로 돌려 증거를 확인</td></tr>
+            <tr><td>writing-skills</td><td>반복되는 작업을 직접 스킬로 만들 때</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-green" style="margin-top: 16px;">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <p>스킬 이름을 외울 필요는 없습니다. "이거 만들고 싶은데 같이 정리해줘", "이 버그 원인부터 찾아줘"처럼 말하면 상황에 맞는 스킬이 알아서 붙습니다. 정확히 지정하고 싶을 때만 <code>/superpowers:brainstorming</code>처럼 부르면 됩니다.</p>
+        </div>
+      </div>
     </section>
 
     <!-- ========================
-         SECTION 8: RTK
+         SECTION: HUD 설정
+         ======================== -->
+    <section class="doc-section" id="hud">
+      <div class="section-header">
+        <div class="section-num">09</div>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <h2 style="margin: 0;">HUD 설정 — claude-hud</h2>
+          <div style="display: flex; gap: 12px; font-size: 0.8rem;">
+            <a href="https://github.com/jarrodwatts/claude-hud" target="_blank" style="color: var(--text-muted); text-decoration: none;">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <p>터미널 하단 상태 바에 지금 쓰는 모델, 프로젝트 경로, git 브랜치, 컨텍스트 사용량을 실시간으로 표시합니다. 컨텍스트가 얼마나 남았는지 보이므로 긴 작업에서 압축 시점을 미리 가늠할 수 있습니다.</p>
+
+      <h3 class="mt-20">설치</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">claude code</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>/plugin marketplace add jarrodwatts/claude-hud</code></pre>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">claude code</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>/plugin install claude-hud</code></pre>
+      </div>
+
+      <div class="callout callout-warning" style="margin-top: 12px;">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <span class="callout-title">설치 후 재시작 필요</span>
+          <p>설치가 끝나면 Claude Code를 완전히 종료하고 다시 시작해야 상태 바가 붙습니다.</p>
+        </div>
+      </div>
+
+      <h3 class="mt-20">초기 설정</h3>
+      <p>아래 명령을 실행하면 프리셋(Full / Essential / Minimal)과 표시 언어를 고르고, 항목을 하나씩 켜고 끌 수 있습니다. 저장 전에 미리보기로 확인합니다.</p>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">claude code</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>/claude-hud:setup</code></pre>
+      </div>
+
+      <h3 class="mt-20">표시 항목 조정</h3>
+      <p>나중에 항목을 다시 손보거나 레이아웃을 바꾸려면 아래 명령을 씁니다.</p>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">claude code</span>
+          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
+        </div>
+        <pre><code>/claude-hud:configure</code></pre>
+      </div>
+
+      <h3 class="mt-20">무엇이 보이나</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>줄</th><th>표시 내용</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1행</td><td>모델명, 프로젝트 경로, git 브랜치</td></tr>
+            <tr><td>2행</td><td>컨텍스트 사용량 바(초록 → 노랑 → 빨강)와 사용량 한도</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-blue" style="margin-top: 12px;">
+        <span class="callout-icon">ℹ️</span>
+        <div class="callout-body">
+          <p>컨텍스트 수치는 추정값이 아니라 Claude Code가 보고하는 실제 토큰 데이터이며, 1M 컨텍스트 세션에도 맞춰 표시됩니다. 약 300ms마다 갱신됩니다.</p>
+        </div>
+      </div>
+
+      <div class="callout callout-orange" style="margin-top: 12px;">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <span class="callout-title">사용량 한도 표시 조건</span>
+          <p>2행의 사용량 한도는 구독 계정으로 로그인한 세션에서만 나타납니다. API 키만 쓰는 경우에는 표시되지 않습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================
+         SECTION 6: RTK
          ======================== -->
     <section class="doc-section" id="rtk">
       <div class="section-header">
-        <div class="section-num">08</div>
+        <div class="section-num">10</div>
         <div style="display: flex; flex-direction: column; gap: 4px;">
           <h2 style="margin: 0;">RTK — 토큰 절약</h2>
           <div style="display: flex; gap: 12px; font-size: 0.8rem;">
@@ -2035,104 +2253,11 @@ rtk discover</code></pre>
     </section>
 
     <!-- ========================
-         SECTION 9: 화면 설계 팁
-         ======================== -->
-    <section class="doc-section" id="screen-design">
-      <div class="section-header">
-        <div class="section-num">09</div>
-        <div style="display: flex; flex-direction: column; gap: 4px;">
-          <h2 style="margin: 0;">화면 설계 팁</h2>
-          <div style="display: flex; gap: 12px; font-size: 0.8rem;">
-            <a href="https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Figma-MCP-server" target="_blank" style="color: var(--text-muted); text-decoration: none;">Figma MCP 가이드 ↗</a>
-            <a href="https://pencil.dev" target="_blank" style="color: var(--text-muted); text-decoration: none;">Pencil 공식 사이트 ↗</a>
-            <a href="https://docs.pencil.dev" target="_blank" style="color: var(--text-muted); text-decoration: none;">문서 ↗</a>
-          </div>
-        </div>
-      </div>
-
-      <p>Claude Code를 활용하면 Figma 디자인을 코드로 변환하거나, Pencil 앱에서 직접 AI 기반 UI 설계를 할 수 있습니다.</p>
-
-      <!-- Figma + MCP -->
-      <h3 style="margin: 32px 0 12px;">Figma + MCP 연동</h3>
-      <p>Figma MCP를 연동하면 Figma에서 설계한 화면을 Claude Code가 직접 읽어서 코드로 변환할 수 있습니다.</p>
-
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">Step 1: MCP 서버 추가</p>
-      <div class="code-block">
-        <div class="code-header">
-          <span class="code-lang">bash</span>
-          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-        </div>
-        <pre><code data-copy="claude mcp add --transport http figma-remote-mcp https://mcp.figma.com/mcp">claude mcp add --transport http figma-remote-mcp https://mcp.figma.com/mcp</code></pre>
-      </div>
-
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 20px 0 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">Step 2: 인증</p>
-      <p>명령 실행 후 브라우저가 열리면 Figma 계정으로 로그인하여 접근 권한을 승인합니다. 올바른 Figma 계정으로 로그인되어 있는지 확인하세요.</p>
-
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin: 20px 0 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">Step 3: 사용법</p>
-      <p>Figma에서 원하는 프레임/페이지의 URL을 복사한 뒤, Claude Code 프롬프트에 붙여넣으면 됩니다.</p>
-
-      <div class="code-block">
-        <div class="code-header">
-          <span class="code-lang">프롬프트</span>
-          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-        </div>
-        <pre><code data-copy="이 Figma 디자인을 React 컴포넌트로 만들어줘 [Figma URL 붙여넣기]">이 Figma 디자인을 React 컴포넌트로 만들어줘 [Figma URL 붙여넣기]</code></pre>
-      </div>
-
-      <div class="code-block" style="margin-top: 12px;">
-        <div class="code-header">
-          <span class="code-lang">프롬프트</span>
-          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-        </div>
-        <pre><code data-copy="이 화면 설계를 참고해서 Vue 페이지를 구현해줘 [Figma URL 붙여넣기]">이 화면 설계를 참고해서 Vue 페이지를 구현해줘 [Figma URL 붙여넣기]</code></pre>
-      </div>
-
-      <div class="callout callout-orange" style="margin-top: 20px;">
-        <span class="callout-icon">💡</span>
-        <div class="callout-body">
-          <p>Figma URL은 프레임 단위로 공유하면 더 정확한 결과를 얻을 수 있습니다. 전체 파일 URL보다 특정 프레임을 선택한 뒤 'Copy link to selection'으로 복사하세요.</p>
-        </div>
-      </div>
-
-      <!-- Pencil -->
-      <h3 style="margin: 40px 0 12px;">Pencil — AI 네이티브 디자인 도구</h3>
-      <p>Pencil은 AI 네이티브 디자인 도구로, 데스크톱 앱 안에 Claude Code가 내장되어 있습니다. 자연어로 UI를 설계하고 바로 코드로 변환할 수 있습니다.</p>
-
-      <ul style="margin: 16px 0 20px; padding-left: 24px; display: flex; flex-direction: column; gap: 8px; color: var(--text-secondary);">
-        <li>데스크톱 앱 안에 Claude Code가 내장되어 있어 별도 설정 없이 바로 사용 가능합니다.</li>
-        <li>캔버스에서 자연어로 UI를 설계하면 .pen 파일로 저장됩니다.</li>
-        <li>MCP를 통해 외부 Claude Code CLI에서도 .pen 파일을 읽고 수정할 수 있습니다.</li>
-        <li>최대 6개 AI 에이전트가 동시에 디자인 방향을 제안합니다.</li>
-        <li>무료로 사용 가능합니다.</li>
-      </ul>
-
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em;">설치</p>
-      <p>Pencil 공식 사이트에서 데스크톱 앱을 다운로드하여 설치합니다. 설치 후 Claude Code 계정으로 로그인하면 바로 사용할 수 있습니다.</p>
-
-      <div class="code-block">
-        <div class="code-header">
-          <span class="code-lang">프롬프트</span>
-          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-        </div>
-        <pre><code data-copy="대시보드 메인 화면을 설계해줘. 차트 3개와 통계 카드 4개를 배치해줘">대시보드 메인 화면을 설계해줘. 차트 3개와 통계 카드 4개를 배치해줘</code></pre>
-      </div>
-
-      <div class="code-block" style="margin-top: 12px;">
-        <div class="code-header">
-          <span class="code-lang">프롬프트</span>
-          <button class="copy-btn" onclick="copyCode(this)">⧉ 복사</button>
-        </div>
-        <pre><code data-copy="로그인 페이지를 모던한 스타일로 디자인해줘">로그인 페이지를 모던한 스타일로 디자인해줘</code></pre>
-      </div>
-
-    </section>
-
-    <!-- ========================
-         SECTION 10: Alias & 실행 모드
+         SECTION 7: Alias & 실행 모드
          ======================== -->
     <section class="doc-section" id="alias">
       <div class="section-header">
-        <div class="section-num">10</div>
+        <div class="section-num">11</div>
         <h2>터미널 Alias 및 실행 모드</h2>
       </div>
 
@@ -2430,11 +2555,11 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
     </section>
 
     <!-- ========================
-         SECTION 11: 터미널 프로그램 추천 (WezTerm)
+         SECTION 8: 터미널 프로그램 추천 (WezTerm)
          ======================== -->
     <section class="doc-section" id="warp-tips">
       <div class="section-header">
-        <div class="section-num">11</div>
+        <div class="section-num">12</div>
         <div style="display: flex; flex-direction: column; gap: 4px;">
           <h2 style="margin: 0;">터미널 프로그램 추천 (WezTerm)</h2>
           <div style="display: flex; gap: 12px; font-size: 0.8rem;">
@@ -2488,11 +2613,11 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
     </section>
 
     <!-- ========================
-         SECTION 12: 사업부 플러그인 (선택 사항)
+         SECTION 9: 사업부 플러그인 (선택 사항)
          ======================== -->
     <section class="doc-section" id="biz-plugins">
       <div class="section-header">
-        <div class="section-num">12</div>
+        <div class="section-num">13</div>
         <div style="display: flex; flex-direction: column; gap: 4px;">
           <h2 style="margin: 0;">사업부 플러그인 <span style="font-size: 1rem; font-weight: 500; color: var(--text-muted);">(선택 사항)</span></h2>
         </div>
