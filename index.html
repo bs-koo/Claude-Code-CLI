@@ -239,12 +239,12 @@ h3, h4, h5 {
 
 h1 {                                   /* display-xl */
   font-size: 64px;
-  line-height: 1.05;
+  line-height: 1.12;
   letter-spacing: -1.5px;
 }
 h2 {                                   /* display-md */
   font-size: 36px;
-  line-height: 1.15;
+  line-height: 1.22;
   letter-spacing: -0.5px;
 }
 h3 { font-size: 22px; }                /* title-lg */
@@ -261,6 +261,7 @@ strong { font-weight: 600; color: var(--fg-strong); }
 .h-sub { font-size: 16px; font-weight: 400; color: var(--fg-muted); font-family: var(--font-sans); }
 
 /* 흐름 리듬 — 위계에 따라 간격을 달리 준다 */
+.flow > *:first-child      { margin-top: 0; }
 .flow > * + *              { margin-top: var(--s-5); }
 .flow > p + p              { margin-top: var(--s-4); }
 .flow > h3                 { margin-top: var(--s-7); }
@@ -483,7 +484,7 @@ tbody td {
   padding: var(--s-3) var(--s-5);
   color: var(--fg);
   vertical-align: top;
-  line-height: 1.65;
+  line-height: 1.75;
 }
 
 tbody td:first-child { color: var(--fg-strong); font-weight: 500; }
@@ -558,14 +559,16 @@ tbody td:first-child { color: var(--fg-strong); font-weight: 500; }
   white-space: pre;
 }
 
-/* 인라인 코드 — 서피스 대비 + ink (계약: 14.07) */
+/* 인라인 코드 — 서피스 대비 + ink (계약: 14.07)
+   세로 padding이 행 상자보다 커지면 다음 줄의 칩과 겹친다(표 안에서 3.3px 침범했다).
+   인라인 요소의 세로 padding은 레이아웃을 밀지 않고 그리기만 하므로 얇게 유지한다. */
 code:not(pre code) {
   font-family: var(--font-mono);
   font-size: 0.9em;
   background: var(--inset-2);
   border: 1px solid var(--rule-soft);
   color: var(--fg-strong);
-  padding: var(--s-1) var(--s-2);
+  padding: 1px var(--s-2);
   border-radius: var(--r-xs);
 }
 
@@ -609,7 +612,7 @@ code:not(pre code) {
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 28px;
-  line-height: 1.2;
+  line-height: 1.28;
   letter-spacing: -0.3px;
   color: var(--fg-strong);
 }
@@ -800,10 +803,10 @@ code:not(pre code) {
 .perm-allow, .perm-deny, .perm-ask { font-weight: 500; }
 .perm-deny { color: var(--error); }
 
-.list { padding-left: 1.2em; }
-.list > li + li { margin-top: var(--s-2); }
-.list-num { padding-left: 1.4em; }
-.list-num > li + li { margin-top: var(--s-2); }
+/* 리셋이 목록 들여쓰기를 지웠고 항목 간격도 없었다 — 기본값을 되살린다 */
+ol, ul { padding-left: 1.4em; }
+li + li { margin-top: var(--s-2); }
+li > ul, li > ol { margin-top: var(--s-2); }
 
 /* ============================================================
    18. 푸터
@@ -823,7 +826,7 @@ code:not(pre code) {
    19. 반응형
    ============================================================ */
 @media (max-width: 1100px) {
-  h1 { font-size: 48px; letter-spacing: -1px; line-height: 1.1; }
+  h1 { font-size: 48px; letter-spacing: -1px; line-height: 1.16; }
 }
 
 @media (max-width: 900px) {
@@ -843,8 +846,8 @@ code:not(pre code) {
 }
 
 @media (max-width: 600px) {
-  h1 { font-size: 36px; letter-spacing: -0.5px; line-height: 1.15; }
-  h2 { font-size: 28px; letter-spacing: -0.3px; }
+  h1 { font-size: 36px; letter-spacing: -0.5px; line-height: 1.25; }
+  h2 { font-size: 28px; letter-spacing: -0.3px; line-height: 1.3; }
   .callout { grid-template-columns: 1fr; row-gap: var(--s-2); }
   .deflist-row { grid-template-columns: 1fr; row-gap: var(--s-1); }
   .section-header { grid-template-columns: 1fr; }
@@ -934,8 +937,7 @@ code:not(pre code) {
       <div class="band-inner">
         <section class="hero" id="top">
           <h1>Claude Code CLI 가이드</h1>
-          <p class="lede">설치부터 플러그인, 토큰 최적화까지 — Windows 기준</p>
-          <p class="hero-meta">Windows · 마지막 업데이트 2026-04-03</p>
+          <p class="lede">설치부터 플러그인, 토큰 최적화까지</p>
         </section>
       </div>
     </div>
@@ -1526,7 +1528,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
       </div>
 
       <!-- 플러그인 관리 card -->
-      <div class="card">
+      <div class="card flow">
         <h4>플러그인 관리</h4>
         <p>Claude Code에서 <code>/plugin</code>을 입력하면 플러그인 관리 화면이 열립니다. 상단 탭으로 이동하며 모든 작업을 UI에서 처리할 수 있습니다.</p>
 
@@ -1582,7 +1584,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
       </div>
 
       <!-- Context Window 개념 설명 card -->
-      <div class="card card-orange">
+      <div class="card card-orange flow">
         <h3>Context Window란?</h3>
         <p>Claude가 한 번의 대화에서 기억할 수 있는 텍스트의 최대 용량. 대화가 길어지면 컨텍스트가 가득 차서 이전 내용을 잊게 됩니다.</p>
         <ul class="stack">
@@ -1601,7 +1603,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
       </div>
 
       <!-- /model -->
-      <div class="feature-card">
+      <div class="feature-card flow">
         <h3>/model — 모델 전환</h3>
         <p><code>/model</code> 명령으로 사용 중인 모델을 Opus, Sonnet, Haiku 등으로 전환합니다. 같은 메뉴에서 effort(추론 강도)도 다루는데, 레벨과 설정 방법은 <a href="#effort">8장 Effort 설정</a>에서 한 번에 설명합니다.</p>
       </div>
@@ -1635,7 +1637,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
       </div>
 
       <!-- 모드 전환 상세 -->
-      <div class="card card-orange">
+      <div class="card card-orange flow">
         <h3>모드 전환 (Shift+Tab)</h3>
         <p>Claude Code 세션 중 <code>Shift+Tab</code>을 누르면 실행 모드가 순환됩니다.</p>
         <div class="table-wrap">
@@ -1662,7 +1664,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
       </div>
 
       <!-- 이미지 붙여넣기 상세 -->
-      <div class="card card-orange">
+      <div class="card card-orange flow">
         <h3>이미지 붙여넣기 (Alt+V)</h3>
         <p>스크린샷이나 이미지를 클립보드에 복사한 후 <code>Alt+V</code>로 Claude에게 바로 전달할 수 있습니다. 에러 화면, UI 스크린샷, 디자인 시안 등을 보여주며 질문할 때 유용합니다.</p>
       </div>
@@ -1755,7 +1757,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
         </div>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card flow">
         <h3>oh-my-claudecode (OMC)</h3>
         <p>19개 전문 에이전트와 28개 스킬로 구성된 멀티 에이전트 오케스트레이션 플러그인입니다. Claude Code를 설치했다면 OMC도 함께 설치하는 것을 권합니다.</p>
       </div>
@@ -1831,7 +1833,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
       </div>
 
       <!-- 팀 기능 -->
-      <div class="card card-orange">
+      <div class="card card-orange flow">
         <h3>팀 기능 활성화 (선택사항)</h3>
         <p>OMC의 팀 기능은 여러 AI 에이전트가 동시에 협업하는 기능입니다. 이 기능을 사용하려면 Claude Code의 실험적 팀 설정을 활성화해야 합니다.</p>
 
@@ -1847,7 +1849,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
       </div>
 
       <!-- 팀 모드 설명 -->
-      <div class="card">
+      <div class="card flow">
         <h4>팀 모드란?</h4>
         <p>팀 모드는 여러 AI 에이전트가 동시에 병렬로 작업하는 기능입니다. 예를 들어 <code>team: 이 프로젝트를 분석하고 테스트도 작성해줘</code>라고 요청하면, Explore 에이전트가 코드를 분석하는 동안 Test-Engineer 에이전트가 테스트를 작성하는 식으로 동시에 진행됩니다.</p>
         <p>단일 에이전트가 순차적으로 처리하는 것보다 훨씬 빠르지만, 각 에이전트가 독립적으로 API를 호출하므로 토큰 소모량이 크게 증가합니다.</p>
@@ -1939,7 +1941,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
 
       <div class="stack">
 
-        <div class="card">
+        <div class="card flow">
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">claude code</span>
@@ -1950,7 +1952,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
           <p class="note">→ Explore 에이전트가 자동으로 프로젝트 구조를 스캔하고, 주요 파일과 아키텍처를 파악하여 보고합니다.</p>
         </div>
 
-        <div class="card">
+        <div class="card flow">
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">claude code</span>
@@ -1961,7 +1963,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
           <p class="note">→ Code-Reviewer 에이전트가 코드 품질, 버그 가능성, 개선점을 분석합니다.</p>
         </div>
 
-        <div class="card">
+        <div class="card flow">
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">claude code</span>
@@ -1972,7 +1974,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
           <p class="note">→ Debugger 에이전트가 스택 트레이스를 분석하고 근본 원인을 추적합니다.</p>
         </div>
 
-        <div class="card">
+        <div class="card flow">
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">claude code</span>
@@ -1983,7 +1985,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
           <p class="note">→ Security-Reviewer 에이전트가 OWASP Top 10 기준으로 코드를 점검합니다.</p>
         </div>
 
-        <div class="card">
+        <div class="card flow">
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">claude code</span>
@@ -1994,7 +1996,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
           <p class="note">→ Test-Engineer 에이전트가 테스트 전략을 수립하고 테스트 코드를 생성합니다.</p>
         </div>
 
-        <div class="card">
+        <div class="card flow">
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">claude code</span>
@@ -2005,7 +2007,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
           <p class="note">→ autopilot 모드가 활성화되어, 설계부터 구현, 테스트까지 자율적으로 진행합니다. 여러 에이전트가 순차적으로 협업합니다.</p>
         </div>
 
-        <div class="card">
+        <div class="card flow">
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">claude code</span>
@@ -2016,7 +2018,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
           <p class="note">→ Planner + Architect 에이전트가 인터뷰 기반으로 요구사항을 파악하고 단계별 실행 계획을 수립합니다.</p>
         </div>
 
-        <div class="card">
+        <div class="card flow">
           <div class="code-block">
             <div class="code-header">
               <span class="code-lang">claude code</span>
@@ -2081,9 +2083,9 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
         </div>
       </div>
 
-      <h3 class="rule-top">superpowers</h3>
+      <div class="rule-top"></div>
 
-      <div class="feature-card">
+      <div class="feature-card flow">
         <h3>superpowers</h3>
         <p>기능을 더하는 플러그인이 아니라 <strong>일하는 순서를 바꾸는</strong> 플러그인입니다. 만들기 전에 요구사항을 대화로 좁히고, 계획을 세워 서브에이전트에게 하나씩 맡기고, 버그는 추측 대신 절차대로 원인을 찾고, 테스트를 먼저 쓰게 합니다.</p>
       </div>
@@ -2215,7 +2217,7 @@ ccr   # 이전 세션 이어서 + 바이패스</code></pre>
         </div>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card flow">
         <p>RTK는 Claude Code의 CLI 출력을 압축하여 <strong>평균 60~90%의 토큰을 절약</strong>하는 도구입니다. git, npm, tsc, vitest 등의 출력을 자동으로 필터링하여 핵심 정보만 전달합니다.</p>
       </div>
 
@@ -2313,7 +2315,7 @@ rtk discover</code></pre>
         </div>
       </div>
 
-      <div class="card card-orange">
+      <div class="card card-orange flow">
         <h4>SEF-2026 vs oh-my-gx — 어떤 걸 설치해야 하나요?</h4>
         <p>두 플러그인은 동일한 개발 자동화 목적을 가지지만, 적용 범위와 토큰 소모 방식이 다릅니다.</p>
 
@@ -2356,11 +2358,11 @@ rtk discover</code></pre>
           </table>
         </div>
 
-        <p class="note">oh-my-gx는 SEF-2026의 범용 버전으로, 특정 언어나 프레임워크에 종속되지 않습니다. 토큰 소모는 더 크지만 각 에이전트가 더 오래 분석합니다.</p>
+        <p class="note">oh-my-gx는 SEF-2026의 범용 버전으로, 특정 언어나 프레임워크에 종속되지 않습니다. 토큰 소모는 더 크지만 각 에이전트가 더 오래 분석합니다. 설치와 사용법은 <a href="https://bs-koo.github.io/oh-my-gx/" target="_blank">공식 페이지</a>와 <a href="https://github.com/bs-koo/oh-my-gx" target="_blank">GitHub</a>를 참고하세요.</p>
       </div>
 
       <!-- ── Card 1: sqisoft-sef-2026 ── -->
-      <div class="card">
+      <div class="card flow">
         <div class="row-between">
           <div>
             <h3>SEF-2026 <span class="caption">— 공통프레임워크</span></h3>
@@ -2487,81 +2489,6 @@ rtk discover</code></pre>
         </div>
       </div>
 
-      <!-- ── Card 2: oh-my-gx ── -->
-      <div class="card">
-        <div class="row-between">
-          <div>
-            <h3>oh-my-gx <span class="caption">— 개발 자동화</span></h3>
-            <a href="https://github.com/bs-koo/oh-my-gx" target="_blank" class="caption">GitHub ↗</a>
-            <a href="https://bs-koo.github.io/oh-my-gx/" target="_blank" class="caption">공식 페이지 ↗</a>
-          </div>
-        </div>
-        <p class="note">PRD 작성부터 설계, 구현, 리뷰, PR 생성까지 전체 개발 사이클을 에이전트 팀이 자동으로 처리하는 개발 자동화 플러그인입니다.</p>
-
-        <div class="callout">
-          <span class="callout-label">참고</span>
-          <div class="callout-body">
-            <span class="callout-title">Max 구독자 추천</span>
-            <p>oh-my-gx는 SEF-2026(공통프레임워크)의 범용 버전입니다. 특정 언어나 프레임워크에 종속되지 않아 어떤 프로젝트에서든 사용할 수 있습니다. dev 파이프라인에서 각 에이전트가 독립적으로 파일을 분석하므로 토큰 소모가 크지만, 그만큼 더 정교한 결과를 도출합니다. <strong>Claude Max 구독자에게 추천합니다.</strong></p>
-          </div>
-        </div>
-
-        <p class="caption">설치</p>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">slash command</span>
-            <button class="copy-btn" onclick="copyCode(this)">복사</button>
-          </div>
-          <pre><code data-copy="/plugin marketplace add bs-koo/oh-my-gx
-/plugin install oh-my-gx@oh-my-gx">/plugin marketplace add bs-koo/oh-my-gx
-/plugin install oh-my-gx@oh-my-gx</code></pre>
-        </div>
-
-        <p class="caption">설치 후 초기 설정</p>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">slash command</span>
-            <button class="copy-btn" onclick="copyCode(this)">복사</button>
-          </div>
-          <pre><code data-copy="/oh-my-gx:setup">/oh-my-gx:setup</code></pre>
-        </div>
-
-        <h4>주요 스킬</h4>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>스킬</th><th>설명</th></tr></thead>
-            <tbody>
-              <tr><td>gx-dev</td><td>PRD → 설계 → 구현 → 리뷰 → PR 전체 사이클</td></tr>
-              <tr><td>gx-context</td><td>기획서/코드에서 도메인 컨텍스트 생성</td></tr>
-              <tr><td>gx-lens</td><td>코드에서 비즈니스 정책 탐지 및 영향도 분석</td></tr>
-              <tr><td>gx-research</td><td>웹 검색 + 문서 분석 리서치</td></tr>
-              <tr><td>gx-commit</td><td>브랜치 타입 기반 한국어 커밋</td></tr>
-              <tr><td>gx-pull-request</td><td>커밋 히스토리 분석 PR 자동 생성</td></tr>
-              <tr><td>gx-humanizer</td><td>AI 글쓰기 패턴 감지 및 교정</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h4>프롬프트 예시</h4>
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">프롬프트</span>
-            <button class="copy-btn" onclick="copyCode(this)">복사</button>
-          </div>
-          <pre><code data-copy="/gx-dev 대시보드 기능 개발해줘">/gx-dev 대시보드 기능 개발해줘</code></pre>
-        </div>
-        <p class="note">→ 전체 개발 사이클이 자동으로 진행됩니다.</p>
-
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-lang">프롬프트</span>
-            <button class="copy-btn" onclick="copyCode(this)">복사</button>
-          </div>
-          <pre><code data-copy="기획서 보고 context 만들어줘">기획서 보고 context 만들어줘</code></pre>
-        </div>
-        <p class="note">→ 기획 문서에서 도메인 컨텍스트를 자동 추출합니다.</p>
-      </div>
-
     </section>
 
       </div>
@@ -2591,7 +2518,7 @@ rtk discover</code></pre>
         <a href="https://www.anthropic.com/claude" target="_blank">Claude 소개</a>
         <a href="https://docs.anthropic.com/ko/docs/claude-code/security" target="_blank">보안 가이드</a>
       </div>
-      <div class="footer-meta">마지막 업데이트 2026-04-03 · Windows 기준 · Claude Code CLI 가이드</div>
+      <div class="footer-meta">마지막 업데이트 2026-08-06 · Claude Code CLI 가이드</div>
     </div>
   </div>
 </footer>
